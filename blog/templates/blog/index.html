@@ -1,0 +1,12 @@
+<!-- {% extends "blog/base.html %"} -->
+
+<h2>List of Recent Blogs</h2>
+{% if latest_blog_list %}
+    <ul>
+    {% for blog in latest_blog_list %}
+        <li><a href="{% url 'details' blog.id %}">{{ blog.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No blogs are available.</p>
+{% endif %}
