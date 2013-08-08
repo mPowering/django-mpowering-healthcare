@@ -4,7 +4,10 @@
 {% if latest_blog_list %}
     <ul>
     {% for blog in latest_blog_list %}
-        <li><a href="{% url 'details' blog.id %}">{{ blog.title }}</a></li>
+        <li>
+            <a href="{% url 'details' blog.id %}"><strong>{{ blog.title }}</strong></a> published: {{ blog.pub_date}}
+            <p>{{ blog.body }}</p>
+        </li>
     {% endfor %}
     </ul>
 {% else %}

@@ -16,6 +16,7 @@ def details(request, blog_id):
     
     context = RequestContext(request, {
         'title': blog.title,
+        'pub_date': blog.pub_date,
         'body': blog.body,
     })
 
