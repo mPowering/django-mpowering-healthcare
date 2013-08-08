@@ -3,10 +3,10 @@ import datetime
 from django.utils import timezone
 
 # Create your models here.
-class BlogNews(models.Model):
+class BlogMedia(models.Model):
     title = models.CharField(max_length=200)
-    body = models.CharField(max_length=1000)
-    # canComment = models.Boolean()
+    body = models.TextField()
+    canComment = models.BooleanField(default=False)
     pub_date = models.DateTimeField('date published')
 
     def __unicode__(self):

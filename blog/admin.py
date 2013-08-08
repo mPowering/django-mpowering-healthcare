@@ -1,4 +1,4 @@
 from django.contrib import admin
-from blogApp.models import BlogNews
+from blog.models import BlogMedia
 
-admin.site.register(BlogNews)
+admin.site.register(BlogMedia)
