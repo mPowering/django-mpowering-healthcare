@@ -1,15 +1,38 @@
-<!-- {% extends "blog/base.html %"} -->
-
 <h2>List of Recent Blogs</h2>
-{% if latest_blog_list %}
+{% if list_blogs %}
     <ul>
-    {% for blog in latest_blog_list %}
+    {% if latest_blog %}
         <li>
-            <a href="{% url 'blogs:details' blog.id %}"><strong>{{ blog.title }}</strong></a> published: {{ blog.pub_date}}
-            <!-- <p>{{ blog.body }}</p> -->
+            <a href="{% url 'blogs:details' latest_blog.id %}"><h4><strong>{{ latest_blog.title }}</strong></a>published: {{ latest_blog.pub_date|date:"j-M"}}</h4></a>   
+        </li>    
+    {% endif %}
+
+    {% for blog in list_blogs %}
+        <li>
+            <a href="{% url 'blogs:details' blog.id %}"><strong>{{ blog.title }}</strong></a> published: {{ blog.pub_date|date:"j-M"}}
         </li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No blogs are available.</p>
+{% endif %}
+ 
+<br>
+
+{% if list_news %}
+    <ul>
+    {% if latest_news %}
+        <li>
+            <a href="{% url 'blogs:details' latest_news.id %}"><h4><strong>{{ latest_news.title }}</strong></a>published: {{ latest_news.pub_date|date:"j-M"}}</h4></a>   
+        </li>    
+    {% endif %}
+
+    {% for news in list_news %}
+        <li>
+            <a href="{% url 'blogs:details' news.id %}"><strong>{{ news.title }}</strong></a> published: {{ news.pub_date|date:"j-M"}}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No news articles are available.</p>
 {% endif %}

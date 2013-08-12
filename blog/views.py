@@ -2,31 +2,26 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.template import RequestContext
 from blog.models import Article
 
-from django.views import generic
-from django.core.urlresolvers import reverse
 
 def index(request):
     # list latest blog entries
-    latest_blog_list = media_list()
+    blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
+    latest_blog_post = blog_list.pop(0)
+
+    # list of news articles
+    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:5]
+    latest_news_post = list_of_news.pop(0)
+
     context = RequestContext(request, {
-        'latest_blog_list': latest_blog_list,
+        'latest_blog': latest_blog_post,
+        'list_blogs': blog_list,
+        'latest_news': latest_news_post,
+        'list_news': list_of_news,
     })
     return render(request, 'blog/index.html', context)
 
-class HomeView(generic.ListView):
-    """ View landing page for news and media articles """
-    pass
-
-class NewsDetailView(generic.DetailView):
-    """ View one detailed news article """
-    pass
-
-class MediaDetailView(generic.DetailView):
-    """ View one detailed media article/blog """
-    pass
-
 def media_list():
-    """ Retrieve list of blogs """
+    """ Retrieve list of blog posts """
     list_all = get_list_or_404(Article)
     blog_list = []
     for blog in list_all:
@@ -40,7 +35,7 @@ def news_list():
     list_all = get_list_or_404(Article)
     news_list = []
     for news_item in list_all:
-        if news_item.can_comment == True:
+        if news_item.can_comment == False:
             news_list.append(news_item)
 
     return news_list
@@ -56,3 +51,9 @@ def details(request, blog_id):
     })
 
     return render(request, 'blog/details.html', context)
+
+def media_detailed(request, blog_id):
+    pass
+
+def news_detailed(request, news_id):
+    pass
