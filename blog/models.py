@@ -3,7 +3,7 @@ import datetime
 from django.utils import timezone
 
 # Create your models here.
-class BlogMedia(models.Model):
+class Article(models.Model):
     title = models.CharField(max_length=200)
     body = models.TextField()
     can_comment = models.BooleanField(default=False)

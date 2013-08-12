@@ -1,8 +1,8 @@
 from django.contrib import admin
-from blog.models import BlogMedia
+from blog.models import Article
 
 
-class BlogMediaAdmin(admin.ModelAdmin):
+class ArticleAdmin(admin.ModelAdmin):
 	fieldsets = [
 		(None,	{'fields': ['title']}),
 		(None,	{'fields': ['body']}),
@@ -13,4 +13,4 @@ class BlogMediaAdmin(admin.ModelAdmin):
 	search_fields = ['title']
 	date_hierarchy = 'pub_date'
 
-admin.site.register(BlogMedia, BlogMediaAdmin)
+admin.site.register(Article, ArticleAdmin)
