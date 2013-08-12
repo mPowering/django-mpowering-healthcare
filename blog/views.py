@@ -13,6 +13,18 @@ def index(request):
     })
     return render(request, 'blog/index.html', context)
 
+class HomeView(generic.ListView):
+    """ View landing page for news and media articles """
+    pass
+
+class NewsDetailView(generic.DetailView):
+    """ View one detailed news article """
+    pass
+
+class MediaDetailView(generic.DetailView):
+    """ View one detailed media article/blog """
+    pass
+
 def media_list():
     """ Retrieve list of blogs """
     list_all = get_list_or_404(Article)
@@ -44,15 +56,3 @@ def details(request, blog_id):
     })
 
     return render(request, 'blog/details.html', context)
-
-def news_media(request):
-    """ View landing page for news and media articles """
-    pass
-
-def news_detailed(request, news_id):
-    """ View one detailed news article """
-    pass
-
-def media_detailed(request, blog_id):
-    """ View one detailed media article/blog """
-    pass
