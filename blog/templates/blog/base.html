@@ -1,11 +1,10 @@
 {% load staticfiles %}
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>mPowering</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+<link href="{% static 'blog/css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'blog/css/bootstrap-responsive.css' %}" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
 </head>
 
@@ -22,10 +21,10 @@
                   </li>
                   <li><a href="task-forces.html">TASK FORCES</a></li>
                   <li><a href="partners.html">PARTNERS</a></li>
-                  <li><a href="blog.html">NEWS & MEDIA</a></li>
+                  <li><a href="blog.html">NEWS &amp; MEDIA</a></li>
                   <li><a href="media-release.html">RESOURCES</a></li>
-                  <li><img src="img/icons/ico_contact.png"></li>
-                  <li><img src="img/icons/ico_twitter.png"></li>
+                  <li><img src="{% static 'blog/img/icons/ico_contact.png' %}"></li>
+                  <li><img src="{% static 'blog/img/icons/ico_twitter.png' %}"></li>
                 </ul>
             </div>
         </div>
@@ -33,24 +32,51 @@
     
     <div class="row-fluid header-background">
         <div class="span6">
-        <a href="index.html"><img src="img/mpowering_logo.png"></a>
+        <a href="index.html"><img src="{% static 'blog/img/mpowering_logo.png' %}"></a>
         </div>
         <div class="span6">
-        <img src="img/home_graphic.png" align="right">
+        <img src="{% static 'blog/img/home_graphic.png' %}" align="right">
         </div>
     </div>
 
     {% block content %}
-    <p>Hello World</p>
+    
+        <p>HelloWorld</p>
+        {% block blog %}
+            <h1 class="line">From Our Blog</h1>            
+            <!-- {% block blog_list %} -->
+                {% if list_blogs %}
+                    {% if latest_blog %}
+                        <div class="blog-post-latest">
+                        <h3><a href="#">{{ latest_blog.title }}</a>
+                        </div>
+                    {% else %}
+                        <div class="blog-post">
+                            <h3>No blogs are available.</h3>
+                        </div>
+                    {% endif %}
+                    {% for blog in list_blogs %}
+                        <div class="blog-post">
+                            <div class="blog-post-date">
+                                <div class="blog-post-date-number">{{ blog.pub_date.day }}</div>
+                                {{blog.pub_date|date:"M"}}
+                            </div>
+                            <div class="blog-post-heading"><a href="#">{{ blog.title }}</a></div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            <!-- {% endblock %}  -->
+        {% endblock %}
     {% endblock %}
 
 
+</div>
 <hr>
 <!-- footer starts -->
 <div class="row-fluid">
     <div class="span5">&nbsp;</div>
     <div class="span2">
-    <img src="img/icons/ico_footer_contact.gif"><img src="img/icons/ico_footer_twitter.gif">
+    <img src="{% static 'blog/img/icons/ico_footer_contact.gif' %}"><img src="{% static 'blog/img/icons/ico_footer_twitter.gif' %}">
     </div>
     <div class="span5">&nbsp;</div>
 </div>
@@ -60,7 +86,7 @@
     <li>HOME</li>
     <li><a href="#">OBJECTIVES</a></li>    
     <li><a href="#">PARTNERS</a></li>    
-    <li><a href="#">NEWS & MEDIA</a></li>
+    <li><a href="#">NEWS &amp; MEDIA</a></li>
     <li><a href="#">RESOURCES</a></li>
     </ul>
     © Copyright 2012 Lorem Ipsum Co. All rights reserved.
