@@ -40,18 +40,6 @@ def news_list():
 
     return news_list
 
-def details(request, blog_id):
-    # view individual blogs in more detail
-    blog = get_object_or_404(Article, pk=blog_id)
-    
-    context = RequestContext(request, {
-        'title': blog.title,
-        'pub_date': blog.pub_date,
-        'body': blog.body,
-    })
-
-    return render(request, 'blog/details.html', context)
-
 """ view function for each page/tab """
 def task_forces(request):
     # list latest blog entries
@@ -89,6 +77,9 @@ def news_media(request):
     return render(request, 'blog/blog.html', context)
 
 def news_media_detail(request, blog_id):
+    # retrieve blog of interest
+    blog = get_object_or_404(Article, pk=blog_id)
+
     # list latest blog entries
     blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
     latest_blog_post = blog_list.pop(0)
@@ -97,12 +88,16 @@ def news_media_detail(request, blog_id):
     list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
 
     context = RequestContext(request, {
+        'blog_title': blog.title,
+        'blog_date': blog.pub_date,
+        'blog_body': blog.body,
+
         'latest_blog': latest_blog_post,
         'list_blogs': blog_list,
         'list_news': list_of_news,
         'view_index': False,
     })
-    return render(request, 'blog/blog.html', context)
+    return render(request, 'blog/blog-detailed.html', context)
 
 def resources(request):
     # list latest blog entries

@@ -1,0 +1,13 @@
+{% extends "blog/blog.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    {{ block.super }}
+    {% block pager %}
+
+        <h2 class="blog">{{ blog_title }}</h2>
+        <div class="blog-date">{{ blog_date|date:"j F Y" }}</div>
+        <p>{{ blog_body }}</p>
+
+    {% endblock %}    
+{% endblock %}

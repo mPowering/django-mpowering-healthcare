@@ -23,7 +23,7 @@
                 {% if list_blogs %}
                     {% if latest_blog %}
                         <div class="blog-post-latest">
-                        <h3><a href="#">{{ latest_blog.title }}</a>
+                        <h3><a href="{% url 'blog:news-media-detail' latest_blog.id %}">{{ latest_blog.title }}</a>
                         </div>
                     {% else %}
                         <div class="blog-post">

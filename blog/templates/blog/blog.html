@@ -35,7 +35,8 @@
      <!-- blog starts TODO - pagination *** -->
      <div class="row-fluid">
      	<div class="span8">
-        <h1 class="line">Blog</h1>
+            <h1 class="line">Blog</h1>
+            {% block pager %}        
             <h2 class="blog">How Frontline Health Workers Are
 Saving the Lives of Women &amp; Children</h2>
 <div class="blog-date">3 November 2012</div>
@@ -59,9 +60,8 @@ CID app from Google Play. If you have not already received the OTA update notifi
 you can try to manually ping HTC’s update servers by going to Settings > About >
 Software updates >Check now.</p>
             
-            
-          
-        </div>
+        {% endblock %}  
+        </div>        
 
         <div class="span4">
             {% block blog %}
