@@ -9,7 +9,7 @@ def index(request):
     latest_blog_post = blog_list.pop(0)
 
     # list of news articles
-    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:5]
+    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
     latest_news_post = list_of_news.pop(0)
 
     context = RequestContext(request, {
@@ -52,8 +52,16 @@ def details(request, blog_id):
 
     return render(request, 'blog/details.html', context)
 
-def media_detailed(request, blog_id):
+""" view function for each page """
+def task_forces(request, blog_id):
     pass
 
-def news_detailed(request, news_id):
+def partners(request):
+    pass
+
+def news_media(request, blog_id):
+    """ View the News & Media page/tabe """
+    pass
+
+def resources(request, news_id):
     pass

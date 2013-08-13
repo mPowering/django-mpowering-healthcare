@@ -1,3 +1,74 @@
-{% block title %}{% endblock %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>mPowering</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+</head>
 
-{% block body %}{% endblock %}
+<body>
+
+<div class="container container-background">
+<div class="padding-main">
+    <div class="row-fluid">
+        <div class="navbar-fixed-top navbar-bgcolor">
+            <div class="container">
+                <ul class="nav nav-tabs">
+                  <li class="active">
+                    <a href="index.html">HOME</a>
+                  </li>
+                  <li><a href="task-forces.html">TASK FORCES</a></li>
+                  <li><a href="partners.html">PARTNERS</a></li>
+                  <li><a href="blog.html">NEWS & MEDIA</a></li>
+                  <li><a href="media-release.html">RESOURCES</a></li>
+                  <li><img src="img/icons/ico_contact.png"></li>
+                  <li><img src="img/icons/ico_twitter.png"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row-fluid header-background">
+        <div class="span6">
+        <a href="index.html"><img src="img/mpowering_logo.png"></a>
+        </div>
+        <div class="span6">
+        <img src="img/home_graphic.png" align="right">
+        </div>
+    </div>
+
+    {% block content %}
+    <p>Hello World</p>
+    {% endblock %}
+
+
+<hr>
+<!-- footer starts -->
+<div class="row-fluid">
+    <div class="span5">&nbsp;</div>
+    <div class="span2">
+    <img src="img/icons/ico_footer_contact.gif"><img src="img/icons/ico_footer_twitter.gif">
+    </div>
+    <div class="span5">&nbsp;</div>
+</div>
+<div class="row-fluid">
+    <div class="span12 footer">
+    <ul class="inline-footer">
+    <li>HOME</li>
+    <li><a href="#">OBJECTIVES</a></li>    
+    <li><a href="#">PARTNERS</a></li>    
+    <li><a href="#">NEWS & MEDIA</a></li>
+    <li><a href="#">RESOURCES</a></li>
+    </ul>
+    © Copyright 2012 Lorem Ipsum Co. All rights reserved.
+    </div>
+</div>
+<!-- footer ends -->
+
+</div>
+
+</body>
+</html>
