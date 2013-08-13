@@ -10,13 +10,13 @@ def index(request):
 
     # list of news articles
     list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
-    latest_news_post = list_of_news.pop(0)
+    print len(list_of_news)
 
     context = RequestContext(request, {
         'latest_blog': latest_blog_post,
         'list_blogs': blog_list,
-        'latest_news': latest_news_post,
         'list_news': list_of_news,
+        'view_index': True,
     })
     return render(request, 'blog/index.html', context)
 
@@ -52,16 +52,70 @@ def details(request, blog_id):
 
     return render(request, 'blog/details.html', context)
 
-""" view function for each page """
-def task_forces(request, blog_id):
-    pass
+""" view function for each page/tab """
+def task_forces(request):
+    # list latest blog entries
+    blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
+    latest_blog_post = blog_list.pop(0)
+
+    # list of news articles
+    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
+
+    context = RequestContext(request, {
+        'latest_blog': latest_blog_post,
+        'list_blogs': blog_list,
+        'list_news': list_of_news,
+        'view_index': False,
+    })
+    return render(request, 'blog/task-forces.html', context)
 
 def partners(request):
-    pass
+    return render(request, 'blog/partners.html')
 
-def news_media(request, blog_id):
-    """ View the News & Media page/tabe """
-    pass
+def news_media(request):
+    # list latest blog entries
+    blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
+    latest_blog_post = blog_list.pop(0)
 
-def resources(request, news_id):
-    pass
+    # list of news articles
+    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
+
+    context = RequestContext(request, {
+        'latest_blog': latest_blog_post,
+        'list_blogs': blog_list,
+        'list_news': list_of_news,
+        'view_index': False,
+    })
+    return render(request, 'blog/blog.html', context)
+
+def news_media_detail(request, blog_id):
+    # list latest blog entries
+    blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
+    latest_blog_post = blog_list.pop(0)
+
+    # list of news articles
+    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
+
+    context = RequestContext(request, {
+        'latest_blog': latest_blog_post,
+        'list_blogs': blog_list,
+        'list_news': list_of_news,
+        'view_index': False,
+    })
+    return render(request, 'blog/blog.html', context)
+
+def resources(request):
+    # list latest blog entries
+    blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
+    latest_blog_post = blog_list.pop(0)
+
+    # list of news articles
+    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
+
+    context = RequestContext(request, {
+        'latest_blog': latest_blog_post,
+        'list_blogs': blog_list,
+        'list_news': list_of_news,
+        'view_index': False,
+    })
+    return render(request, 'blog/media-release.html', context)

@@ -17,5 +17,5 @@ urlpatterns = patterns('',
     url(r'^celery/', include('celery_app.urls')),
 
     # points to blog urls
-    url(r'^blogs/', include('blog.urls', namespace="blogs")),
+    url(r'^', include('blog.urls', namespace="blog")),
 )
