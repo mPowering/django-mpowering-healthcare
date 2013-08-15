@@ -712,7 +712,7 @@ div.container{max-width:1075px;}
 div.container-background{background-color:#ffffff;}
 div.padding-main{padding-left:55px;padding-right:55px;padding-top:45px;}
 div.navbar-bgcolor{background-color:#2a6083;height:41px;background-image:url(../img/navbar-background.gif);background-repeat:repeat-x;background-position:top;}
-div.quote-area{font-size:42px;color:#0b4260;line-height:55px;padding:20px 20px 0px 20px;}
+div.quote-area{font-size:36px;color:#0b4260;line-height:42px;padding:20px 20px 0px 20px;}
 hr{border-bottom:4px solid #0b4260;margin:50px 0px 50px 0px;}
 h1{font-family:"Gotham",Helvetica,Arial,sans-serif;font-size:36px;color:#0b4260;}
 h1.line{font-family:"Gotham",Helvetica,Arial,sans-serif;font-size:36px;color:#0b4260;padding-bottom:40px;display:block;border-bottom:1px solid #949493;}
