@@ -72,9 +72,9 @@ Software updates >Check now.</p>
                                 {{blog.pub_date|date:"M"}}
                             </div>
                             {% if view_index %}
-                                <div class="blog-post-heading"><a href="#">{{ blog.title }}</a></div>
+                                <div class="blog-post-heading"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></div>
                             {% else %}
-                                <div class="blog-post-heading-sub"><a href="#">{{ blog.title }}</a></div>
+                                <div class="blog-post-heading-sub"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></div>
                             {% endif %}
                         </div>
                     {% endfor %}
@@ -87,8 +87,8 @@ Software updates >Check now.</p>
             {% if list_news %}
             {% for news_item in list_news %}
                 <div class="media-release-sub">
-                    <strong>{{news_item.pub_date|date:"j M y"}}</strong><br>                    
-                    <a href="#">{{news_item.title}}</a>
+                    <strong>{{news_item.pub_date|date:"j F y"}}</strong><br>                    
+                    <a href="{% url 'blog:news-media-detail' news_item.id %}">{{news_item.title}}</a>
                 </div>
             {% endfor %}
             {% else %}

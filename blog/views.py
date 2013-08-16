@@ -84,8 +84,8 @@ def news_media_detail(request, blog_id):
     latest_blog_post = blog_list.pop(0)
     if latest_blog_post == blog and len(blog_list) > 0:
         latest_blog_post = blog_list.pop(0)
-    else:
-        del(latest_blog_post)
+    # else:
+    #     del(latest_blog_post)
 
     # list of news articles
     list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
@@ -97,6 +97,7 @@ def news_media_detail(request, blog_id):
         'list_blogs': blog_list,
         'list_news': list_of_news,
         'view_index': False,
+        'view_blog_entry': blog.can_comment,
     })
     return render(request, 'blog/blog-detailed.html', context)
 

@@ -5,18 +5,22 @@
      <!-- blog starts -->
      <div class="row-fluid">
       <div class="span8">
+            {% if view_blog_entry %}
             <h1 class="line">Blog</h1>
-            {% block pager %}        
-              <p>Hello Worlds</p>
+            {% else %}
+            <h1 class="line">Media</h1>
+            {% endif %}
+
+            {% block pager %}    
                 {% if current_blog %}
-                    <br>
-                    <h3>{{ current_blog.title }}</h3>
-                    <ul>    
-                        <p>Published: {{ current_blog.pub_date}}</p>
-                        {{ current_blog.body }}
-                    </ul>
-                    
-                    <div class="fb-comments" data-href="{% url 'blog:news-media-detail' current_blog.id %}" data-num-posts="2" data-width="470" data-colorscheme="light"></div>
+                    <h2 class="blog">{{ current_blog.title }}</h2>
+                    <div class="blog-date">{{ current_blog.pub_date|date:"j F y"}}</div>
+                    <p>{{ current_blog.body }}</p>
+                                        
+                    <!-- Facebook comment box -->
+                    {% if view_blog_entry %}
+                      <div class="fb-comments" data-href="{% url 'blog:news-media-detail' current_blog.id %}" data-num-posts="2" data-width="470" data-colorscheme="light"></div>
+                    {% endif %}
   
                 {% endif %}
             {% endblock %}  
