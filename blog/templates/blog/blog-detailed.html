@@ -1,13 +1,39 @@
 {% extends "blog/blog.html" %}
-{% load staticfiles %}
 
 {% block content %}
-    {{ block.super }}
-    {% block pager %}
+        
+     <!-- blog starts -->
+     <div class="row-fluid">
+      <div class="span8">
+            <h1 class="line">Blog</h1>
+            {% block pager %}        
+              <p>Hello Worlds</p>
+                {% if current_blog %}
+                    <br>
+                    <h3>{{ current_blog.title }}</h3>
+                    <ul>    
+                        <p>Published: {{ current_blog.pub_date}}</p>
+                        {{ current_blog.body }}
+                    </ul>
+                    
+                    <div class="fb-comments" data-href="{% url 'blog:news-media-detail' current_blog.id %}" data-num-posts="2" data-width="470" data-colorscheme="light"></div>
+  
+                {% endif %}
+            {% endblock %}  
+        </div>        
 
-        <h2 class="blog">{{ blog_title }}</h2>
-        <div class="blog-date">{{ blog_date|date:"j F Y" }}</div>
-        <p>{{ blog_body }}</p>
+        <div class="span4">
+            {% block blog %}
+                {{ block.super }}
+            {% endblock %}
 
-    {% endblock %}    
+            <br><br>            
+
+            {% block news %}
+                {{ block.super }}
+            {% endblock %}
+        </div>
+     </div>
+     <!-- blog ends -->
+    
 {% endblock %}

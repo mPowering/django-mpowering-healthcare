@@ -10,7 +10,6 @@ def index(request):
 
     # list of news articles
     list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
-    print len(list_of_news)
 
     context = RequestContext(request, {
         'latest_blog': latest_blog_post,
@@ -83,14 +82,16 @@ def news_media_detail(request, blog_id):
     # list latest blog entries
     blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
     latest_blog_post = blog_list.pop(0)
+    if latest_blog_post == blog and len(blog_list) > 0:
+        latest_blog_post = blog_list.pop(0)
+    else:
+        del(latest_blog_post)
 
     # list of news articles
     list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
 
     context = RequestContext(request, {
-        'blog_title': blog.title,
-        'blog_date': blog.pub_date,
-        'blog_body': blog.body,
+        'current_blog': blog,
 
         'latest_blog': latest_blog_post,
         'list_blogs': blog_list,
