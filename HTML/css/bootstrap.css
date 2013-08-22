@@ -747,6 +747,8 @@ div.footer{text-align:center;margin-bottom:100px;font-family:"Kreon",Helvetica,A
 div.blog-date{font-weight:bold;}
 div.media-release-sub{padding:8px 25px 8px 10px;color:#2a2927;font-size:14px;line-height:19px;font-family:"Kreon",Helvetica,Arial,sans-serif;border-bottom:1px solid #d8e7f4;position:relative;min-height:60px;}
 div.media-release-sub a:link,div.media-release-sub a:hover,div.media-release-sub a:active,div.media-release-sub a:visited{color:#2a2927;}
+div.objectives-one{padding:20px 30px;background-color:#f6f6f6;}
+div.objectives-two{padding:20px 30px;background-color:#fbfbfb;}
 .pull-right{float:right;}
 .pull-left{float:left;}
 .hide{display:none;}
