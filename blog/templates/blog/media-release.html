@@ -5,15 +5,23 @@
     <div class="row-fluid">
         <div class="navbar-fixed-top navbar-bgcolor">
             <div class="container">
-                <ul class="nav nav-tabs">
-                  <li><a href="{% url 'blog:index' %}">HOME</a></li>
-                  <li><a href="{% url 'blog:task-forces' %}">TASK FORCES</a></li>
-                  <li><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
-                  <li><a href="{% url 'blog:news-media' %}">NEWS &amp; MEDIA</a></li>
-                  <li class="active"><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
-                  <li><img src="{% static 'blog/img/icons/ico_contact.png' %}"></li>
-                  <li><img src="{% static 'blog/img/icons/ico_twitter.png' %}"></li>
-                </ul>
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </a>
+
+                <div class="nav-collapse">
+                  <ul class="nav nav-tabs">
+                    <li><a href="{% url 'blog:index' %}">HOME</a></li>
+                    <li><a href="{% url 'blog:task-forces' %}">OBJECTIVES</a></li>
+                    <li><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
+                    <li><a href="{% url 'blog:news-media' %}">NEWS &amp; MEDIA</a></li>
+                    <li class="active"><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
+                    <li><img src="{% static 'blog/img/icons/ico_contact.png' %}"></li>
+                    <li><img src="{% static 'blog/img/icons/ico_twitter.png' %}"></li>
+                  </ul>
+                </div>                
             </div>
         </div>
     </div>
