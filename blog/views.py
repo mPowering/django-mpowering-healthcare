@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.template import RequestContext
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from blog.models import Article
 
 
@@ -19,25 +21,6 @@ def index(request):
     })
     return render(request, 'blog/index.html', context)
 
-def media_list():
-    """ Retrieve list of blog posts """
-    list_all = get_list_or_404(Article)
-    blog_list = []
-    for blog in list_all:
-        if blog.can_comment == True:
-            blog_list.append(blog)
-
-    return blog_list
-
-def news_list():
-    """ Retrieve list of news articles """
-    list_all = get_list_or_404(Article)
-    news_list = []
-    for news_item in list_all:
-        if news_item.can_comment == False:
-            news_list.append(news_item)
-
-    return news_list
 
 """ view function for each page/tab """
 def task_forces(request):
@@ -56,10 +39,26 @@ def task_forces(request):
     })
     return render(request, 'blog/task-forces.html', context)
 
+
 def partners(request):
     return render(request, 'blog/partners.html')
 
+
+""" Using paginator to view list of blog posts """
 def news_media(request):
+    # list of all blog entries
+    blog_list_all = get_list_or_404(Article)
+    paginator = Paginator(blog_list_all, 5) # show 5 blogs per page
+    page = request.GET.get('page')
+    try:
+        blogs = paginator.page(page)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver first page
+        blogs = paginator.page(1)
+    except EmptyPage:
+        # if page is out of range, deliver last page of results
+        blogs = paginator.page(paginator.num_pages)
+
     # list latest blog entries
     blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
     latest_blog_post = blog_list.pop(0)
@@ -72,8 +71,10 @@ def news_media(request):
         'list_blogs': blog_list,
         'list_news': list_of_news,
         'view_index': False,
+        'main_list': blogs,
     })
     return render(request, 'blog/blog.html', context)
+
 
 def news_media_detail(request, blog_id):
     # retrieve blog of interest
@@ -101,6 +102,7 @@ def news_media_detail(request, blog_id):
     })
     return render(request, 'blog/blog-detailed.html', context)
 
+
 def resources(request):
     # list latest blog entries
     blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
@@ -116,3 +118,26 @@ def resources(request):
         'view_index': False,
     })
     return render(request, 'blog/media-release.html', context)
+
+
+""" helper function """
+def media_list():
+    """ Retrieve list of blog posts """
+    list_all = get_list_or_404(Article)
+    blog_list = []
+    for blog in list_all:
+        if blog.can_comment == True:
+            blog_list.append(blog)
+
+    return blog_list
+
+
+def news_list():
+    """ Retrieve list of news articles """
+    list_all = get_list_or_404(Article)
+    news_list = []
+    for news_item in list_all:
+        if news_item.can_comment == False:
+            news_list.append(news_item)
+
+    return news_list
