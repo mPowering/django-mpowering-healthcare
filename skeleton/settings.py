@@ -64,7 +64,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = abspath('media')
+MEDIA_ROOT = abspath('../blog/media/')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -155,6 +155,7 @@ INSTALLED_APPS = (
 
     # sample apps to explain usage
     'blog',
+    'tinymce',
     'celery_app',
 )
 
@@ -224,3 +225,12 @@ RAVEN_CONFIG = {
     # DevOps will supply you with this.
     # 'dsn': 'http://public:secret@example.com/1',
 }
+
+TINYMCE_JS_URL = MEDIA_URL+'js/tinymce/tinymce.min.js'
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "spellchecker,paste,searchreplace",
+    'theme': "modern",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+}
+TINYMCE_SPELLCHECKER = True
