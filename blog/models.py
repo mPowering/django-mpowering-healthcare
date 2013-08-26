@@ -5,11 +5,9 @@ from django.utils import timezone
 
 # Create your models here.
 class Article(models.Model):
-    
     def generate_new_filename(instance, filename):
-        ext = os.path.splitext(filename)[1] # get file extension
+        ext = os.path.splitext(filename)[1]  # get file extension
         image_name = "%s%s" % (uuid.uuid4(), ext)
-        print image_name       
         return "blog_imgs/%s" % image_name
 
     title = models.CharField(max_length=200)
@@ -25,4 +23,4 @@ class Article(models.Model):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
     was_published_recently.admin_order_field = 'pub_date'
     was_published_recently.boolean = True
-    was_published_recently.short_description = 'published recently?'  
+    was_published_recently.short_description = 'published recently?'

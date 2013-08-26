@@ -7,11 +7,11 @@ from blog.models import Article
 
 def index(request):
     # list latest blog entries
-    blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
+    blog_list = sorted(media_list(), key=lambda x: x.pub_date, reverse=True)[:5]
     latest_blog_post = blog_list.pop(0)
 
     # list of news articles
-    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
+    list_of_news = sorted(news_list(), key=lambda x: x.pub_date, reverse=True)[:4]
 
     context = RequestContext(request, {
         'latest_blog': latest_blog_post,
@@ -22,14 +22,14 @@ def index(request):
     return render(request, 'blog/index.html', context)
 
 
-""" view function for each page/tab """
 def task_forces(request):
+    """ view function for each page/tab """
     # list latest blog entries
-    blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
+    blog_list = sorted(media_list(), key=lambda x: x.pub_date, reverse=True)[:5]
     latest_blog_post = blog_list.pop(0)
 
     # list of news articles
-    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
+    list_of_news = sorted(news_list(), key=lambda x: x.pub_date, reverse=True)[:4]
 
     context = RequestContext(request, {
         'latest_blog': latest_blog_post,
@@ -44,11 +44,11 @@ def partners(request):
     return render(request, 'blog/partners.html')
 
 
-""" Using paginator to view list of blog posts """
 def news_media(request):
+    """ Using paginator to view list of blog posts """
     # list of all blog entries
     blog_list_all = get_list_or_404(Article)
-    paginator = Paginator(blog_list_all, 5) # show 5 blogs per page
+    paginator = Paginator(blog_list_all, 5)  # show 5 blogs per page
     page = request.GET.get('page')
     try:
         blogs = paginator.page(page)
@@ -60,11 +60,11 @@ def news_media(request):
         blogs = paginator.page(paginator.num_pages)
 
     # list latest blog entries
-    blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
+    blog_list = sorted(media_list(), key=lambda x: x.pub_date, reverse=True)[:5]
     latest_blog_post = blog_list.pop(0)
 
     # list of news articles
-    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
+    list_of_news = sorted(news_list(), key=lambda x: x.pub_date, reverse=True)[:4]
 
     context = RequestContext(request, {
         'latest_blog': latest_blog_post,
@@ -78,10 +78,10 @@ def news_media(request):
 
 def news_media_detail(request, blog_id):
     # list latest blog entries
-    blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:6]
-    
+    blog_list = sorted(media_list(), key=lambda x: x.pub_date, reverse=True)[:6]
+
     # list of news articles
-    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:5]
+    list_of_news = sorted(news_list(), key=lambda x: x.pub_date, reverse=True)[:5]
 
     # retrieve blog of interest
     article_of_interest = get_object_or_404(Article, pk=blog_id)
@@ -91,16 +91,16 @@ def news_media_detail(request, blog_id):
         if len(blog_list) > 0:
             for b in blog_list:
                 if b == article_of_interest:
-                    blog_list.remove(b)                      
+                    blog_list.remove(b)
     else:
         if len(list_of_news) > 0:
             for b in list_of_news:
                 if b == article_of_interest:
                     list_of_news.remove(b)
 
-    list_of_news = list_of_news[:4] # ensures only 4 news-posts visible in short list
-    blog_list = blog_list[:5] # ensures only 5 blog-posts visible in short list
-    latest_blog_post = blog_list.pop(0) # retrieve latest blog post  
+    list_of_news = list_of_news[:4]  # ensures only 4 news-posts visible in short list
+    blog_list = blog_list[:5]  # ensures only 5 blog-posts visible in short list
+    latest_blog_post = blog_list.pop(0)  # retrieve latest blog post
 
     context = RequestContext(request, {
         'current_blog': article_of_interest,
@@ -116,11 +116,11 @@ def news_media_detail(request, blog_id):
 
 def resources(request):
     # list latest blog entries
-    blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
+    blog_list = sorted(media_list(), key=lambda x: x.pub_date, reverse=True)[:5]
     latest_blog_post = blog_list.pop(0)
 
     # list of news articles
-    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
+    list_of_news = sorted(news_list(), key=lambda x: x.pub_date, reverse=True)[:4]
 
     context = RequestContext(request, {
         'latest_blog': latest_blog_post,
@@ -132,12 +132,14 @@ def resources(request):
 
 
 """ helper function """
+
+
 def media_list():
     """ Retrieve list of blog posts """
     list_all = get_list_or_404(Article)
     blog_list = []
     for blog in list_all:
-        if blog.can_comment == True:
+        if blog.can_comment:
             blog_list.append(blog)
 
     return blog_list
@@ -148,7 +150,7 @@ def news_list():
     list_all = get_list_or_404(Article)
     news_list = []
     for news_item in list_all:
-        if news_item.can_comment == False:
+        if not news_item.can_comment:
             news_list.append(news_item)
 
     return news_list

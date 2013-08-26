@@ -4,7 +4,7 @@ from blog import views
 from django.conf import settings
 
 
-urlpatterns = patterns('', 
+urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^task-forces/$', views.task_forces, name='task-forces'),
     url(r'^partners/$', views.partners, name='partners'),
