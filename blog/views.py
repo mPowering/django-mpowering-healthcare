@@ -78,30 +78,38 @@ def news_media(request):
 
 def news_media_detail(request, blog_id):
     # list latest blog entries
-    blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
+    blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:6]
     
     # list of news articles
-    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
+    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:5]
 
     # retrieve blog of interest
-    blog = get_object_or_404(Article, pk=blog_id)
+    article_of_interest = get_object_or_404(Article, pk=blog_id)
 
-    # list latest blog entries
-    print len(blog_list)
-    if len(blog_list) > 0:
-        for b in blog_list:
-            if b == blog:
-                blog_list.remove(b)
-        latest_blog_post = blog_list.pop(0) # retrieve latest blog post
+    # remove current article from short list
+    if article_of_interest.can_comment:
+        if len(blog_list) > 0:
+            for b in blog_list:
+                if b == article_of_interest:
+                    blog_list.remove(b)                      
+    else:
+        if len(list_of_news) > 0:
+            for b in list_of_news:
+                if b == article_of_interest:
+                    list_of_news.remove(b)
+
+    list_of_news = list_of_news[:4] # ensures only 4 news-posts visible in short list
+    blog_list = blog_list[:5] # ensures only 5 blog-posts visible in short list
+    latest_blog_post = blog_list.pop(0) # retrieve latest blog post  
 
     context = RequestContext(request, {
-        'current_blog': blog,
+        'current_blog': article_of_interest,
 
         'latest_blog': latest_blog_post,
         'list_blogs': blog_list,
         'list_news': list_of_news,
         'view_index': False,
-        'view_blog_entry': blog.can_comment,
+        'view_blog_entry': article_of_interest.can_comment,
     })
     return render(request, 'blog/blog-detailed.html', context)
 
