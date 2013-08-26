@@ -19,5 +19,5 @@ urlpatterns = patterns('',
     # points to blog urls
     url(r'^', include('blog.urls', namespace="blog")),
 
-    (r'^tinymce/',include('tinymce.urls')),
+    (r'^tinymce/', include('tinymce.urls')),
 )
