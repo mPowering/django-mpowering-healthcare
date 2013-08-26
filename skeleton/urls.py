@@ -15,4 +15,9 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^celery/', include('celery_app.urls')),
+
+    # points to blog urls
+    url(r'^', include('blog.urls', namespace="blog")),
+
+    (r'^tinymce/', include('tinymce.urls')),
 )

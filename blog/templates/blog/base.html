@@ -1,0 +1,114 @@
+{% load staticfiles %}
+<html>
+<head>
+<meta charset="utf-8">
+<meta property="fb:app_id" content="618159604883811">
+<title>mPowering</title>
+<link href="{% static 'blog/css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'blog/css/bootstrap-responsive.css' %}" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=618159604883811";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="container container-background">
+<div class="padding-main">
+    
+    {% block header %}
+        <p>Header Goes here.</p>
+    {% endblock %}
+
+    {% block content %}
+        {% block pager %}
+            
+        {% endblock %}
+
+        {% block blog %}
+            <h2 class="line">From our Blog</h2>
+                
+                {% if latest_blog %}
+                    <div class="blog-post-latest">
+                    <h3><a href="{% url 'blog:news-media-detail' latest_blog.id %}">{{ latest_blog.title }}</a>
+                    </div>
+                {% else %}
+                    <div class="blog-post">
+                        <h3>No blogs are available.</h3>
+                    </div>
+                {% endif %}
+                {% if list_blogs %}
+                    {% for blog in list_blogs %}
+                        <div class="blog-post">
+                            <div class="blog-post-date">
+                                <div class="blog-post-date-number">{{ blog.pub_date.day }}</div>
+                                {{blog.pub_date|date:"M"}}
+                            </div>
+                            {% if view_index %}
+                                <div class="blog-post-heading"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></div>
+                            {% else %}
+                                <div class="blog-post-heading-sub"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+        {% endblock %}
+
+        
+        {% block news %}
+            <h2 class="line">Media Releases</h2>
+            {% if list_news %}
+            {% for news_item in list_news %}
+                <div class="media-release-sub">
+                    <strong>{{news_item.pub_date|date:"j F y"}}</strong><br>                    
+                    <a href="{% url 'blog:news-media-detail' news_item.id %}">{{news_item.title}}</a>
+                </div>
+            {% endfor %}
+            {% else %}
+                <div class="media-release-sub">
+                <strong>No news articles currently available.</strong>
+                </div>
+            {% endif %}
+        {% endblock %}
+
+    {% endblock %}
+
+
+</div>
+<hr>
+<!-- footer starts -->
+<div class="row-fluid">
+    <div class="span5">&nbsp;</div>
+    <div class="span2">
+    <img src="{% static 'blog/img/icons/ico_footer_contact.gif' %}"><img src="{% static 'blog/img/icons/ico_footer_twitter.gif' %}">
+    </div>
+    <div class="span5">&nbsp;</div>
+</div>
+<div class="row-fluid">
+    <div class="span12 footer">
+    <ul class="inline-footer">
+    {% block footer %}
+    {% endblock %}
+    </ul>
+    © Copyright 2013 {{ company }}. All rights reserved.
+    </div>
+</div>
+
+<!-- jQuery (necesary for Bootstrap's JavaScript plugins) -->
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual file as needed -->
+<script type="text/javascript" src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+
+<!-- footer ends -->
+
+</div>
+
+</body>
+</html>

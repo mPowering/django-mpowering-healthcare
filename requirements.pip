@@ -16,3 +16,6 @@ django-celery-email
 pep8
 pyflakes
 fabric
+PIL
+django-tinymce
+django-staticfiles
