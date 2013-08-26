@@ -55,16 +55,17 @@ Software updates >Check now.</p>
 
         {% block blog %}
             <h2 class="line">From our Blog</h2>
+                
+                {% if latest_blog %}
+                    <div class="blog-post-latest">
+                    <h3><a href="{% url 'blog:news-media-detail' latest_blog.id %}">{{ latest_blog.title }}</a>
+                    </div>
+                {% else %}
+                    <div class="blog-post">
+                        <h3>No blogs are available.</h3>
+                    </div>
+                {% endif %}
                 {% if list_blogs %}
-                    {% if latest_blog %}
-                        <div class="blog-post-latest">
-                        <h3><a href="{% url 'blog:news-media-detail' latest_blog.id %}">{{ latest_blog.title }}</a>
-                        </div>
-                    {% else %}
-                        <div class="blog-post">
-                            <h3>No blogs are available.</h3>
-                        </div>
-                    {% endif %}
                     {% for blog in list_blogs %}
                         <div class="blog-post">
                             <div class="blog-post-date">

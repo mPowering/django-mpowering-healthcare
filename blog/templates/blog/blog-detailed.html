@@ -15,7 +15,7 @@
                 {% if current_blog %}
                     <h2 class="blog">{{ current_blog.title }}</h2>
                     <div class="blog-date">{{ current_blog.pub_date|date:"j F y"}}</div>
-                    <p>{{ current_blog.body }}</p>
+                    <p>{{ current_blog.body|safe }}</p>
                                         
                     <!-- Facebook comment box -->
                     {% if view_blog_entry %}

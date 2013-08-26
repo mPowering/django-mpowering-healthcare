@@ -77,19 +77,22 @@ def news_media(request):
 
 
 def news_media_detail(request, blog_id):
+    # list latest blog entries
+    blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
+    
+    # list of news articles
+    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
+
     # retrieve blog of interest
     blog = get_object_or_404(Article, pk=blog_id)
 
     # list latest blog entries
-    blog_list = sorted(media_list(), key=lambda x:x.pub_date, reverse=True)[:5]
-    latest_blog_post = blog_list.pop(0)
-    if latest_blog_post == blog and len(blog_list) > 0:
-        latest_blog_post = blog_list.pop(0)
-    # else:
-    #     del(latest_blog_post)
-
-    # list of news articles
-    list_of_news = sorted(news_list(), key=lambda x:x.pub_date, reverse=True)[:4]
+    print len(blog_list)
+    if len(blog_list) > 0:
+        for b in blog_list:
+            if b == blog:
+                blog_list.remove(b)
+        latest_blog_post = blog_list.pop(0) # retrieve latest blog post
 
     context = RequestContext(request, {
         'current_blog': blog,

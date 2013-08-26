@@ -49,9 +49,8 @@
                     {% for blog in main_list.object_list %}
                         <h2 class="blog">{{ blog.title }}</h2>
                         <div class="blog-date">{{ blog.pub_date }}</div>
-                        <img src="{% url 'blog:media/blog_imgs/' blog.image %}" vspace="10">
-                        <p>{{ blog.image}}</p>
-                        <p>{{ blog.body }}</p>
+                        <p>{{ blog.image }}</p>
+                        <p>{{ blog.body|safe }}</p>
                     {% endfor %}
 
                     <div class="pagination">

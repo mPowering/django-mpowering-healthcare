@@ -2,8 +2,6 @@ import datetime, os, uuid
 from django.db import models
 from django.utils import timezone
 
-from blog.widgets import AdvancedEditor
-
 
 # Create your models here.
 class Article(models.Model):
