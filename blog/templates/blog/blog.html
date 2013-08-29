@@ -40,7 +40,7 @@
     
 {% block content %}
         
-     <!-- blog starts TODO - pagination *** -->
+     <!-- blog starts with pagination *** -->
      <div class="row-fluid">
      	<div class="span8">
             <h1 class="line">Blog</h1>
@@ -49,7 +49,7 @@
                     {% for blog in main_list.object_list %}
                         <h2 class="blog"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></h2>
                         <div class="blog-date">{{ blog.pub_date }}</div>
-                        <p>{{ blog.image }}</p>
+                        <img src="{{ blog.image.url }}" vspace="10">
                         <p>{{ blog.body|safe }}</p>
                     {% endfor %}
 

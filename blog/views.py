@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.conf import settings
 
 from blog.models import Article
 
@@ -18,6 +19,7 @@ def index(request):
         'list_blogs': blog_list,
         'list_news': list_of_news,
         'view_index': True,
+        'company': settings.COMPANY_NAME,
     })
     return render(request, 'blog/index.html', context)
 
@@ -36,6 +38,7 @@ def task_forces(request):
         'list_blogs': blog_list,
         'list_news': list_of_news,
         'view_index': False,
+        'company': settings.COMPANY_NAME,
     })
     return render(request, 'blog/task-forces.html', context)
 
@@ -72,6 +75,7 @@ def news_media(request):
         'list_news': list_of_news,
         'view_index': False,
         'main_list': blogs,
+        'company': settings.COMPANY_NAME,
     })
     return render(request, 'blog/blog.html', context)
 
@@ -110,6 +114,7 @@ def news_media_detail(request, blog_id):
         'list_news': list_of_news,
         'view_index': False,
         'view_blog_entry': article_of_interest.can_comment,
+        'company': settings.COMPANY_NAME,
     })
     return render(request, 'blog/blog-detailed.html', context)
 
@@ -127,6 +132,7 @@ def resources(request):
         'list_blogs': blog_list,
         'list_news': list_of_news,
         'view_index': False,
+        'company': settings.COMPANY_NAME,
     })
     return render(request, 'blog/media-release.html', context)
 
