@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.shortcuts import render
 from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
@@ -9,7 +9,9 @@ from blog.models import Article
 def index(request):
     # list latest blog entries
     blog_list = sorted(media_list(), key=lambda x: x.pub_date, reverse=True)[:5]
-    latest_blog_post = blog_list.pop(0)
+    latest_blog_post = None
+    if len(blog_list) > 0:
+        latest_blog_post = blog_list.pop(0)
 
     # list of news articles
     list_of_news = sorted(news_list(), key=lambda x: x.pub_date, reverse=True)[:4]
@@ -28,7 +30,9 @@ def task_forces(request):
     """ view function for each page/tab """
     # list latest blog entries
     blog_list = sorted(media_list(), key=lambda x: x.pub_date, reverse=True)[:5]
-    latest_blog_post = blog_list.pop(0)
+    latest_blog_post = None
+    if len(blog_list) > 0:
+        latest_blog_post = blog_list.pop(0)
 
     # list of news articles
     list_of_news = sorted(news_list(), key=lambda x: x.pub_date, reverse=True)[:4]
@@ -50,7 +54,7 @@ def partners(request):
 def news_media(request):
     """ Using paginator to view list of blog posts """
     # list of all blog entries
-    blog_list_all = get_list_or_404(Article)
+    blog_list_all = Article.objects.all()
     paginator = Paginator(blog_list_all, 5)  # show 5 blogs per page
     page = request.GET.get('page')
     try:
@@ -63,8 +67,17 @@ def news_media(request):
         blogs = paginator.page(paginator.num_pages)
 
     # list latest blog entries
-    blog_list = sorted(media_list(), key=lambda x: x.pub_date, reverse=True)[:5]
-    latest_blog_post = blog_list.pop(0)
+    blog_list = sorted(media_list(), key=lambda x: x.pub_date, reverse=True)
+
+    # remove posts that will be displayed in the pager are not also displayed in the side menu
+    for temp_blog_1 in blogs:
+        for temp_blog_2 in blog_list:
+            if temp_blog_1 == temp_blog_2:
+                blog_list.remove(temp_blog_2)
+
+    latest_blog_post = None
+    if len(blog_list) > 0:
+        latest_blog_post = blog_list.pop(0)
 
     # list of news articles
     list_of_news = sorted(news_list(), key=lambda x: x.pub_date, reverse=True)[:4]
@@ -104,7 +117,9 @@ def news_media_detail(request, blog_id):
 
     list_of_news = list_of_news[:4]  # ensures only 4 news-posts visible in short list
     blog_list = blog_list[:5]  # ensures only 5 blog-posts visible in short list
-    latest_blog_post = blog_list.pop(0)  # retrieve latest blog post
+    latest_blog_post = None
+    if len(blog_list) > 0:
+        latest_blog_post = blog_list.pop(0)  # retrieve latest blog post
 
     context = RequestContext(request, {
         'current_blog': article_of_interest,
@@ -122,7 +137,9 @@ def news_media_detail(request, blog_id):
 def resources(request):
     # list latest blog entries
     blog_list = sorted(media_list(), key=lambda x: x.pub_date, reverse=True)[:5]
-    latest_blog_post = blog_list.pop(0)
+    latest_blog_post = None
+    if len(blog_list) > 0:
+        latest_blog_post = blog_list.pop(0)
 
     # list of news articles
     list_of_news = sorted(news_list(), key=lambda x: x.pub_date, reverse=True)[:4]
@@ -142,7 +159,7 @@ def resources(request):
 
 def media_list():
     """ Retrieve list of blog posts """
-    list_all = get_list_or_404(Article)
+    list_all = Article.objects.all()
     blog_list = []
     for blog in list_all:
         if blog.can_comment:
@@ -153,7 +170,7 @@ def media_list():
 
 def news_list():
     """ Retrieve list of news articles """
-    list_all = get_list_or_404(Article)
+    list_all = Article.objects.all()
     news_list = []
     for news_item in list_all:
         if not news_item.can_comment:
