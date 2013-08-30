@@ -38,6 +38,7 @@
                 {% if latest_blog %}
                     <div class="blog-post-latest">
                     <h3><a href="{% url 'blog:news-media-detail' latest_blog.id %}">{{ latest_blog.title }}</a>
+                        <small><p>{{ latest_blog.body|striptags|truncatewords:"15" }}...<a href="{% url 'blog:news-media-detail' latest_blog.id %}">read more</a></p></small>
                     </div>
                 {% else %}
                     <div class="blog-post">
