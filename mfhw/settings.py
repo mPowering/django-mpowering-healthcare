@@ -240,3 +240,8 @@ TINYMCE_DEFAULT_CONFIG = {
 TINYMCE_SPELLCHECKER = True
 
 COMPANY_NAME = 'Praekelt mFHW'
+
+try:
+    from production_settings import *
+except ImportError:
+    pass
