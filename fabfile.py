@@ -1,15 +1,11 @@
 from fabric.api import cd, sudo, env
-import os
 
-PROJECT = os.environ.get('PROJECT', 'django-mpowering-healthcare')
-DEPLOY_USER = os.environ.get('DEPLOY_USER', 'jmbo')
-
-env.path = os.path.join('/', 'var', 'praekelt', PROJECT)
+DEPLOY_USER = 'django'
+env.path = '/var/praekelt/mpower/'
 
 
 def restart():
-    sudo('/etc/init.d/nginx restart')
-    sudo('supervisorctl reload')
+    sudo('supervisorctl restart mpower-gunicorn:*')
 
 
 def deploy():
