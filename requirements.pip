@@ -14,3 +14,7 @@ fabric
 PIL
 django-tinymce
 django-staticfiles
+redis
+django-celery-email
+django-celery
+
