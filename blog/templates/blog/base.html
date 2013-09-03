@@ -24,14 +24,62 @@
 <div class="container container-background">
 <div class="padding-main">
     
-    {% block header %}
-        <p>Header Goes here.</p>
-    {% endblock %}
+    <div class="row-fluid">
+        <div class="navbar navbar-fixed-top navbar-bgcolor">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>  
+              
+                <div class="nav-collapse collapse">
+                    <ul class="nav nav-tabs">
+                        {% if active_page == "index" %}
+                            <li class="active"><a href="{% url 'blog:index' %}">HOME</a></li>
+                        {% else %}
+                            <li><a href="{% url 'blog:index' %}">HOME</a></li>
+                        {% endif %}
+                        {% if active_page == "objectives" %}
+                            <li class="active"><a href="{% url 'blog:task-forces' %}">OBJECTIVES</a></li>
+                        {% else %}
+                            <li><a href="{% url 'blog:task-forces' %}">OBJECTIVES</a></li>
+                        {% endif %}
+                        {% if active_page == "partners" %}
+                            <li class="active"><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
+                        {% else %}
+                            <li><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
+                        {% endif %}
+                        {% if active_page == "news_media" %}
+                            <li class="active"><a href="{% url 'blog:news-media' %}">NEWS &amp; MEDIA</a></li>
+                        {% else %}
+                            <li><a href="{% url 'blog:news-media' %}">NEWS &amp; MEDIA</a></li>
+                        {% endif %}
+                        {% if active_page == "resources" %}
+                            <li class="active"><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
+                        {% else %}
+                            <li><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
+                        {% endif %}                        
+                        
+                        <li><img src="{% static 'blog/img/icons/ico_contact.png' %}"></li>
+                        <li><img src="{% static 'blog/img/icons/ico_twitter.png' %}"></li>
+                    </ul>
+                </div> <!-- Nav-collapse -->                
+            </div> <!-- Container -->
+        </div> <!-- nav-bar -->
+
+    <div class="row-fluid header-background">
+        <div class="span6">
+            <a href="index.html"><img src="{% static 'blog/img/mpowering_logo.png' %}"></a>
+        </div>
+        <div class="span6">
+            <img src="{% static 'blog/img/home_graphic.png' %}" align="right">
+            <!-- &nbsp; -->
+        </div>
+    </div><!-- End of Header -->
 
     {% block content %}
-        {% block pager %}
-            
-        {% endblock %}
+        {% block pager %} {% endblock %}
 
         {% block blog %}
             <h2 class="line">From our Blog</h2>
@@ -39,6 +87,7 @@
                 {% if latest_blog %}
                     <div class="blog-post-latest">
                     <h3><a href="{% url 'blog:news-media-detail' latest_blog.id %}">{{ latest_blog.title }}</a>
+                        <small><p>{{ latest_blog.body|striptags|truncatewords:"15" }}...<a href="{% url 'blog:news-media-detail' latest_blog.id %}">read more</a></p></small>
                     </div>
                 {% else %}
                     <div class="blog-post">
@@ -81,7 +130,6 @@
 
     {% endblock %}
 
-
 </div>
 <hr>
 <!-- footer starts -->
@@ -95,8 +143,32 @@
 <div class="row-fluid">
     <div class="span12 footer">
     <ul class="inline-footer">
-    {% block footer %}
-    {% endblock %}
+    
+    {% if active_page == "index" %}
+        <li>HOME</li>
+    {% else %}
+        <li><a href="{% url 'blog:index' %}">HOME</a></li>
+    {% endif %}
+    {% if active_page == "objectives" %}
+        <li>OBJECTIVES</li>
+    {% else %}
+        <li><a href="{% url 'blog:task-forces' %}">OBJECTIVES</a></li>
+    {% endif %}
+    {% if active_page == "partners" %}
+        <li>PARTNERS</li>  
+    {% else %}
+        <li><a href="{% url 'blog:partners' %}">PARTNERS</a></li>  
+    {% endif %}
+    {% if active_page == "news_media" %}
+        <li>NEWS &amp; MEDIA</li>
+    {% else %}
+        <li><a href="{% url 'blog:news-media' %}">NEWS &amp; MEDIA</a></li>
+    {% endif %}
+    {% if active_page == "resources" %}
+        <li>RESOURCES</li>
+    {% else %}
+        <li><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
+    {% endif %}   
     </ul>
     © Copyright 2013 {{ company }}. All rights reserved.
     </div>
