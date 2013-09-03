@@ -15,4 +15,6 @@ PIL
 django-tinymce
 django-staticfiles
 redis
-djcelery
+django-celery-email
+django-celery
+
