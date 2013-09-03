@@ -153,14 +153,14 @@ INSTALLED_APPS = (
     'gunicorn',
     'django_nose',
     'raven.contrib.django.raven_compat',
-    'djcelery',
-    'djcelery_email',
+    #'djcelery',
+    #'djcelery_email',
     'debug_toolbar',
 
     # sample apps to explain usage
     'blog',
     'tinymce',
-    'celery_app',
+    #'celery_app',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -193,15 +193,15 @@ LOGGING = {
 }
 
 # Celery configuration options
-BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+#BROKER_URL = 'redis://localhost:6379/0'
+#CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
 # Uncomment if you're running in DEBUG mode and you want to skip the broker
 # and execute tasks immediate instead of deferring them to the queue / workers.
 # CELERY_ALWAYS_EAGER = DEBUG
 
 # Tell Celery where to find the tasks
-CELERY_IMPORTS = ('celery_app.tasks',)
+#CELERY_IMPORTS = ('celery_app.tasks',)
 
 # Defer email sending to Celery, except if we're in debug mode,
 # then just print the emails to stdout for debugging.
