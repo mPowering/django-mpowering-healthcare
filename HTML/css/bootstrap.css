@@ -721,7 +721,7 @@ h2.blog{font-family:"Gotham",Helvetica,Arial,sans-serif;font-size:28px;color:#0b
 h2{font-family:"Gotham",Helvetica,Arial,sans-serif;font-size:24px;color:#000000;font-weight:normal;}
 h3{font-family:"Kreon",Helvetica,Arial,sans-serif;font-size:24px;color:#2a2927;font-weight:normal;}
 div.header-background{background-image:url(../img/header_line.gif);background-repeat:repeat-x;background-position:bottom;}
-div.carousell{background-image:url(../img/placeholder.gif);max-width:962px;max-height:438px;}
+div.carousell{background-image:url(../img/placeholder.gif);max-width:962px;max-height:546px;}
 div.carousell-inner{background-color:#2a6083;width:96%;margin:14px auto;}
 div.blog-post-latest{background-image:url(../img/blog/ico_blog_new.gif);background-position:left center;background-repeat:no-repeat;padding:22px 25px 25px 60px;color:#2790b0;font-size:15px;line-height:19px;font-family:Helvetica,"Times New Roman",Times,serif;border-bottom:1px solid #d8e7f4;}
 div.blog-post-latest a:link,div.blog-post-latest a:hover,div.blog-post-latest a:visited,div.blog-post-latest a:active{color:#2a2927;}
