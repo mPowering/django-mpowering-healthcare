@@ -230,7 +230,7 @@ RAVEN_CONFIG = {
     # 'dsn': 'http://public:secret@example.com/1',
 }
 
-TINYMCE_JS_URL = STATIC_URL+'js/tinymce/tinymce.min.js'
+TINYMCE_JS_URL = STATIC_URL+'blog/js/tinymce/tinymce.min.js'
 TINYMCE_DEFAULT_CONFIG = {
     'plugins': "spellchecker,paste,searchreplace",
     'theme': "modern",
