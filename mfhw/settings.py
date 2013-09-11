@@ -230,7 +230,7 @@ RAVEN_CONFIG = {
     # 'dsn': 'http://public:secret@example.com/1',
 }
 
-TINYMCE_JS_URL = MEDIA_URL+'js/tinymce/tinymce.min.js'
+TINYMCE_JS_URL = STATIC_URL+'js/tinymce/tinymce.min.js'
 TINYMCE_DEFAULT_CONFIG = {
     'plugins': "spellchecker,paste,searchreplace",
     'theme': "modern",
@@ -239,7 +239,7 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 TINYMCE_SPELLCHECKER = True
 
-COMPANY_NAME = 'Praekelt mFHW'
+COMPANY_NAME = 'mPowering Frontline Health Workers'
 
 try:
     from production_settings import *
