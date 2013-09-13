@@ -4450,8 +4450,8 @@ div.navbar .nav li {
 }
 .carousel-indicators {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 25px;
+  right: 25px;
   z-index: 5;
   margin: 0;
   list-style: none;
@@ -4470,16 +4470,25 @@ div.navbar .nav li {
 .carousel-indicators .active {
   background-color: #fff;
 }
-div.carousel {
+.carousel {
   background-image: url(../img/placeholder.gif);
   max-width: 962px;
   max-height: 546px;
   height: 924px;
 }
-div.carousel-inner {
+.carousel-inner {
+  top: 14px;
   background-color: #2a6083;
   width: 96%;
-  margin: 14px auto;
+  margin: 0px 0px 0px 20px;
+}
+.carousel-control.right {
+  left: auto;
+  right: 25px;
+}
+.carousel-control.left {
+  left: 25px;
+  right: auto;
 }
 .pull-right {
   float: right;
