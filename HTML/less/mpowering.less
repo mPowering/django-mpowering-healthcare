@@ -51,6 +51,8 @@ h1.line
     padding-bottom: 40px;
     display: block;
     border-bottom: 1px solid @mPoweringDarkGray;
+    text-align: center; 
+    margin-top: 20px
 }
 h2.line
 {
@@ -94,18 +96,7 @@ div.header-background
     background-position: bottom;
 }
 
-div.carousell
-{
-    background-image: url(../img/placeholder.gif);
-    max-width: 962px;
-    max-height: 546px;
-}
-div.carousell-inner
-{
-    background-color: @mPoweringBlue;
-    width: 96%;
-    margin: 14px auto;    
-}
+
 
 div.blog-post-latest
 {
@@ -298,3 +289,71 @@ div.objectives-two
     padding: 20px 30px;
     background-color: #fbfbfb;
 }
+
+div.navbar .nav li a {
+    font-weight: bold;
+    text-align: center;
+    border-right: 1px solid @grayLight;
+}
+
+div.navbar .nav li:first-child a {
+    border-left: 1px solid @grayLight;
+}
+
+div.navbar .nav li {
+    display: table-cell;
+    width: 1%;
+    float: none;
+}
+
+.carousel-indicators {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  z-index: 5;
+  margin: 0;
+  list-style: none;
+}
+
+.carousel-indicators li {
+  display: block;
+  float: left;
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+  text-indent: -999px;
+  background-color: #ccc;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 5px;
+}
+
+.carousel-indicators .active {
+  background-color: #fff;
+}
+
+.carousel
+{
+    background-image: url(../img/placeholder.gif);
+    max-width: 962px;
+    max-height: 546px;
+    height: 924px;
+}
+
+.carousel-inner
+{
+    top: 14px;
+    background-color: @mPoweringBlue;
+    width: 96%;
+    margin: 0px 0px 0px 20px;    
+}
+
+.carousel-control.right {
+  left: auto;
+  right: 25px;
+}
+
+.carousel-control.left {
+  left: 25px;
+  right: auto;
+}
+
