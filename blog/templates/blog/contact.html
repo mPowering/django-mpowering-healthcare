@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+
+     
+{% block content %}
+     <!-- blog starts -->
+     <div class="row-fluid">
+     	<div class="span12">
+            <h1 class="line">Contact</h1>
+        </div>
+        <div class="row-fluid">
+        	<div class="span6">
+                <h2>Get in touch</h2>
+                <p>We'd love to hear from you!</p>
+                <p>Send email to <a href="mailto:info@mpoweringhealth.org">info@mpoweringhealth.org</a></p>
+            </div>
+            <div class="span6">
+                <img src="{% static 'blog/img/home_graphic.png' %}" align="right">
+            </div>
+        </div>
+       
+     <!-- blog ends -->
+{% endblock %}
