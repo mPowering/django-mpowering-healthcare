@@ -6,7 +6,7 @@ from django.conf import settings
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
-    url(r'^task-forces/$', views.task_forces, name='task-forces'),
+    url(r'^objectives/$', views.objectives, name='objectives'),
     url(r'^partners/$', views.partners, name='partners'),
     url(r'^news-media/$', views.news_media, name='news-media'),
     url(r'^(?P<blog_id>\d+)/news-media-detail$', views.news_media_detail, name='news-media-detail'),
