@@ -55,6 +55,14 @@ def partners(request):
         })
     return render(request, 'blog/partners.html', context)
 
+
+def contact(request):
+    context = RequestContext(request, {
+        'active_page': "contact",
+        })
+    return render(request, 'blog/contact.html', context)
+    
+
 def test(request):
     context = RequestContext(request, {
         'active_page': "objectives",
