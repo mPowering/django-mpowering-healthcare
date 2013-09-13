@@ -21,52 +21,52 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
 
+<div class="container">
+        <div class="navbar navbar-fixed-top navbar-bgcolor">
+          <!-- <div class="navbar-inner"> -->
+            <div class="container">
+                <ul class="nav">
+                    {% if active_page == "index" %}
+                        <li class="active"><a href="{% url 'blog:index' %}">HOME</a></li>
+                    {% else %}
+                        <li><a href="{% url 'blog:index' %}">HOME</a></li>
+                    {% endif %}
+                    {% if active_page == "objectives" %}
+                        <li class="active"><a href="{% url 'blog:task-forces' %}">OBJECTIVES</a></li>
+                    {% else %}
+                        <li><a href="{% url 'blog:task-forces' %}">OBJECTIVES</a></li>
+                    {% endif %}
+                    {% if active_page == "partners" %}
+                        <li class="active"><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
+                    {% else %}
+                        <li><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
+                    {% endif %}
+                    {% if active_page == "news_media" %}
+                        <li class="active"><a href="{% url 'blog:news-media' %}">NEWS &amp; MEDIA</a></li>
+                    {% else %}
+                        <li><a href="{% url 'blog:news-media' %}">NEWS &amp; MEDIA</a></li>
+                    {% endif %}
+                    {% if active_page == "resources" %}
+                        <li class="active"><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
+                    {% else %}
+                        <li><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
+                    {% endif %}                        
+                    
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<img src="{% static 'blog/img/icons/ico_contact.png' %}"></li>
+                    <li><img src="{% static 'blog/img/icons/ico_twitter.png' %}"></li>
+                </ul>
+            </div>
+        <!-- </div> --><!-- /.navbar -->
+      </div>
+</div>
+
+ 
+
 <div class="container container-background">
 <div class="padding-main">
     
     <div class="row-fluid">
-        <div class="navbar navbar-fixed-top navbar-bgcolor">
-            <div class="container">
-                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>  
-              
-                <div class="nav-collapse collapse">
-                    <ul class="nav nav-tabs">
-                        {% if active_page == "index" %}
-                            <li class="active"><a href="{% url 'blog:index' %}">HOME</a></li>
-                        {% else %}
-                            <li><a href="{% url 'blog:index' %}">HOME</a></li>
-                        {% endif %}
-                        {% if active_page == "objectives" %}
-                            <li class="active"><a href="{% url 'blog:task-forces' %}">OBJECTIVES</a></li>
-                        {% else %}
-                            <li><a href="{% url 'blog:task-forces' %}">OBJECTIVES</a></li>
-                        {% endif %}
-                        {% if active_page == "partners" %}
-                            <li class="active"><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
-                        {% else %}
-                            <li><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
-                        {% endif %}
-                        {% if active_page == "news_media" %}
-                            <li class="active"><a href="{% url 'blog:news-media' %}">NEWS &amp; MEDIA</a></li>
-                        {% else %}
-                            <li><a href="{% url 'blog:news-media' %}">NEWS &amp; MEDIA</a></li>
-                        {% endif %}
-                        {% if active_page == "resources" %}
-                            <li class="active"><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
-                        {% else %}
-                            <li><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
-                        {% endif %}                        
-                        
-                        <li><img src="{% static 'blog/img/icons/ico_contact.png' %}"></li>
-                        <li><img src="{% static 'blog/img/icons/ico_twitter.png' %}"></li>
-                    </ul>
-                </div> <!-- Nav-collapse -->                
-            </div> <!-- Container -->
-        </div> <!-- nav-bar -->
+        
     <!-- End of Header -->
 
     {% block content %}
@@ -171,7 +171,14 @@
 <script type="text/javascript" src="{% static 'blog/js/bootstrap.min.js' %}"></script>
 
 <!-- footer ends -->
-
+ <script>
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#homeCarousel').carousel()
+        })
+      }(window.jQuery)
+    </script>
 </div>
 
 </body>
