@@ -27,7 +27,7 @@ def index(request):
     return render(request, 'blog/index.html', context)
 
 
-def task_forces(request):
+def objectives(request):
     """ view function for each page/tab """
     # list latest blog entries
     blog_list = sorted(media_list(), key=lambda x: x.pub_date, reverse=True)[:5]
@@ -46,7 +46,7 @@ def task_forces(request):
         'company': settings.COMPANY_NAME,
         'active_page': "objectives",
     })
-    return render(request, 'blog/task-forces.html', context)
+    return render(request, 'blog/objectives.html', context)
 
 
 def partners(request):
@@ -55,6 +55,11 @@ def partners(request):
         })
     return render(request, 'blog/partners.html', context)
 
+def test(request):
+    context = RequestContext(request, {
+        'active_page': "objectives",
+        })
+    return render(request, 'blog/test.html', context)
 
 def news_media(request):
     """ Using paginator to view list of blog posts """

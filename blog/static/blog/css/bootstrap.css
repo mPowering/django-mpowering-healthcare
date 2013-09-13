@@ -4258,6 +4258,7 @@ div.header-background {
   background-image: url(../img/header_line.gif);
   background-repeat: repeat-x;
   background-position: bottom;
+  height: 229px;
 }
 div.blog-post-latest {
   background-image: url(../img/blog/ico_blog_new.gif);

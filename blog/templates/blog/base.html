@@ -32,9 +32,9 @@
                         <li><a href="{% url 'blog:index' %}">HOME</a></li>
                     {% endif %}
                     {% if active_page == "objectives" %}
-                        <li class="active"><a href="{% url 'blog:task-forces' %}">OBJECTIVES</a></li>
+                        <li class="active"><a href="{% url 'blog:objectives' %}">OBJECTIVES</a></li>
                     {% else %}
-                        <li><a href="{% url 'blog:task-forces' %}">OBJECTIVES</a></li>
+                        <li><a href="{% url 'blog:objectives' %}">OBJECTIVES</a></li>
                     {% endif %}
                     {% if active_page == "partners" %}
                         <li class="active"><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
@@ -53,7 +53,7 @@
                     {% endif %}                        
                     
                     <li>&nbsp;&nbsp;&nbsp;&nbsp;<img src="{% static 'blog/img/icons/ico_contact.png' %}"></li>
-                    <li><img src="{% static 'blog/img/icons/ico_twitter.png' %}"></li>
+                    <li><a href="https://twitter.com/mpoweringhealth"><img src="{% static 'blog/img/icons/ico_twitter.png' %}"></a></li>
                 </ul>
             </div>
         <!-- </div> --><!-- /.navbar -->
@@ -66,7 +66,14 @@
 <div class="padding-main">
     
     <div class="row-fluid">
-        
+   <div class="row-fluid header-background">
+        <div class="span6">
+            <a href="/"><img src="{% static 'blog/img/mpowering_logo.png' %}"></a>
+        </div>
+        <div class="span6">
+            <img src="{% static 'blog/img/home_graphic.png' %}" align="right">
+        </div>
+    </div>     
     <!-- End of Header -->
 
     {% block content %}
@@ -125,11 +132,11 @@
 <hr>
 <!-- footer starts -->
 <div class="row-fluid">
-    <div class="span5">&nbsp;</div>
-    <div class="span2">
-    <img src="{% static 'blog/img/icons/ico_footer_contact.gif' %}"><img src="{% static 'blog/img/icons/ico_footer_twitter.gif' %}">
+    <div class="span4">&nbsp;</div>
+    <div class="span4" style="text-align: center">
+    <img src="{% static 'blog/img/icons/ico_footer_contact.gif' %}"><a href="https://twitter.com/mpoweringhealth"><img src="{% static 'blog/img/icons/ico_footer_twitter.gif' %}"></a>
     </div>
-    <div class="span5">&nbsp;</div>
+    <div class="span4">&nbsp;</div>
 </div>
 <div class="row-fluid">
     <div class="span12 footer">
@@ -143,7 +150,7 @@
     {% if active_page == "objectives" %}
         <li>OBJECTIVES</li>
     {% else %}
-        <li><a href="{% url 'blog:task-forces' %}">OBJECTIVES</a></li>
+        <li><a href="{% url 'blog:objectives' %}">OBJECTIVES</a></li>
     {% endif %}
     {% if active_page == "partners" %}
         <li>PARTNERS</li>  
