@@ -177,6 +177,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual file as needed -->
 <script type="text/javascript" src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'blog/js/readmore.min.js' %}"></script>
 
 <!-- footer ends -->
  <script>
@@ -184,6 +185,7 @@
         $(function(){
           // carousel demo
           $('#homeCarousel').carousel()
+          $('.partners').readmore();
         })
       }(window.jQuery)
     </script>
