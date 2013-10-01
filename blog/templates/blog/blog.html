@@ -1,14 +1,14 @@
 {% extends 'blog/base.html' %}
 {% load staticfiles %}
 
-    
+
 {% block content %}
-        
+
      <!-- blog starts with pagination *** -->
      <div class="row-fluid">
      	<div class="span8">
-            <h1 class="line">Blog</h1>
-            {% block pager %}   
+            <h2 class="line" style="text-align: center">Blog</h2>
+            {% block pager %}
                 {% if main_list %}
                     {% for blog in main_list.object_list %}
                         <h2 class="blog"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></h2>
@@ -32,20 +32,20 @@
                             {% endif %}
                         </span>
                     </div>
-                {% else %}     
+                {% else %}
                     <div class="blog-post">
                         <h3>No blogs are available.</h3>
                     </div>
                 {% endif %}
-            {% endblock %}  
-        </div>        
+            {% endblock %}
+        </div>
 
         <div class="span4">
             {% block blog %}
                 {{ block.super }}
             {% endblock %}
 
-            <br><br>            
+            <br><br>
 
             {% block news %}
                 {{ block.super }}
@@ -53,5 +53,5 @@
         </div>
      </div>
      <!-- blog ends -->
-    
+
 {% endblock %}
