@@ -32,9 +32,9 @@
                         <li><a href="{% url 'blog:index' %}">HOME</a></li>
                     {% endif %}
                     {% if active_page == "objectives" %}
-                        <li class="active"><a href="{% url 'blog:objectives' %}">OBJECTIVES</a></li>
+                        <li class="active"><a href="{% url 'blog:objectives' %}">OUR WORK</a></li>
                     {% else %}
-                        <li><a href="{% url 'blog:objectives' %}">OBJECTIVES</a></li>
+                        <li><a href="{% url 'blog:objectives' %}">OUR WORK</a></li>
                     {% endif %}
                     {% if active_page == "partners" %}
                         <li class="active"><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
@@ -51,9 +51,14 @@
                     {% else %}
                         <li><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
                     {% endif %}
-
-                    <li><a href="/contact/"><img src="{% static 'blog/img/icons/ico_contact.png' %}"></a></li>
-                    <li><a href="https://twitter.com/mpoweringhealth"><img src="{% static 'blog/img/icons/ico_twitter.png' %}"></a></li>
+                    
+                      {% if active_page == "contact" %}
+                        <li class="active"><a href="{% url 'blog:contact' %}">CONTACT</a></li>
+                    {% else %}
+                        <li><a href="{% url 'blog:contact' %}">CONTACT</a></li>
+                    {% endif %}
+                    
+                    <li ><a class="twitter-block" href="https://twitter.com/mpoweringhealth"><img src="{% static 'blog/img/icons/ico_twitter.png' %}"></a></li>
                 </ul>
             </div>
         <!-- </div> --><!-- /.navbar -->
@@ -150,7 +155,7 @@
     {% if active_page == "objectives" %}
         <li>OBJECTIVES</li>
     {% else %}
-        <li><a href="{% url 'blog:objectives' %}">OBJECTIVES</a></li>
+        <li><a href="{% url 'blog:objectives' %}">OUR WORK</a></li>
     {% endif %}
     {% if active_page == "partners" %}
         <li>PARTNERS</li>
@@ -183,8 +188,15 @@
       !function ($) {
         $(function(){
           // carousel demo
-          $('#homeCarousel').carousel()
-          $('.partners').readmore();
+          $('#homeCarousel').carousel({interval:7000})
+          $('.partners').readmore({
+			  speed: 75,
+			  maxHeight: 190
+			});
+		  $('.partnersfp').readmore({
+			  speed: 75,
+			  maxHeight: 65
+			});
         })
       }(window.jQuery)
     </script>

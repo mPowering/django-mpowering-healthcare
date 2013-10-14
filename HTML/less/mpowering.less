@@ -17,24 +17,29 @@ div.padding-main
 div.navbar-bgcolor
 {
     background-color: @mPoweringBlue;
-    height: 41px;
+    height: 29px;
     background-image: url(../img/navbar-background.gif);
     background-repeat: repeat-x;
     background-position: top;
 }
 
+div.navbar .nav li a.twitter-block
+{
+
+}
+
 div.quote-area
 {
-    font-size: 36px;
+    font-size: 24px;
     color: @mPoweringBlueDark;
-    line-height: 42px;
-    padding: 20px 20px 0px 20px;
+    line-height: 28px;
+    padding: 10px 20px 0px 20px;
 }
 
 hr
 {
     border-bottom: 4px solid @mPoweringBlueDark;
-    margin: 50px 0px 50px 0px;
+    margin: 35px 0px 35px 0px;
 }
 
 h1
@@ -48,7 +53,7 @@ h1.line
     font-family: @navFontFamily;
     font-size: 36px;
     color: @mPoweringBlueDark; 
-    padding-bottom: 40px;
+    padding-bottom: 30px;
     display: block;
     border-bottom: 1px solid @mPoweringDarkGray;
     text-align: center; 
@@ -94,7 +99,7 @@ div.header-background
     background-image: url(../img/header_line.gif);
     background-repeat: repeat-x;
     background-position: bottom;
-    height: 200px;
+    height: 145px;
 }
 
 
@@ -282,19 +287,19 @@ div.media-release-sub a:link, div.media-release-sub a:hover, div.media-release-s
 }
 div.objectives-one
 {
-    padding: 20px 30px;
-    background-color: #f6f6f6;
+
+
 }
 div.objectives-two
 {
-    padding: 20px 30px;
-    background-color: #fbfbfb;
+
 }
 
 div.navbar .nav li a {
     font-weight: bold;
     text-align: center;
     border-right: 1px solid @grayLight;
+    padding: 5px 10px 5px 10px;
 }
 
 div.navbar .nav li:first-child a {
@@ -334,16 +339,12 @@ div.navbar .nav li {
 
 .carousel
 {
-    background-image: url(../img/placeholder.gif);
     max-width: 962px;
     max-height: 546px;
-    height: 924px;
 }
 
 .carousel-inner
 {
-    top: 14px;
-    background-color: @mPoweringBlue;
     width: 96%;
     margin: 0px 0px 0px 20px;    
 }
@@ -356,5 +357,10 @@ div.navbar .nav li {
 .carousel-control.left {
   left: 25px;
   right: auto;
+}
+
+.navbar .nav .active>a, .navbar .nav .active>a:hover 
+{
+    color: @mPoweringBlue;
 }
 
