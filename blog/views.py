@@ -172,7 +172,7 @@ def resources(request):
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
     })
-    return render(request, 'blog/media-release.html', context)
+    return render(request, 'blog/resources.html', context)
 
 
 """ helper function """
