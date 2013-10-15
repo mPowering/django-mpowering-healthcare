@@ -84,6 +84,22 @@
     {% block content %}
         {% block pager %} {% endblock %}
 
+        {% block news %}
+            <h2 class="line">Media Releases</h2>
+            {% if list_news %}
+            {% for news_item in list_news %}
+                <div class="media-release-sub">
+                    <strong>{{news_item.pub_date|date:"j F y"}}</strong><br>
+                    <a href="{% url 'blog:news-media-detail' news_item.id %}">{{news_item.title}}</a>
+                </div>
+            {% endfor %}
+            {% else %}
+                <div class="media-release-sub">
+                <strong>No news articles currently available.</strong>
+                </div>
+            {% endif %}
+        {% endblock %}
+
         {% block blog %}
             <h2 class="line">From our Blog</h2>
 
@@ -112,23 +128,6 @@
                         </div>
                     {% endfor %}
                 {% endif %}
-        {% endblock %}
-
-
-        {% block news %}
-            <h2 class="line">Media Releases</h2>
-            {% if list_news %}
-            {% for news_item in list_news %}
-                <div class="media-release-sub">
-                    <strong>{{news_item.pub_date|date:"j F y"}}</strong><br>
-                    <a href="{% url 'blog:news-media-detail' news_item.id %}">{{news_item.title}}</a>
-                </div>
-            {% endfor %}
-            {% else %}
-                <div class="media-release-sub">
-                <strong>No news articles currently available.</strong>
-                </div>
-            {% endif %}
         {% endblock %}
 
     {% endblock %}
