@@ -42,7 +42,21 @@
 
         <div class="span4">
             {% block blog %}
-                {{ block.super }}
+                {% if list_blogs %}
+                    {% for blog in list_blogs %}
+                        <div class="blog-post">
+                            <div class="blog-post-date">
+                                <div class="blog-post-date-number">{{ blog.pub_date.day }}</div>
+                                {{blog.pub_date|date:"M"}}
+                            </div>
+                            {% if view_index %}
+                                <div class="blog-post-heading"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></div>
+                            {% else %}
+                                <div class="blog-post-heading-sub"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></div>
+                            {% endif %}
+                         </div>
+                    {% endfor %}
+                {% endif %}
             {% endblock %}
 
             <br><br>
