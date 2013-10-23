@@ -8,51 +8,54 @@ from blog.models import Article
 
 def index(request):
     # list of news articles
-    context = RequestContext(request, {
+    context = {
         'list_blogs': Article.get_latest_blogs()[:5],
         'list_news': Article.get_latest_news()[:4],
         'view_index': True,
         'company': settings.COMPANY_NAME,
         'active_page': "index",
-    })
-    return render(request, 'blog/index.html', context)
+    }
+    return render(request,
+                  'blog/index.html',
+                  context)
 
 
 def objectives(request):
     """ view function for each page/tab """
     # list of news articles
-    context = RequestContext(request, {
+    context = {
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "objectives",
-    })
-    return render(request, 'blog/objectives.html', context)
+    }
+    return render(request,
+                  'blog/objectives.html',
+                   context)
 
 
 def partners(request):
-    context = RequestContext(request, {
-        'active_page': "partners",
-        })
-    return render(request, 'blog/partners.html', context)
+    context = {'active_page': "partners"}
+    return render(request,
+                  'blog/partners.html',
+                  context)
 
 
 def contact(request):
-    context = RequestContext(request, {
-        'active_page': "contact",
-        })
-    return render(request, 'blog/contact.html', context)
+    return render(request,
+                  'blog/contact.html',
+                  {'active_page': "contact"})
 
 
 def test(request):
-    context = RequestContext(request, {
-        'active_page': "objectives",
-        })
-    return render(request, 'blog/test.html', context)
+    return render(request,
+                  'blog/test.html',
+                  {'active_page': "objectives"})
+
 
 def news_media(request):
     """ Using paginator to view list of blog posts """
     # list of all blog entries
-    blog_list_all = Article.objects.all()
+    blog_list_all = Article.objects.order_by("-pub_date").all()
     paginator = Paginator(blog_list_all, 5)  # show 5 blogs per page
     page = request.GET.get('page')
     try:
@@ -64,22 +67,24 @@ def news_media(request):
         # if page is out of range, deliver last page of results
         blogs = paginator.page(paginator.num_pages)
 
-    context = RequestContext(request, {
+    context = {
         'list_blogs': Article.get_latest_blogs()[:5],
         'list_news': Article.get_latest_news()[:4],
         'view_index': False,
         'main_list': blogs,
         'company': settings.COMPANY_NAME,
         'active_page': "news_media",
-    })
-    return render(request, 'blog/blog.html', context)
+    }
+    return render(request, 'blog/blog.html',
+                  context,
+                  )
 
 
 def news_media_detail(request, blog_id):
     # retrieve blog of interest
     article_of_interest = get_object_or_404(Article, pk=blog_id)
 
-    context = RequestContext(request, {
+    context = {
         'current_blog': article_of_interest,
         'list_blogs': Article.get_latest_blogs()[:5],
         'list_news': Article.get_latest_news()[:4],
@@ -87,14 +92,17 @@ def news_media_detail(request, blog_id):
         'view_blog_entry': article_of_interest.can_comment,
         'company': settings.COMPANY_NAME,
         'active_page': "news_media",
-    })
-    return render(request, 'blog/blog-detailed.html', context)
+    }
+    return render(request,
+                  'blog/blog-detailed.html',
+                  context)
 
 
 def resources(request):
-    context = RequestContext(request, {
+    context = {
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
-    })
-    return render(request, 'blog/resources.html', context)
+    }
+    return render(request, 'blog/resources.html',
+                  context)
