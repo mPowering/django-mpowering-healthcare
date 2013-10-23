@@ -1,19 +1,19 @@
-import datetime, os, uuid
+import datetime, os
 from django.db import models
 from django.utils import timezone
-from django.conf import settings
+import time
 
 
 # Create your models here.
 class Article(models.Model):
     def generate_new_filename(instance, filename):
         ext = os.path.splitext(filename)[1] # get file extension
-        image_name = "%s%s" % (uuid.uuid1(), ext)
-        return "%s%s" % (settings.BLOG_IMGS_ROOT, image_name)
+        image_name = "%s%s" % (int(time.time() * 100000), ext)
+        return "%s%s%s" % ("blog_imgs", os.sep, image_name)
 
     title = models.CharField(max_length=200)
-    default_img_path = "%s%s" % (settings.BLOG_IMGS_ROOT, 'default.jpg')
-    image = models.ImageField(upload_to=generate_new_filename, default=default_img_path)
+    image = models.ImageField(upload_to=generate_new_filename,
+                              max_length=200)
     body = models.TextField()
     can_comment = models.BooleanField(default=False)
     pub_date = models.DateTimeField('date published')
