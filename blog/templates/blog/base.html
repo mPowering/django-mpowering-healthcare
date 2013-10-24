@@ -57,13 +57,13 @@
                     {% else %}
                         <li><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
                     {% endif %}
-                    
+
                       {% if active_page == "contact" %}
                         <li class="active"><a href="{% url 'blog:contact' %}">CONTACT</a></li>
                     {% else %}
                         <li><a href="{% url 'blog:contact' %}">CONTACT</a></li>
                     {% endif %}
-                    
+
                     <li ><a class="twitter-block" href="https://twitter.com/mpoweringhealth"><img src="{% static 'blog/img/icons/ico_twitter.png' %}"></a></li>
                 </ul>
             </div>
@@ -108,34 +108,29 @@
 
         {% block blog %}
             <h2 class="line">From our Blog</h2>
-
-                {% if latest_blog %}
-                    <div class="blog-post-latest">
-                    <h3><a href="{% url 'blog:news-media-detail' latest_blog.id %}">{{ latest_blog.title }}</a>
-                        <small><p>{{ latest_blog.body|striptags|truncatewords:"15" }}...<a href="{% url 'blog:news-media-detail' latest_blog.id %}">read more</a></p></small>
-                    </div>
-                {% else %}
-                    <div class="blog-post">
-                        <h3>No blogs are available.</h3>
-                    </div>
-                {% endif %}
                 {% if list_blogs %}
                     {% for blog in list_blogs %}
-                        <div class="blog-post">
-                            <div class="blog-post-date">
-                                <div class="blog-post-date-number">{{ blog.pub_date.day }}</div>
-                                {{blog.pub_date|date:"M"}}
+                        {% if forloop.first %}
+                            <div class="blog-post-latest">
+                                <h3><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a>
+                                <small><p>{{ blog.body|striptags|truncatewords:"15" }}...<a href="{% url 'blog:news-media-detail' blog.id %}">read more</a></p></small>
                             </div>
-                            {% if view_index %}
-                                <div class="blog-post-heading"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></div>
                             {% else %}
-                                <div class="blog-post-heading-sub"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></div>
-                            {% endif %}
-                        </div>
+                            <div class="blog-post">
+                                <div class="blog-post-date">
+                                    <div class="blog-post-date-number">{{ blog.pub_date.day }}</div>
+                                    {{blog.pub_date|date:"M"}}
+                                </div>
+                                {% if view_index %}
+                                    <div class="blog-post-heading"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></div>
+                                {% else %}
+                                    <div class="blog-post-heading-sub"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></div>
+                                {% endif %}
+                             </div>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
         {% endblock %}
-
     {% endblock %}
 
 </div>
