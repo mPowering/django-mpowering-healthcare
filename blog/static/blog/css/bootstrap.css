@@ -756,6 +756,7 @@ div.navbar .nav li{display:table-cell;width:1%;float:none;}
 .carousel-control.right{left:auto;right:25px;}
 .carousel-control.left{left:25px;right:auto;}
 .navbar .nav .active>a,.navbar .nav .active>a:hover{color:#2a6083;}
+.navbar .nav{display:table;width:100%;}
 .pull-right{float:right;}
 .pull-left{float:left;}
 .hide{display:none;}
