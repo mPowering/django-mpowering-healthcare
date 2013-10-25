@@ -20,7 +20,7 @@
                                         
                     <!-- Facebook comment box -->
                     {% if view_blog_entry %}
-                      <div class="fb-comments" data-href="{% url 'blog:news-media-detail' current_blog.id %}" data-num-posts="2" data-width="470" data-colorscheme="light"></div>
+                      <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-num-posts="2" data-width="470" data-colorscheme="light"></div>
                     {% endif %}
   
                 {% endif %}
