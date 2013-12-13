@@ -48,11 +48,33 @@
                     {% else %}
                         <li><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
                     {% endif %}
+              
                     {% if active_page == "news_media" %}
-                        <li class="active"><a href="{% url 'blog:news-media' %}">BLOG</a></li>
+                        <li class="active dropdown">
+                            <a id="blogLabel" role="button" data-toggle="dropdown" href="{% url 'blog:news-media' %}">BLOG <span class="caret"></span></a>
+
+                            <ul class="dropdown-menu" aria-labelledby="blogLabel">
+                                <li><a href="{% url 'blog:news-media' %}">Resources</a></li>
+                                <li><a href="#">News</a></li>
+                                <li><a href="#">Reports and Documents</a></li>
+                                <li><a href="#">Calendar</a></li>
+                                <li><a href="#">Map</a></li>
+                            </ul>
+                        </li>
                     {% else %}
-                        <li><a href="{% url 'blog:news-media' %}">BLOG</a></li>
+                        <li class="dropdown">
+                            <a id="blogLabel" role="button" data-toggle="dropdown" href="{% url 'blog:news-media' %}">BLOG <span class="caret"></span></a>
+
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="blogLabel">
+                                <li><a href="{% url 'blog:news-media' %}">Resources</a></li>
+                                <li><a href="#">News</a></li>
+                                <li><a href="#">Reports and Documents</a></li>
+                                <li><a href="#">Calendar</a></li>
+                                <li><a href="#">Map</a></li>
+                            </ul>
+                        </li>
                     {% endif %}
+                    
                     {% if active_page == "resources" %}
                         <li class="active"><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
                     {% else %}
