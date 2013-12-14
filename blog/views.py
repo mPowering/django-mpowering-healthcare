@@ -52,10 +52,10 @@ def test(request):
                   {'active_page': "objectives"})
 
 
-def news_media(request):
+def blog(request):
     """ Using paginator to view list of blog posts """
     # list of all blog entries
-    blog_list_all = Article.objects.order_by("-pub_date").all()
+    blog_list_all = Article.get_latest_blogs()
     paginator = Paginator(blog_list_all, 5)  # show 5 blogs per page
     page = request.GET.get('page')
     try:
@@ -73,11 +73,28 @@ def news_media(request):
         'view_index': False,
         'main_list': blogs,
         'company': settings.COMPANY_NAME,
-        'active_page': "news_media",
+        'active_page': "blog",
     }
     return render(request, 'blog/blog.html',
-                  context,
-                  )
+                  context)
+
+
+def blog_detail(request, blog_id):
+    # retrieve blog of interest
+    article_of_interest = get_object_or_404(Article, pk=blog_id)
+
+    context = {
+        'current_blog': article_of_interest,
+        'list_blogs': Article.get_latest_blogs()[:5],
+        'list_news': Article.get_latest_news()[:4],
+        'view_index': False,
+        'view_blog_entry': article_of_interest.can_comment,
+        'company': settings.COMPANY_NAME,
+        'active_page': "blog",
+    }
+    return render(request,
+                  'blog/blog-detailed.html',
+                  context)
 
 
 def news_media_detail(request, blog_id):
@@ -91,7 +108,7 @@ def news_media_detail(request, blog_id):
         'view_index': False,
         'view_blog_entry': article_of_interest.can_comment,
         'company': settings.COMPANY_NAME,
-        'active_page': "news_media",
+        'active_page': "resources",
     }
     return render(request,
                   'blog/blog-detailed.html',
@@ -99,7 +116,9 @@ def news_media_detail(request, blog_id):
 
 
 def resources(request):
+    # list of news articles
     context = {
+        'list_news': Article.get_latest_news()[:4],
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
