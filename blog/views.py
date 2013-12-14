@@ -76,8 +76,7 @@ def news_media(request):
         'active_page': "news_media",
     }
     return render(request, 'blog/blog.html',
-                  context,
-                  )
+                  context)
 
 
 def news_media_detail(request, blog_id):
@@ -99,7 +98,9 @@ def news_media_detail(request, blog_id):
 
 
 def resources(request):
+    # list of news articles
     context = {
+        'list_news': Article.get_latest_news()[:4],
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",

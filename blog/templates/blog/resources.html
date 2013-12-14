@@ -12,20 +12,46 @@
            <div class="row-fluid">
            <div class="span12">
               <div class="objectives-one">
+
+                <!-- list latest external articles -->
+                <br>
+                <div class="row-fluid">
+                  <h2 class="line">External Articles</h2>
+
+                </div>
+                   
+                <!-- list of latest press release articles -->
+                <div class="row-fluid">
+                  {% block news %}
+                      <h2 class="line">Press Releases</h2>
+                      {% if list_news %}
+                      {% for news_item in list_news %}
+                          <div class="media-release-sub">
+                              <strong>{{news_item.pub_date|date:"j F y"}}</strong><br>
+                              <a href="{% url 'blog:news-media-detail' news_item.id %}">{{news_item.title}}</a>
+                          </div>
+                      {% endfor %}
+                      {% else %}
+                          <div class="media-release-sub">
+                          <strong>No news articles currently available.</strong>
+                          </div>
+                      {% endif %}
+                  {% endblock %}
+                </div>
+
+                <!-- list of latest reports and documents -->
+                <div class="row-fluid">
+                  
+                </div>                
+
+                <!-- list of latest video links -->
+                <div class="row-fluid">
+                  
+                </div>
                 
-                
-                
-                <p>&nbsp;</p>
-<h2>Resources</h2>
-           Arriving Shortly
-                
-</div>
+              </div>
             </div>
             </div>
-           
-   
-        </div>
-       
      
      <!-- blog ends -->
 
