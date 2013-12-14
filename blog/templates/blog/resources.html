@@ -9,52 +9,65 @@
         <h1 class="line">RESOURCES</h1>
       </div>
     </div>           
-           <div class="row-fluid">
-           <div class="span12">
-              <div class="objectives-one">
+        <div class="row-fluid">
+        <div class="span8">
+            <div class="objectives-one">
 
-                <!-- list latest external articles -->
-                <br>
-                <div class="row-fluid">
-                  <h2 class="line">External Articles</h2>
+              <!-- list latest external articles -->
+              <br>
+              <div class="row-fluid">
+                <h2 class="line">External Articles</h2>
 
-                  <a href="{% url 'blog:resources_news_articles' True %}">View more articles...</a>
-                </div>
-                   
-                <!-- list of latest press release articles -->
-                <div class="row-fluid">
-                    <h2 class="line">Press Releases</h2>
-                    {% if list_news %}
-                    {% for news_item in list_news %}
-                        <h3><a class="blog" href="{% url 'blog:news-media-detail' news_item.id %}">{{news_item.title}}</a></h3>
-                        <div class="blog-date">{{ news_item.pub_date|date:"j F y"}}</div>
-                        <img src="{{ news_item.image.url }}" vspace="10">
-                        <!-- <p>{{ news_item.body|safe }}</p> -->
-                    {% endfor %}
-                    {% else %}
-                        <div class="media-release-sub">
-                        <strong>No news articles currently available.</strong>
-                        </div>
-                    {% endif %}
-
-                    <br>
-                    <a href="{% url 'blog:resources_news_articles' False %}">View more articles...</a>
-                </div>
-
-                <!-- list of latest reports and documents -->
-                <div class="row-fluid">
-                  <h2 class="line">Reports and Documents</h2>
-                </div>                
-
-                <!-- list of latest video links -->
-                <div class="row-fluid">
-                  <h2 class="line">Featured Videos</h2>
-                </div>
-                
+                <a href="{% url 'blog:resources_news_articles' True %}">View more articles...</a>
               </div>
-            </div>
-            </div>
-     
-     <!-- blog ends -->
+                 
+              <!-- list of latest press release articles -->
+              <div class="row-fluid">
+                  <h2 class="line">Press Releases</h2>
+                  {% if list_news %}
+                  {% for news_item in list_news %}
+                      <h3><a class="blog" href="{% url 'blog:news-media-detail' news_item.id %}">{{news_item.title}}</a></h3>
+                      <div class="blog-date">{{ news_item.pub_date|date:"j F y"}}</div>
+                      <img src="{{ news_item.image.url }}" vspace="10">
+                      <!-- <p>{{ news_item.body|safe }}</p> -->
+                  {% endfor %}
+                  {% else %}
+                      <div class="media-release-sub">
+                      <strong>No news articles currently available.</strong>
+                      </div>
+                  {% endif %}
 
+                  <br>
+                  <a href="{% url 'blog:resources_news_articles' False %}">View more articles...</a>
+              </div>
+
+              <!-- list of latest reports and documents -->
+              <div class="row-fluid">
+                <h2 class="line">Reports and Documents</h2>
+              </div>                
+
+              <!-- list of latest video links -->
+              <div class="row-fluid">
+                <h2 class="line">Featured Videos</h2>
+              </div>
+              
+          </div>
+        </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="blog-post">
+              <h3>Resources</h3>
+              <div class="blog-post-heading-sub"><a href="{% url 'blog:resources_news_articles' %}">News Articles</a></div>
+              <div class="blog-post-heading-sub"><a href="{% url 'blog:resources_news_articles' %}">Reports and Documents</a></div>
+              <div class="blog-post-heading-sub"><a href="{% url 'blog:resources_news_articles' %}">Featured Videos</a></div>
+              <div class="blog-post-heading-sub"><a href="{% url 'blog:resources_news_articles' %}">Calendar</a></div>
+              <div class="blog-post-heading-sub"><a href="{% url 'blog:resources_news_articles' %}">Map</a></div>
+            </div>
+
+          </div>
+
+        </div>            
+     
 {% endblock %}
