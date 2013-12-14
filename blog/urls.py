@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^resources/news_articles/$', views.resources_news_articles, name='resources_news_articles'),
     url(r'^resources/news_articles/(?P<view_external_articles>\w+)/$', views.resources_news_articles_list_all, name='resources_news_articles_list_all'),
     url(r'^resources/reports/$', views.resources_reports_documents, name='resources_reports_documents'),
+    url(r'^resources/videos/$', views.resources_videos, name='resources_videos'),
     url(r'^contact/$', views.contact, name='contact'),
     
     url(r'^media/(?P<path>.*)$', "django.views.static.serve", {"document_root": settings.MEDIA_ROOT})

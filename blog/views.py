@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from django.template import RequestContext
+# from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
 
-from blog.models import Article, Report
+from blog.models import Article, Report, Video
 
 
 def index(request):
@@ -166,4 +166,16 @@ def resources_reports_documents(request):
         'active_page': "resources",
     }
     return render(request, 'blog/resources_reports_documents.html',
+                  context)
+
+
+def resources_videos(request):
+    # list of news articles
+    context = {
+        'list_videos': Video.get_latest_videos(),
+        'view_index': False,
+        'company': settings.COMPANY_NAME,
+        'active_page': "resources",
+    }
+    return render(request, 'blog/resources_videos.html',
                   context)

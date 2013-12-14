@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="row-fluid">
+        <!-- list latest external articles -->
+        <div class="row-fluid">
+            <h2 class="line">Featured Videos</h2>
+
+            {% if list_videos %}
+            {% for video_item in list_videos %}
+                <h3>{{ video_item.title }}</h3>
+                <iframe width="560" height="315" src="//www.youtube.com/embed/{{ video_item.video_id }}" frameborder="0" allowfullscreen></iframe>
+                <p>{{ video_item.description|safe }}</p>
+                <br>
+            {% endfor %}
+            {% else %}
+                <div class="media-release-sub">
+                <strong>No news articles currently available.</strong>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}
