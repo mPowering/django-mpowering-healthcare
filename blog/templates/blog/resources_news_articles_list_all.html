@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    {% if view_external_articles %}
+        {% block external_articles %}
+            <h2 class="line">External Articles</h2>
+        {% endblock %}
+        
+    {% else %}
+        {% block press_releases %}
+        <h2 class="line">Press Releases</h2>
+
+        {% if list_news %}
+            {% for news_item in list_news %}
+                <h3><a class="blog" href="{% url 'blog:news-media-detail' news_item.id %}">{{news_item.title}}</a></h3>
+                <div class="blog-date">{{ news_item.pub_date|date:"j F y"}}</div>
+                <img src="{{ news_item.image.url }}" vspace="10">
+                <!-- <p>{{ news_item.body|safe }}</p> -->
+            {% endfor %}
+        {% else %}
+            <div class="media-release-sub">
+            <strong>No news articles currently available.</strong>
+            </div>
+        {% endif %}
+        {% endblock %}
+    {% endif %}
+        
+{% endblock %}

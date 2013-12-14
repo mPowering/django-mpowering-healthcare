@@ -127,7 +127,19 @@ def resources(request):
                   context)
 
 
-def resources_news_articles(request, view_external_articles):
+def resources_news_articles(request):
+    # list of news articles
+    context = {
+        'list_news': Article.get_latest_news(),
+        'view_index': False,
+        'company': settings.COMPANY_NAME,
+        'active_page': "resources",
+    }
+    return render(request, 'blog/resources_news_articles.html',
+                  context)
+
+
+def resources_news_articles_list_all(request, view_external_articles):
     if view_external_articles=='True':
         view_external_articles = True
     else:
@@ -141,5 +153,5 @@ def resources_news_articles(request, view_external_articles):
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
-    return render(request, 'blog/resources_news_articles.html',
+    return render(request, 'blog/resources_news_articles_list_all.html',
                   context)
