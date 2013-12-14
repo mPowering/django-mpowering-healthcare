@@ -125,3 +125,21 @@ def resources(request):
     }
     return render(request, 'blog/resources.html',
                   context)
+
+
+def resources_news_articles(request, view_external_articles):
+    if view_external_articles=='True':
+        view_external_articles = True
+    else:
+        view_external_articles = False
+
+    # list of news articles
+    context = {
+        'list_news': Article.get_latest_news(),
+        'view_index': False,
+        'view_external_articles': view_external_articles,
+        'company': settings.COMPANY_NAME,
+        'active_page': "resources",
+    }
+    return render(request, 'blog/resources_news_articles.html',
+                  context)
