@@ -3,7 +3,7 @@ from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
 
-from blog.models import Article
+from blog.models import Article, Report
 
 
 def index(request):
@@ -154,4 +154,16 @@ def resources_news_articles_list_all(request, view_external_articles):
         'active_page': "resources",
     }
     return render(request, 'blog/resources_news_articles_list_all.html',
+                  context)
+
+
+def resources_reports_documents(request):
+    # list of news articles
+    context = {
+        'list_reports': Report.get_latest_reports(),
+        'view_index': False,
+        'company': settings.COMPANY_NAME,
+        'active_page': "resources",
+    }
+    return render(request, 'blog/resources_reports_documents.html',
                   context)

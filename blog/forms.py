@@ -1,5 +1,5 @@
 from django import forms
-from blog.models import Article
+from blog.models import Article, Report
 from tinymce.widgets import TinyMCE
 
 
@@ -8,3 +8,8 @@ class ArticleModelAdminForm(forms.ModelForm):
 
     class Meta:
         model = Article
+
+
+class ReportModelAdminForm(forms.ModelForm):
+    class Meta:
+        model = Report
