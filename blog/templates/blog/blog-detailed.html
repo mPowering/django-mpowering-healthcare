@@ -28,15 +28,15 @@
         </div>        
 
         <div class="span4">
-            {% block blog %}
-                {{ block.super }}
-            {% endblock %}
-
-            <br><br>            
-
-            {% block news %}
-                {{ block.super }}
-            {% endblock %}
+            {% if view_blog_entry %}            
+                {% block blog %}
+                    {{ block.super }}
+                {% endblock %}         
+            {% else %}
+                {% block news %}
+                    {{ block.super }}
+                {% endblock %}
+            {% endif %}
         </div>
      </div>
      <!-- blog ends -->
