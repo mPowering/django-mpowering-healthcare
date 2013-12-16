@@ -3,7 +3,7 @@ from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
 
-from blog.models import Article, Report
+from blog.models import Article, Report, Presentation
 
 
 def index(request):
@@ -161,6 +161,7 @@ def resources_reports_documents(request):
     # list of news articles
     context = {
         'list_reports': Report.get_latest_reports(),
+        'list_presentations': Presentation.get_latest_presenations(),
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",

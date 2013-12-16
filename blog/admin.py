@@ -1,6 +1,6 @@
 from django.contrib import admin
-from blog.models import Article, Report
-from blog.forms import ArticleModelAdminForm, ReportModelAdminForm
+from blog.models import Article, Report, Presentation
+from blog.forms import ArticleModelAdminForm, ReportModelAdminForm, PresentationModelAdminForm
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -19,3 +19,12 @@ class ReportAdmin(admin.ModelAdmin):
     form = ReportModelAdminForm
 
 admin.site.register(Report, ReportAdmin)
+
+
+class PresentationAdmin(admin.ModelAdmin):
+    list_display = ('title', 'pub_date', 'was_published_recently')
+    search_fields = ['title']
+    date_hierarchy = 'pub_date'
+    form = PresentationModelAdminForm
+
+admin.site.register(Presentation, PresentationAdmin)

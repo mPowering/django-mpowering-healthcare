@@ -66,3 +66,25 @@ class Report(models.Model):
     @classmethod
     def get_latest_reports(cls):
         return Report.objects.order_by("-pub_date").all()
+
+
+class Presentation(models.Model):
+    title = models.CharField(max_length=200)
+    presentation_id = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        get_latest_by = "pub_date"
+
+    def was_published_recently(self):
+        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+    was_published_recently.admin_order_field = 'pub_date'
+    was_published_recently.boolean = True
+    was_published_recently.short_description = 'published recently?'
+
+    @classmethod
+    def get_latest_presenations(cls):
+        return Presentation.objects.order_by("-pub_date").all()
