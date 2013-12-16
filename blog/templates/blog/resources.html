@@ -29,7 +29,7 @@
                 {% if list_news_links %}
                   {% for news_item in list_news_links %}
                       <h3><a class="blog" href="{{news_item.link}}">{{news_item.title}}</a></h3>
-                      <p>{{news_item.publication_name}} | {{ news_item.pub_date|date:"j F y"}}</p>
+                      <p><strong>{{news_item.publication_name}}</strong> | {{ news_item.pub_date|date:"j F y"}}</p>
                       <p>{{ news_item.burb|safe }}</p>
                   {% endfor %}
                   {% else %}
