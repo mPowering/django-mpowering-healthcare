@@ -3,11 +3,13 @@
 
 {% block content %}
 
+    {% block pager %}
+      
     {% if view_external_articles %}
         {% block external_articles %}
             <h2 class="line">External Articles</h2>
-            {% if list_news_links %}
-              {% for news_item in list_news_links %}
+            {% if list_news %}
+              {% for news_item in list_news %}
                   <h3><a class="blog" href="{{news_item.link}}">{{news_item.title}}</a></h3>
                   <p><strong>{{news_item.publication_name}}</strong> | {{ news_item.pub_date|date:"j F y"}}</p>
                   <p>{{ news_item.burb|safe }}</p>
@@ -37,5 +39,23 @@
         {% endif %}
         {% endblock %}
     {% endif %}
-        
+
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if main_list.has_previous %}
+                <a href="?page={{ main_list.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ main_list.number }} of {{ main_list.paginator.num_pages }}.
+            </span>
+
+            {% if main_list.has_next %}
+                <a href="?page={{ main_list.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+
+  {% endblock %}        
 {% endblock %}

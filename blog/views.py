@@ -144,18 +144,31 @@ def resources_news_articles(request):
 def resources_news_articles_list_all(request, view_external_articles):
     if view_external_articles=='True':
         view_external_articles = True
+        articles_list_all = NewsArticleLink.get_latest_news()
     else:
         view_external_articles = False
+        articles_list_all = NewsArticle.get_latest_news()
+    
+    paginator = Paginator(articles_list_all, 5)  # show 5 articles per page
+    page = request.GET.get('page')
+    try:
+        articles = paginator.page(page)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver first page
+        articles = paginator.page(1)
+    except EmptyPage:
+        # if page is out of range, deliver last page of results
+        articles = paginator.page(paginator.num_pages)
 
-    # list of news articles
     context = {
-        'list_news_links': NewsArticleLink.get_latest_news(),
-        'list_news': NewsArticle.get_latest_news(),
+        'list_news': articles_list_all[:5],
         'view_index': False,
+        'main_list': articles,
         'view_external_articles': view_external_articles,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
+
     return render(request, 'blog/resources_news_articles_list_all.html',
                   context)
 
