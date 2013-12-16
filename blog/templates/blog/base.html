@@ -49,9 +49,9 @@
                         <li><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
                     {% endif %}
                     {% if active_page == "news_media" %}
-                        <li class="active"><a href="{% url 'blog:news-media' %}">NEWS &amp; MEDIA</a></li>
+                        <li class="active"><a href="{% url 'blog:news-media' %}">BLOG</a></li>
                     {% else %}
-                        <li><a href="{% url 'blog:news-media' %}">NEWS &amp; MEDIA</a></li>
+                        <li><a href="{% url 'blog:news-media' %}">BLOG</a></li>
                     {% endif %}
                     {% if active_page == "resources" %}
                         <li class="active"><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
@@ -164,9 +164,9 @@
         <li><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
     {% endif %}
     {% if active_page == "news_media" %}
-        <li>NEWS &amp; MEDIA</li>
+        <li>BLOG</li>
     {% else %}
-        <li><a href="{% url 'blog:news-media' %}">NEWS &amp; MEDIA</a></li>
+        <li><a href="{% url 'blog:news-media' %}">BLOG</a></li>
     {% endif %}
     {% if active_page == "resources" %}
         <li>RESOURCES</li>
