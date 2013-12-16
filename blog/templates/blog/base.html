@@ -63,6 +63,7 @@
                                 <li><a href="{% url 'blog:resources' %}">Resources</a></li>
                                 <li><a href="{% url 'blog:resources_news_articles' %}">News</a></li>
                                 <li><a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a></li>
+                                <li><a href="{% url 'blog:resources_videos' %}">Featured Videos</a></li>
                                 <li><a href="#">Calendar</a></li>
                                 <li><a href="#">Map</a></li>
                             </ul>
@@ -75,6 +76,7 @@
                                 <li><a href="{% url 'blog:resources' %}">Resources</a></li>
                                 <li><a href="{% url 'blog:resources_news_articles' %}">News</a></li>
                                 <li><a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a></li>
+                                <li><a href="{% url 'blog:resources_videos' %}">Featured Videos</a></li>
                                 <li><a href="#">Calendar</a></li>
                                 <li><a href="#">Map</a></li>
                             </ul>
@@ -119,7 +121,7 @@
             {% for news_item in list_news %}
                 <div class="media-release-sub">
                     <strong>{{news_item.pub_date|date:"j F y"}}</strong><br>
-                    <a href="{% url 'blog:news-media-detail' news_item.id %}">{{news_item.title}}</a>
+                    <a href="{% url 'blog:news-media-detail' news_item.id news_item.slug %}">{{news_item.title}}</a>
                 </div>
             {% endfor %}
             {% else %}
@@ -135,8 +137,8 @@
                     {% for blog in list_blogs %}
                         {% if forloop.first %}
                             <div class="blog-post-latest">
-                                <h3><a href="{% url 'blog:blog-detail' blog.id %}">{{ blog.title }}</a>
-                                <small><p>{{ blog.body|striptags|truncatewords:"15" }}...<a href="{% url 'blog:blog-detail' blog.id %}">read more</a></p></small>
+                                <h3><a href="{% url 'blog:blog-detail' blog.id blog.slug %}">{{ blog.title }}</a>
+                                <small><p>{{ blog.body|striptags|truncatewords:"15" }}...<a href="{% url 'blog:blog-detail' blog.id blog.slug %}">read more</a></p></small>
                             </div>
                             {% else %}
                             <div class="blog-post">
@@ -145,9 +147,9 @@
                                     {{blog.pub_date|date:"M"}}
                                 </div>
                                 {% if view_index %}
-                                    <div class="blog-post-heading"><a href="{% url 'blog:blog-detail' blog.id %}">{{ blog.title }}</a></div>
+                                    <div class="blog-post-heading"><a href="{% url 'blog:blog-detail' blog.id blog.slug %}">{{ blog.title }}</a></div>
                                 {% else %}
-                                    <div class="blog-post-heading-sub"><a href="{% url 'blog:blog-detail' blog.id %}">{{ blog.title }}</a></div>
+                                    <div class="blog-post-heading-sub"><a href="{% url 'blog:blog-detail' blog.id blog.slug %}">{{ blog.title }}</a></div>
                                 {% endif %}
                              </div>
                         {% endif %}

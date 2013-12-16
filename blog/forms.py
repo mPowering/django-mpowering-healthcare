@@ -1,5 +1,5 @@
 from django import forms
-from blog.models import Article, Report, Presentation
+from blog.models import Article, Report, Presentation, Video
 from tinymce.widgets import TinyMCE
 
 
@@ -18,3 +18,10 @@ class ReportModelAdminForm(forms.ModelForm):
 class PresentationModelAdminForm(forms.ModelForm):
     class Meta:
         model = Presentation
+
+
+class VideoModelAdminForm(forms.ModelForm):
+    description = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
+
+    class Meta:
+        model = Video

@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from django.template import RequestContext
+# from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
 
-from blog.models import Article, Report, Presentation
+from blog.models import Article, Report, Presentation, Video
 
 
 def index(request):
@@ -79,7 +79,7 @@ def blog(request):
                   context)
 
 
-def blog_detail(request, blog_id):
+def blog_detail(request, blog_id, slug):
     # retrieve blog of interest
     article_of_interest = get_object_or_404(Article, pk=blog_id)
 
@@ -97,7 +97,7 @@ def blog_detail(request, blog_id):
                   context)
 
 
-def news_media_detail(request, blog_id):
+def news_media_detail(request, blog_id, slug):
     # retrieve blog of interest
     article_of_interest = get_object_or_404(Article, pk=blog_id)
 
@@ -167,4 +167,16 @@ def resources_reports_documents(request):
         'active_page': "resources",
     }
     return render(request, 'blog/resources_reports_documents.html',
+                  context)
+
+
+def resources_videos(request):
+    # list of news articles
+    context = {
+        'list_videos': Video.get_latest_videos(),
+        'view_index': False,
+        'company': settings.COMPANY_NAME,
+        'active_page': "resources",
+    }
+    return render(request, 'blog/resources_videos.html',
                   context)
