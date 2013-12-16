@@ -6,6 +6,17 @@
     {% if view_external_articles %}
         {% block external_articles %}
             <h2 class="line">External Articles</h2>
+            {% if list_news_links %}
+              {% for news_item in list_news_links %}
+                  <h3><a class="blog" href="{{news_item.link}}">{{news_item.title}}</a></h3>
+                  <p>{{ news_item.publication_name }}</p> <div class="blog-date">{{ news_item.pub_date|date:"j F y"}}</div>
+                  <p>{{ news_item.burb|safe }}</p>
+              {% endfor %}
+              {% else %}
+                  <div class="media-release-sub">
+                  <strong>No news articles currently available.</strong>
+                  </div>
+              {% endif %}
         {% endblock %}
         
     {% else %}

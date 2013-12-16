@@ -3,14 +3,14 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
 
-from blog.models import Article, Report, Presentation, Video
+from blog.models import NewsArticle, NewsArticleLink, Blog, Report, Presentation, Video
 
 
 def index(request):
     # list of news articles
     context = {
-        'list_blogs': Article.get_latest_blogs()[:5],
-        'list_news': Article.get_latest_news()[:4],
+        'list_blogs': Blog.get_latest_blogs()[:5],
+        'list_news': NewsArticle.get_latest_news()[:4],
         'view_index': True,
         'company': settings.COMPANY_NAME,
         'active_page': "index",
@@ -55,7 +55,7 @@ def test(request):
 def blog(request):
     """ Using paginator to view list of blog posts """
     # list of all blog entries
-    blog_list_all = Article.get_latest_blogs()
+    blog_list_all = Blog.get_latest_blogs()
     paginator = Paginator(blog_list_all, 5)  # show 5 blogs per page
     page = request.GET.get('page')
     try:
@@ -68,8 +68,7 @@ def blog(request):
         blogs = paginator.page(paginator.num_pages)
 
     context = {
-        'list_blogs': Article.get_latest_blogs()[:5],
-        'list_news': Article.get_latest_news()[:4],
+        'list_blogs': Blog.get_latest_blogs()[:5],
         'view_index': False,
         'main_list': blogs,
         'company': settings.COMPANY_NAME,
@@ -81,14 +80,13 @@ def blog(request):
 
 def blog_detail(request, blog_id, slug):
     # retrieve blog of interest
-    article_of_interest = get_object_or_404(Article, pk=blog_id)
+    article_of_interest = get_object_or_404(Blog, pk=blog_id)
 
     context = {
         'current_blog': article_of_interest,
-        'list_blogs': Article.get_latest_blogs()[:5],
-        'list_news': Article.get_latest_news()[:4],
+        'list_blogs': Blog.get_latest_blogs()[:5],
         'view_index': False,
-        'view_blog_entry': article_of_interest.can_comment,
+        'view_blog_entry': True,
         'company': settings.COMPANY_NAME,
         'active_page': "blog",
     }
@@ -99,14 +97,14 @@ def blog_detail(request, blog_id, slug):
 
 def news_media_detail(request, blog_id, slug):
     # retrieve blog of interest
-    article_of_interest = get_object_or_404(Article, pk=blog_id)
+    article_of_interest = get_object_or_404(NewsArticle, pk=blog_id)
 
     context = {
         'current_blog': article_of_interest,
-        'list_blogs': Article.get_latest_blogs()[:5],
-        'list_news': Article.get_latest_news()[:4],
+        'list_news_links': NewsArticleLink.get_latest_news()[:5],
+        'list_news': NewsArticle.get_latest_news()[:4],
         'view_index': False,
-        'view_blog_entry': article_of_interest.can_comment,
+        'view_blog_entry': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
@@ -118,7 +116,10 @@ def news_media_detail(request, blog_id, slug):
 def resources(request):
     # list of news articles
     context = {
-        'list_news': Article.get_latest_news()[:4],
+        'list_news_links': NewsArticleLink.get_latest_news()[:4],
+        'list_news': NewsArticle.get_latest_news()[:4],
+        'list_reports': Report.get_latest_reports()[:4],
+        'list_videos': Video.get_latest_videos()[:4],
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
@@ -130,7 +131,8 @@ def resources(request):
 def resources_news_articles(request):
     # list of news articles
     context = {
-        'list_news': Article.get_latest_news(),
+        'list_news': NewsArticle.get_latest_news()[:5],
+        'list_news_links': NewsArticleLink.get_latest_news()[:5],
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
@@ -147,7 +149,8 @@ def resources_news_articles_list_all(request, view_external_articles):
 
     # list of news articles
     context = {
-        'list_news': Article.get_latest_news(),
+        'list_news_links': NewsArticleLink.get_latest_news(),
+        'list_news': NewsArticle.get_latest_news(),
         'view_index': False,
         'view_external_articles': view_external_articles,
         'company': settings.COMPANY_NAME,

@@ -1,16 +1,35 @@
 from django.contrib import admin
-from blog.models import Article, Report, Presentation, Video
-from blog.forms import ArticleModelAdminForm, ReportModelAdminForm, PresentationModelAdminForm, VideoModelAdminForm
+from blog.models import NewsArticle, NewsArticleLink, Blog, Report, Presentation, Video
+from blog.forms import NewsArticleModelAdminForm, ReportModelAdminForm, PresentationModelAdminForm, VideoModelAdminForm, NewsArticleLinkModelAdminForm, BlogModelAdminForm
 
 
-class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'pub_date', 'was_published_recently', 'can_comment')
+class NewsArticleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'pub_date', 'was_published_recently')
     search_fields = ['title']
     date_hierarchy = 'pub_date'
     prepopulated_fields = {'slug': ('title',)}
-    form = ArticleModelAdminForm
+    form = NewsArticleModelAdminForm
 
-admin.site.register(Article, ArticleAdmin)
+admin.site.register(NewsArticle, NewsArticleAdmin)
+
+
+class NewsArticleLinkAdmin(admin.ModelAdmin):
+    list_display = ('title', 'pub_date', 'was_published_recently')
+    search_fields = ['title']
+    date_hierarchy = 'pub_date'
+    form = NewsArticleLinkModelAdminForm
+
+admin.site.register(NewsArticleLink, NewsArticleLinkAdmin)
+
+
+class BlogAdmin(admin.ModelAdmin):
+    list_display = ('title', 'pub_date', 'was_published_recently')
+    search_fields = ['title']
+    date_hierarchy = 'pub_date'
+    prepopulated_fields = {'slug': ('title',)}
+    form = BlogModelAdminForm
+
+admin.site.register(Blog, BlogAdmin)
 
 
 class ReportAdmin(admin.ModelAdmin):
