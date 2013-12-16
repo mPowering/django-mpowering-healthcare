@@ -49,7 +49,7 @@ class Report(models.Model):
     def generate_new_filename(instance, filename):
         ext = os.path.splitext(filename)[1] # get file extension
         image_name = "%s%s" % (int(time.time() * 100000), ext)
-        return "%s%s%s" % ("blog_imgs", os.sep, image_name)
+        return "%s%s%s" % ("report_docs", os.sep, image_name)
 
     def slugify_title(t):
         return slugify(t)
