@@ -83,6 +83,7 @@
             <a href="/"><img src="{% static 'blog/img/mpowering_logo.png' %}"></a>
         </div>
 
+        {% if view_index %}
         <div class="span6">
         {% if list_blogs %}
             {% for blog in list_blogs %}
@@ -95,6 +96,7 @@
             {% endfor %}
         {% endif %}
         </div>
+        {% endif %}
 
         <!-- <div class="span6">
             <img src="{% static 'blog/img/home_graphic.png' %}" align="right">
