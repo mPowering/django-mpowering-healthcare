@@ -11,7 +11,7 @@
             {% if report_list %}
             {% for report_item in report_list.object_list %}
                 <div class="span4">
-                    <img src="{{ report_item.item.url }}" vspace="10"><br>
+                    <img src="{{ report_item.thumbnail.url }}" vspace="10"><br>
                     <strong><a class="blog" href="{% url 'blog:news-media-detail' report_item.id report_item.slug %}">{{report_item.title}}</a></strong>
                     <div class="blog-date">{{ report_item.pub_date|date:"j F y"}}</div>
                 </div>                
