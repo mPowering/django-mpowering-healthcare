@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/resources.html' %}
 {% load staticfiles %}
 
      
@@ -12,30 +12,20 @@
            <div class="row-fluid">
            <div class="span8">
               <div class="objectives-one">
+        
+                <h2>Map of Africa and India</h2>
                 
-                
-                
-           <h2>In the News</h2>
-           
-           <h2>Reports and Documents</h2>
-           
-           <h2>Featured Videos</h2>
-           <h2>Calendar</h2>
-           <h2>Map of Africa and India</h2>
-                
-</div>
+              </div>
+              <br>
+              <div class="row-fluid">
+                  <iframe src='https://api.tiles.mapbox.com/v3/nathanfloor.gi77fl7c.html' width='100%' height='500'></iframe>
+                  
+              </div>
+
             </div>
-      <div class="span4">
-       <ul class="right-links unstyled">
-       <li><a href="">In the News</a></li>
-           
-           <li><a href="">Reports and Documents</a></li>
-           
-           <li><a href="">Featured Videos</a></li>
-           <li><a href="">Calendar</a></li>
-           <li><a href="">Map of Africa and India</a></li>
-           </ul>
-      </div>
+      {% block minimenu %} 
+        {{ block.super }}
+      {% endblock %}
             </div>
            
    
