@@ -8,16 +8,33 @@
         <div class="row-fluid">
             <h2 class="line">Featured Videos</h2>
 
-            {% if list_videos %}
-            {% for video_item in list_videos %}
+            {% if main_list %}
+            {% for video_item in main_list.object_list %}
                 <h3>{{ video_item.title }}</h3>
                 <iframe width="560" height="315" src="//www.youtube.com/embed/{{ video_item.video_id }}" frameborder="0" allowfullscreen></iframe>
                 <p>{{ video_item.description|safe }}</p>
                 <br>
+                <div class="span10">
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if main_list.has_previous %}
+                            <a href="?page={{ main_list.previous_page_number }}">previous</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ main_list.number }} of {{ main_list.paginator.num_pages }}.
+                        </span>
+
+                        {% if main_list.has_next %}
+                            <a href="?page={{ main_list.next_page_number }}">next</a>
+                        {% endif %}
+                    </span>
+                </div>       
+                </div>
             {% endfor %}
             {% else %}
                 <div class="media-release-sub">
-                <strong>No news articles currently available.</strong>
+                <strong>No videos currently available.</strong>
                 </div>
             {% endif %}
 
