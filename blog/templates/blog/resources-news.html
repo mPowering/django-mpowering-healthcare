@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/resources.html' %}
 {% load staticfiles %}
 
      
@@ -13,29 +13,60 @@
            <div class="span8">
               <div class="objectives-one">
                 
-                
-                
-           <h2>In the News</h2>
+                <h2>In the News</h2>
            
-           <h2>Reports and Documents</h2>
-           
-           <h2>Featured Videos</h2>
-           <h2>Calendar</h2>
-           <h2>Map of Africa and India</h2>
-                
-</div>
+                <!-- list latest external articles -->
+                <div class="row-fluid">
+                    <h3 class="line">External Articles</h3>
+
+                    {% block external_articles %}
+                    {% if list_news_links %}
+                      {% for news_item in list_news_links %}
+                          <h3><a class="blog" href="{{news_item.link}}">{{news_item.title}}</a></h3>
+                          <p><strong>{{news_item.publication_name}}</strong> | {{ news_item.pub_date|date:"j F y"}}</p>
+                          <p>{{ news_item.burb|safe }}</p>
+                      {% endfor %}
+                      {% else %}
+                          <div class="media-release-sub">
+                          <strong>No news articles currently available.</strong>
+                          </div>
+                      {% endif %}
+                        
+                        <a href="{% url 'blog:resources_news_articles_list_all' True %}">View more articles...</a>
+                    {% endblock %}
+                </div>
+
+                <!-- list of latest press release articles -->
+                <div class="row-fluid">
+                    <h3 class="line">Press Releases</h3>
+
+                    {% block press_releases %}
+                    {% if list_news %}
+                    {% for news_item in list_news %}
+                        <h3><a class="blog" href="{% url 'blog:news-media-detail' news_item.id news_item.slug %}">{{news_item.title}}</a></h3>
+                        <div class="blog-date">{{ news_item.pub_date|date:"j F y"}}</div>
+                        <img src="{{ news_item.image.url }}" vspace="10">
+                        <!-- <p>{{ news_item.body|safe }}</p> -->
+                    {% endfor %}
+                    {% else %}
+                        <div class="media-release-sub">
+                        <strong>No news articles currently available.</strong>
+                        </div>
+                    {% endif %}
+                    {% endblock %}
+
+                    <br>
+                    <a href="{% url 'blog:resources_news_articles_list_all' False %}">View more articles...</a>
+                </div>    
+
+
+              </div>
             </div>
-      <div class="span4">
-       <ul class="right-links unstyled">
-       <li><a href="">In the News</a></li>
-           
-           <li><a href="">Reports and Documents</a></li>
-           
-           <li><a href="">Featured Videos</a></li>
-           <li><a href="">Calendar</a></li>
-           <li><a href="">Map of Africa and India</a></li>
-           </ul>
-      </div>
+
+
+      {% block minimenu %}
+        {{ block.super }}
+      {% endblock %}
             </div>
            
    

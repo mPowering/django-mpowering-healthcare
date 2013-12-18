@@ -1,5 +1,5 @@
 from django import forms
-from blog.models import NewsArticle, NewsArticleLink, Blog, Report, Presentation, Video, MapMarker
+from blog.models import NewsArticle, NewsArticleLink, Blog, Report, Presentation, Video
 from tinymce.widgets import TinyMCE
 
 
@@ -45,10 +45,3 @@ class VideoModelAdminForm(forms.ModelForm):
 
     class Meta:
         model = Video
-
-
-class MapForm(forms.Form):
-    description = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
-   
-    class Meta:
-        model = MapMarker

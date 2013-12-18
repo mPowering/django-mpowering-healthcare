@@ -155,6 +155,7 @@ def resources(request):
 
 def resources_news_articles(request):
     # list of news articles
+    print('Hello')
     context = {
         'list_news': NewsArticle.get_latest_news()[:5],
         'list_news_links': NewsArticleLink.get_latest_news()[:5],
@@ -162,7 +163,7 @@ def resources_news_articles(request):
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
-    return render(request, 'blog/resources_news_articles.html',
+    return render(request, 'blog/resources-news.html',
                   context)
 
 
@@ -200,7 +201,7 @@ def resources_news_articles_list_all(request, view_external_articles):
 def resources_reports_documents(request):
     # list of news articles
     reports_list_all = Report.get_latest_reports()
-    paginator_reports = Paginator(reports_list_all, 4)  # show 5 articles per page
+    paginator_reports = Paginator(reports_list_all, 3)  # show 3 reports per page
     page = request.GET.get('page')
     try:
         reports = paginator_reports.page(page)
@@ -212,7 +213,7 @@ def resources_reports_documents(request):
         reports = paginator_reports.page(paginator_reports.num_pages)
 
     present_list_all = Presentation.get_latest_presenations()
-    paginator_present = Paginator(present_list_all, 5)  # show 5 articles per page
+    paginator_present = Paginator(present_list_all, 3)  # show 3 presentations per page
     page1 = request.GET.get('page')
     try:
         presentations = paginator_present.page(page1)
@@ -230,7 +231,7 @@ def resources_reports_documents(request):
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
-    return render(request, 'blog/resources_reports_documents.html',
+    return render(request, 'blog/resources-documents.html',
                   context)
 
 
@@ -242,7 +243,7 @@ def resources_videos(request):
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
-    return render(request, 'blog/resources_videos.html',
+    return render(request, 'blog/resources-videos.html',
                   context)
 
 
@@ -253,7 +254,7 @@ def resources_calendar(request):
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
-    return render(request, 'blog/resources_calendar.html',
+    return render(request, 'blog/resources-calendar.html',
                   context)
 
 
@@ -264,5 +265,5 @@ def resources_map(request):
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
-    return render(request, 'blog/resources_map.html',
+    return render(request, 'blog/resources-map.html',
                   context)
