@@ -171,7 +171,9 @@ def resources_news_articles_list_all(request, view_external_articles):
 
 
 def resources_reports_documents(request):
-    # list of news articles
+    # list of reports and docs
+
+    # setup pager for reports
     reports_list_all = Report.get_latest_reports()
     paginator_reports = Paginator(reports_list_all, 4)  # show 5 articles per page
     page = request.GET.get('page')
@@ -184,6 +186,7 @@ def resources_reports_documents(request):
         # if page is out of range, deliver last page of results
         reports = paginator_reports.page(paginator_reports.num_pages)
 
+    # setup pager for presenations
     present_list_all = Presentation.get_latest_presenations()
     paginator_present = Paginator(present_list_all, 5)  # show 5 articles per page
     page1 = request.GET.get('page')
@@ -208,9 +211,22 @@ def resources_reports_documents(request):
 
 
 def resources_videos(request):
-    # list of news articles
+    # list of videos
+    videos_list_all = Video.get_latest_videos()
+    
+    paginator = Paginator(videos_list_all, 5)  # show 5 articles per page
+    page = request.GET.get('page')
+    try:
+        videos = paginator.page(page)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver first page
+        videos = paginator.page(1)
+    except EmptyPage:
+        # if page is out of range, deliver last page of results
+        videos = paginator.page(paginator.num_pages)
+
     context = {
-        'list_videos': Video.get_latest_videos(),
+        'main_list': videos,
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
