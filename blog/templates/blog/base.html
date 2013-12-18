@@ -48,15 +48,38 @@
                     {% else %}
                         <li><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
                     {% endif %}
-                    {% if active_page == "news_media" %}
-                        <li class="active"><a href="{% url 'blog:news-media' %}">BLOG</a></li>
+                    {% if active_page == "blog" %}
+                        <li class="active"><a href="{% url 'blog:blog' %}">BLOG</a></li>
                     {% else %}
-                        <li><a href="{% url 'blog:news-media' %}">BLOG</a></li>
+                        <li><a href="{% url 'blog:blog' %}">BLOG</a></li>
                     {% endif %}
+                    
                     {% if active_page == "resources" %}
-                        <li class="active"><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
+                        <li class="active dropdown">
+                            <a id="blogLabel" role="button" data-toggle="dropdown" href="{% url 'blog:resources' %}">RESOURCES<span class="caret"></span></a>
+
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="blogLabel">
+                                <li><a href="{% url 'blog:resources' %}">Resources</a></li>
+                                <li><a href="{% url 'blog:resources_news_articles' %}">News</a></li>
+                                <li><a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a></li>
+                                <li><a href="{% url 'blog:resources_videos' %}">Featured Videos</a></li>
+                                <li><a href="{% url 'blog:resources_calendar' %}">Calendar</a></li>
+                                <li><a href="#">Map</a></li>
+                            </ul>
+                        </li>
                     {% else %}
-                        <li><a href="{% url 'blog:resources' %}">RESOURCES</a></li>
+                        <li class="dropdown">
+                            <a id="blogLabel" role="button" data-toggle="dropdown" href="{% url 'blog:resources' %}">RESOURCES<span class="caret"></span></a>
+
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="blogLabel">
+                                <li><a href="{% url 'blog:resources' %}">Resources</a></li>
+                                <li><a href="{% url 'blog:resources_news_articles' %}">News</a></li>
+                                <li><a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a></li>
+                                <li><a href="{% url 'blog:resources_videos' %}">Featured Videos</a></li>
+                                <li><a href="#">Calendar</a></li>
+                                <li><a href="#">Map</a></li>
+                            </ul>
+                        </li>
                     {% endif %}
 
                       {% if active_page == "contact" %}
@@ -92,7 +115,7 @@
         {% block pager %} {% endblock %}
 
         {% block news %}
-            <h2 class="line">Media Releases</h2>
+            <h2 class="line">Press Releases</h2>
             {% if list_news %}
             {% for news_item in list_news %}
                 <div class="media-release-sub">
@@ -113,8 +136,8 @@
                     {% for blog in list_blogs %}
                         {% if forloop.first %}
                             <div class="blog-post-latest">
-                                <h3><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a>
-                                <small><p>{{ blog.body|striptags|truncatewords:"15" }}...<a href="{% url 'blog:news-media-detail' blog.id %}">read more</a></p></small>
+                                <h3><a href="{% url 'blog:blog-detail' blog.id %}">{{ blog.title }}</a>
+                                <small><p>{{ blog.body|striptags|truncatewords:"15" }}...<a href="{% url 'blog:blog-detail' blog.id %}">read more</a></p></small>
                             </div>
                             {% else %}
                             <div class="blog-post">
@@ -123,9 +146,9 @@
                                     {{blog.pub_date|date:"M"}}
                                 </div>
                                 {% if view_index %}
-                                    <div class="blog-post-heading"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></div>
+                                    <div class="blog-post-heading"><a href="{% url 'blog:blog-detail' blog.id %}">{{ blog.title }}</a></div>
                                 {% else %}
-                                    <div class="blog-post-heading-sub"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></div>
+                                    <div class="blog-post-heading-sub"><a href="{% url 'blog:blog-detail' blog.id %}">{{ blog.title }}</a></div>
                                 {% endif %}
                              </div>
                         {% endif %}
@@ -163,10 +186,10 @@
     {% else %}
         <li><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
     {% endif %}
-    {% if active_page == "news_media" %}
+    {% if active_page == "blog" %}
         <li>BLOG</li>
     {% else %}
-        <li><a href="{% url 'blog:news-media' %}">BLOG</a></li>
+        <li><a href="{% url 'blog:blog' %}">BLOG</a></li>
     {% endif %}
     {% if active_page == "resources" %}
         <li>RESOURCES</li>
