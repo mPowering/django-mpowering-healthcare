@@ -128,8 +128,6 @@ def news_media_detail(request, blog_id, slug):
 
     context = {
         'current_blog': article_of_interest,
-        'list_news_links': NewsArticleLink.get_latest_news()[:5],
-        'list_news': NewsArticle.get_latest_news()[:4],
         'view_index': False,
         'view_blog_entry': False,
         'company': settings.COMPANY_NAME,
@@ -171,27 +169,63 @@ def resources_news_articles(request):
 def resources_news_articles_list_all(request, view_external_articles):
     if view_external_articles=='True':
         view_external_articles = True
+        articles_list_all = NewsArticleLink.get_latest_news()
     else:
         view_external_articles = False
+        articles_list_all = NewsArticle.get_latest_news()
+    
+    paginator = Paginator(articles_list_all, 5)  # show 5 articles per page
+    page = request.GET.get('page')
+    try:
+        articles = paginator.page(page)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver first page
+        articles = paginator.page(1)
+    except EmptyPage:
+        # if page is out of range, deliver last page of results
+        articles = paginator.page(paginator.num_pages)
 
-    # list of news articles
     context = {
-        'list_news_links': NewsArticleLink.get_latest_news(),
-        'list_news': NewsArticle.get_latest_news(),
         'view_index': False,
+        'main_list': articles,
         'view_external_articles': view_external_articles,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
+
     return render(request, 'blog/resources_news_articles_list_all.html',
                   context)
 
 
 def resources_reports_documents(request):
     # list of news articles
+    reports_list_all = Report.get_latest_reports()
+    paginator_reports = Paginator(reports_list_all, 4)  # show 5 articles per page
+    page = request.GET.get('page')
+    try:
+        reports = paginator_reports.page(page)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver first page
+        reports = paginator_reports.page(1)
+    except EmptyPage:
+        # if page is out of range, deliver last page of results
+        reports = paginator_reports.page(paginator_reports.num_pages)
+
+    present_list_all = Presentation.get_latest_presenations()
+    paginator_present = Paginator(present_list_all, 5)  # show 5 articles per page
+    page1 = request.GET.get('page')
+    try:
+        presentations = paginator_present.page(page1)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver first page
+        presentations = paginator_present.page(1)
+    except EmptyPage:
+        # if page is out of range, deliver last page of results
+        presentations = paginator_present.page(paginator_present.num_pages)
+
     context = {
-        'list_reports': Report.get_latest_reports(),
-        'list_presentations': Presentation.get_latest_presenations(),
+        'report_list': reports,
+        'present_list': presentations,
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
