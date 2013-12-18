@@ -45,4 +45,3 @@ class VideoModelAdminForm(forms.ModelForm):
 
     class Meta:
         model = Video
->>>>>>> develop
