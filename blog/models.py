@@ -109,6 +109,8 @@ class Report(models.Model):
     title = models.CharField(max_length=200)
     item = models.FileField(upload_to=generate_new_filename,
                               max_length=200)
+    thumbnail = models.ImageField(upload_to=generate_new_filename,
+                              max_length=200, default='me.jpg')
     pub_date = models.DateTimeField('date published')
     slug = models.SlugField(default=slugify_title(title))
 
