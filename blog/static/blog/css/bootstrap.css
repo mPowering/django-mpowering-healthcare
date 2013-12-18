@@ -710,6 +710,9 @@ a.label:hover,a.badge:hover{color:#ffffff;text-decoration:none;cursor:pointer;}
 .hero-unit p{font-size:18px;font-weight:200;line-height:31.5px;color:inherit;}
 div.container{max-width:1075px;}
 div.container-background{background-color:#ffffff;}
+ul.right-links li{font-size:16px;margin-top:10px;}
+ul.right-links li a:link,ul.right-links li a:visited,ul.right-links li a:active{text-decoration:normal;color:#0b4260;}
+ul.right-links li a:hover{text-decoration:underline;}
 div.padding-main{padding-left:55px;padding-right:55px;padding-top:45px;}
 div.navbar-bgcolor{background-color:#2a6083;height:29px;background-image:url(../img/navbar-background.gif);background-repeat:repeat-x;background-position:top;}
 div.quote-area{font-size:24px;color:#0b4260;line-height:28px;padding:10px 20px 0px 20px;}
