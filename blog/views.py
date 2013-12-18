@@ -52,8 +52,8 @@ def contact(request):
         if form.is_valid():
             subject = 'New Member Sign up'
             message = "Name: "+form.cleaned_data['name']+", Organisation: "+form.cleaned_data['organisation']+", Email: "+form.cleaned_data['email']
-            sender = 'info@mpoweringhealth.org'
-            recipient = ['nathan@westerncapelabs.com']
+            sender = settings.EMAIL_FROM
+            recipient = [form.cleaned_data['email']]
 
             send_mail(subject, message, sender, recipient)
 
