@@ -108,13 +108,16 @@
         </div>
 
         {% if view_index %}
+
         <div class="span6">
+        {% if list_blogs %}
         {% with list_blogs|first as blog %}
             <div class="blog-post-latest">
-                <h3><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a>
+                <h3><a href="{% url 'blog:blog-detail' blog.id blog.slug %}">{{ blog.title }}</a>
                 <small><p>{{ blog.body|striptags|truncatewords:"15" }}...<a href="{% url 'blog:news-media-detail' blog.id %}">read more</a></p></small>
             </div>
         {% endwith %}
+        {% endif %}
         </div>
         {% endif %}
 
