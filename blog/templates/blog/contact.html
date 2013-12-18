@@ -13,6 +13,14 @@
                 <h2>Get in touch</h2>
                 <p>We'd love to hear from you!</p>
                 <p>Send email to <a href="mailto:info@mpoweringhealth.org">info@mpoweringhealth.org</a></p>
+                <br>
+                <p>If you'd like to become a member, send us your details:</p>
+
+                <form action="{% url 'blog:contact' %}" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" name="submit" value="Submit">
+                </form>
             </div>
             <div class="span6">
                 <img src="{% static 'blog/img/home_graphic.png' %}" align="right">

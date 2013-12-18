@@ -10,6 +10,12 @@ class NewsArticleModelAdminForm(forms.ModelForm):
         model = NewsArticle
 
 
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=200, required=True)
+    organisation = forms.CharField(max_length=200, required=True)
+    email = forms.EmailField(required=True)
+
+
 class NewsArticleLinkModelAdminForm(forms.ModelForm):
     blurb = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
 

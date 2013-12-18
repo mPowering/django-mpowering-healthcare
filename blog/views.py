@@ -2,7 +2,12 @@ from django.shortcuts import render, get_object_or_404
 # from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
+from django.http import HttpResponseRedirect
+from django.core.mail import send_mail
+from django.core.urlresolvers import reverse
 
+
+from blog.forms import ContactForm
 from blog.models import NewsArticle, NewsArticleLink, Blog, Report, Presentation, Video
 
 
@@ -41,9 +46,32 @@ def partners(request):
 
 
 def contact(request):
+    # check if any form data that needs to be emailed
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = 'New Member Sign up'
+            message = "Name: "+form.cleaned_data['name']+", Organisation: "+form.cleaned_data['organisation']+", Email: "+form.cleaned_data['email']
+            sender = settings.EMAIL_FROM
+            recipient = [form.cleaned_data['email']]
+
+            send_mail(subject, message, sender, recipient)
+
+            # Always return an HttpResponseRedirect after successfully dealing
+            # with POST data. This prevents data from being posted twice if a
+            # user hits the Back button.
+            return HttpResponseRedirect(reverse('blog:contact'))
+    else:
+        form = ContactForm()
+
+    context = {
+        'active_page': "contact",
+        'form': form,
+    }
+
     return render(request,
                   'blog/contact.html',
-                  {'active_page': "contact"})
+                  context)
 
 
 def test(request):
