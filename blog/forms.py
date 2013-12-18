@@ -8,3 +8,9 @@ class ArticleModelAdminForm(forms.ModelForm):
 
     class Meta:
         model = Article
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=200, required=True)
+    organisation = forms.CharField(max_length=200, required=True)
+    email = forms.EmailField(required=True)
