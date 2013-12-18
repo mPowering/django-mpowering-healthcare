@@ -55,7 +55,7 @@ def test(request):
 def news_media(request):
     """ Using paginator to view list of blog posts """
     # list of all blog entries
-    blog_list_all = Article.objects.order_by("-pub_date").all()
+    blog_list_all = Article.get_latest_blogs()
     paginator = Paginator(blog_list_all, 5)  # show 5 blogs per page
     page = request.GET.get('page')
     try:
