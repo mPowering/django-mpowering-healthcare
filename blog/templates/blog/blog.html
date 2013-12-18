@@ -11,7 +11,7 @@
             {% block pager %}
                 {% if main_list %}
                     {% for blog in main_list.object_list %}
-                        <h2 class="blog"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></h2>
+                        <h2 class="blog"><a href="{% url 'blog:blog-detail' blog.id blog.slug %}">{{ blog.title }}</a></h2>
                         <div class="blog-date">{{ blog.pub_date }}</div>
                         <img src="{{ blog.image.url }}" vspace="10">
                         <p>{{ blog.body|safe }}</p>
@@ -50,9 +50,9 @@
                                 {{blog.pub_date|date:"M"}}
                             </div>
                             {% if view_index %}
-                                <div class="blog-post-heading"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></div>
+                                <div class="blog-post-heading"><a href="{% url 'blog:blog-detail' blog.id blog.slug  %}">{{ blog.title }}</a></div>
                             {% else %}
-                                <div class="blog-post-heading-sub"><a href="{% url 'blog:news-media-detail' blog.id %}">{{ blog.title }}</a></div>
+                                <div class="blog-post-heading-sub"><a href="{% url 'blog:blog-detail' blog.id blog.slug  %}">{{ blog.title }}</a></div>
                             {% endif %}
                          </div>
                     {% endfor %}
