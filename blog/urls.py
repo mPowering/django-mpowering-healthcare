@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^resources/news_articles/(?P<view_external_articles>\w+)/$', views.resources_news_articles_list_all, name='resources_news_articles_list_all'),
     url(r'^resources/reports/$', views.resources_reports_documents, name='resources_reports_documents'),
     url(r'^resources/videos/$', views.resources_videos, name='resources_videos'),
+    url(r'^resources/map/$', views.resources_map, name='resources_map'),
     url(r'^resources/calendar/$', views.resources_calendar, name='resources_calendar'),
     url(r'^contact/$', views.contact, name='contact'),
     

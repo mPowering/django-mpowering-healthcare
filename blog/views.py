@@ -256,3 +256,13 @@ def resources_calendar(request):
     return render(request, 'blog/resources_calendar.html',
                   context)
 
+
+def resources_map(request):
+    # list of news articles
+    context = {
+        'view_index': False,
+        'company': settings.COMPANY_NAME,
+        'active_page': "resources",
+    }
+    return render(request, 'blog/resources_map.html',
+                  context)

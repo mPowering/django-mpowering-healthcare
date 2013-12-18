@@ -1,6 +1,6 @@
 from django.contrib import admin
-from blog.models import NewsArticle, NewsArticleLink, Blog, Report, Presentation, Video
-from blog.forms import NewsArticleModelAdminForm, ReportModelAdminForm, PresentationModelAdminForm, VideoModelAdminForm, NewsArticleLinkModelAdminForm, BlogModelAdminForm
+from blog.models import NewsArticle, NewsArticleLink, Blog, Report, Presentation, Video, MapMarker
+from blog.forms import NewsArticleModelAdminForm, ReportModelAdminForm, PresentationModelAdminForm, VideoModelAdminForm, NewsArticleLinkModelAdminForm, BlogModelAdminForm, MapMarkerModelAdminForm
 
 
 class NewsArticleAdmin(admin.ModelAdmin):
@@ -59,3 +59,11 @@ class VideoAdmin(admin.ModelAdmin):
 
 admin.site.register(Video, VideoAdmin)
 
+
+class MapMarkerAdmin(admin.ModelAdmin):
+    list_display = ('name_of_region', 'pub_date', 'was_published_recently')
+    search_fields = ['name_of_region']
+    date_hierarchy = 'pub_date'
+    form = MapMarkerModelAdminForm
+
+admin.site.register(MapMarker, MapMarkerAdmin)
