@@ -2,11 +2,20 @@
 {% load staticfiles %}
 
 {% block content %}
+
+<div class="row-fluid">
+      <div class="span12">
+        <h1 class="line">RESOURCES</h1>
+      </div>
+      </div>
+      <br />
+
     {% block pager %}
       
     <div class="row-fluid">
+    <div class="span8">
         <div class="row-fluid">
-            <h2 class="line">Reports &amp; Documents</h2>
+            <h2 class="line-resources">Reports &amp; Documents</h2>
 
             {% if report_list %}
             {% for report_item in report_list.object_list %}
@@ -45,7 +54,7 @@
         
 
         <div class="row-fluid">
-            <h2 class="line">Presentations</h2>
+            <h2 class="line-resources">Presentations</h2>
             <br>
 
             {% if present_list %}
@@ -83,6 +92,18 @@
             {% endif %}
 
         </div> 
+        </div>
+         <div class="span4">
+           <ul class="right-links unstyled">
+           <li><a href="{% url 'blog:resources_news_articles' %}">In the News</a></li>
+               
+               <li><a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a></li>
+               
+               <li><a href="{% url 'blog:resources_videos' %}">Featured Videos</a></li>
+               <li><a href="{% url 'blog:resources_calendar' %}">Calendar</a></li>
+               <li><a href="{% url 'blog:resources_news_articles' %}">Map of Africa and India</a></li>
+               </ul>
+          </div>
     </div>
 
   {% endblock %}
