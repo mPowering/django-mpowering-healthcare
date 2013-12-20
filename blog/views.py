@@ -129,6 +129,7 @@ def news_media_detail(request, blog_id, slug):
 
     context = {
         'current_blog': article_of_interest,
+        'list_news': PressRelease.get_latest_news()[:4],
         'view_index': False,
         'view_blog_entry': False,
         'company': settings.COMPANY_NAME,

@@ -38,7 +38,9 @@
             {% for news_item in main_list.object_list %}
                 <h3 class="resources"><a class="blog" href="{% url 'blog:news-media-detail' news_item.id news_item.slug %}">{{news_item.title}}</a></h3>
                 <div class="blog-date">{{ news_item.pub_date|date:"j F y"}}</div>
+                {% if news_item.image %}
                 <img src="{{ news_item.image.url }}" vspace="10">
+                {% endif %}
                 <!-- <p>{{ news_item.body|safe }}</p> -->
                  <hr class="resources" />
             {% endfor %}
