@@ -28,7 +28,7 @@ class VideoModelAdminForm(forms.ModelForm):
         model = Video
 
 
-class MapForm(forms.Form):
+class MapMarkerAdminForm(forms.Form):
     description = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
    
     class Meta:
