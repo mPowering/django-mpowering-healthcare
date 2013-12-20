@@ -17,7 +17,7 @@ class PressRelease(models.Model):
 
     title = models.CharField(max_length=200)
     image = models.ImageField(upload_to=generate_new_filename,
-                              max_length=200)
+                              max_length=200, null=True, blank=True)
     body = models.TextField()
     pub_date = models.DateTimeField('date published')
     slug = models.SlugField(default=slugify_title(title))
@@ -73,7 +73,7 @@ class Blog(models.Model):
 
     title = models.CharField(max_length=200)
     image = models.ImageField(upload_to=generate_new_filename,
-                              max_length=200)
+                              max_length=200, null=True, blank=True)
     body = models.TextField()
     pub_date = models.DateTimeField('date published')
     slug = models.SlugField(default=slugify_title(title))
