@@ -2,15 +2,34 @@
 {% load staticfiles %}
 
 {% block content %}
-
+<div class="row-fluid">
+      <div class="span12">
+        <h1 class="line">RESOURCES</h1>
+      </div>
+      </div>
+      <br />
     <div class="row-fluid">
         <!-- list latest external articles -->
-        <div class="row-fluid">
-            <h2 class="line">Calendar</h2>
 
-            <iframe src="https://www.google.com/calendar/embed?src=sle4clciqkn62kpo6156fpg31o%40group.calendar.google.com&amp;ctz=Africa/Johannesburg" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+<div class="row-fluid">
+<div class="span8">
+            <h2 class="line-resources">Calendar</h2>
+
+            <iframe src="https://www.google.com/calendar/embed?src=sle4clciqkn62kpo6156fpg31o%40group.calendar.google.com&amp;ctz=Africa/Johannesburg" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
             
         </div>
-    </div>
+     <div class="span4">
+           <ul class="right-links unstyled">
+           <li><a href="{% url 'blog:resources_news_articles' %}">In the News</a></li>
+               
+               <li><a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a></li>
+               
+               <li><a href="{% url 'blog:resources_videos' %}">Featured Videos</a></li>
+               <li><a href="{% url 'blog:resources_calendar' %}">Calendar</a></li>
+               <li><a href="{% url 'blog:resources_news_articles' %}">Map of Africa and India</a></li>
+               </ul>
+          </div>
+        </div>
+    
 
 {% endblock %}

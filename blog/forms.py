@@ -1,13 +1,13 @@
 from django import forms
-from blog.models import Article, Report, Video, MapMarker
+from blog.models import PressRelease, PressReleaseLink, Blog, Report, Presentation, Video, MapMarker
 from tinymce.widgets import TinyMCE
 
 
-class ArticleModelAdminForm(forms.ModelForm):
+class NewsArticleModelAdminForm(forms.ModelForm):
     body = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
 
     class Meta:
-        model = Article
+        model = PressRelease
 
 
 class ContactForm(forms.Form):
@@ -16,9 +16,26 @@ class ContactForm(forms.Form):
     email = forms.EmailField(required=True)
 
 
+class NewsArticleLinkModelAdminForm(forms.ModelForm):
+    class Meta:
+        model = PressReleaseLink
+
+
+class BlogModelAdminForm(forms.ModelForm):
+    body = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
+
+    class Meta:
+        model = Blog
+
+
 class ReportModelAdminForm(forms.ModelForm):
     class Meta:
         model = Report
+
+
+class PresentationModelAdminForm(forms.ModelForm):
+    class Meta:
+        model = Presentation
 
 
 class VideoModelAdminForm(forms.ModelForm):

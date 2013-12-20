@@ -4,9 +4,10 @@
      
 {% block content %}
     <div class="row-fluid">
-      <div class="span9">
+      <div class="span12">
         <h1 class="line">RESOURCES</h1>
       </div>
+<<<<<<< HEAD
 
        <div class="span3">
               <h3>Resources</h3>
@@ -21,25 +22,25 @@
         <div class="row-fluid">
         <div class="span9">
             <div class="objectives-one">
+=======
+      <div class="row-fluid">
+           <div class="span12">
+             
+                
+                
+                
+               <div class="objectives-one">
+>>>>>>> feature/issue-36-image-optional-for-blog-press-release
 
               <!-- list latest external articles -->
               <br>
               <div class="row-fluid">
-                <h2 class="line">External Articles</h2>
-
-                <a href="{% url 'blog:resources_news_articles_list_all' True %}">View more articles...</a>
-
-              </div>
-                 
-              <!-- list of latest press release articles -->
-              <div class="row-fluid">
-                  <h2 class="line">Press Releases</h2>
-                  {% if list_news %}
-                  {% for news_item in list_news %}
-                      <h3><a class="blog" href="{% url 'blog:news-media-detail' news_item.id %}">{{news_item.title}}</a></h3>
-                      <div class="blog-date">{{ news_item.pub_date|date:"j F y"}}</div>
-                      <img src="{{ news_item.image.url }}" vspace="10">
-                      <!-- <p>{{ news_item.body|safe }}</p> -->
+                <h2 class="line-resources">External Articles</h2>
+                {% if list_news_links %}
+                  {% for news_item in list_news_links %}
+                      <h3 class="resources"><a class="blog" href="{{news_item.link}}">{{news_item.title}}</a></h3>
+                      <p><strong>{{news_item.publication_name}}</strong> | {{ news_item.pub_date|date:"j F y"}}</p>
+                      <hr class="resources" />
                   {% endfor %}
                   {% else %}
                       <div class="media-release-sub">
@@ -47,23 +48,86 @@
                       </div>
                   {% endif %}
 
-                  <br>
+                <a href="{% url 'blog:resources_news_articles_list_all' True %}">View more articles...</a>
+
+              </div>
+                 
+              <!-- list of latest press release articles -->
+              <br />
+              <div class="row-fluid">
+                  <h2 class="line-resources">Press Releases</h2>
+                  {% if list_news %}
+                  {% for news_item in list_news %}
+                      <h3 class="resources"><a class="blog" href="{% url 'blog:news-media-detail' news_item.id news_item.slug %}">{{news_item.title}}</a></h3>
+                      <div class="blog-date">{{ news_item.pub_date|date:"j F y"}}</div>
+                      <!--img src="{{ news_item.image.url }}" vspace="10"-->
+                      <!-- <p>{{ news_item.body|safe }}</p> -->
+                      <hr class="resources" />
+                  {% endfor %}
+                  {% else %}
+                      <div class="media-release-sub">
+                      <strong>No news articles currently available.</strong>
+                      </div>
+                  {% endif %}
+
+                  
                   <a href="{% url 'blog:resources_news_articles_list_all' False %}">View more articles...</a>
               </div>
-
+<br />
               <!-- list of latest reports and documents -->
               <div class="row-fluid">
-                <h2 class="line">Reports and Documents</h2>
-              </div>                
+                <h2 class="line-resources">Reports and Documents</h2>
 
+                {% if list_reports %}
+                {% for report_item in list_reports %}
+                    <div class="span4">
+                        <a class="blog" href="{% url 'blog:news-media-detail' report_item.id report_item.slug %}"><img src="{{ report_item.item.url }}" vspace="10"></a><br>
+                        <!--strong>{{report_item.title}}</strong>
+                        <div class="blog-date">{{ report_item.pub_date|date:"j F y"}}</div-->
+                    <hr class="resources" /></div>
+                    
+                {% endfor %}
+                {% else %}
+                    <div class="media-release-sub">
+                    <strong>No reports currently available.</strong>
+                    </div>
+                {% endif %}
+              </div>                
+<br />
               <!-- list of latest video links -->
               <div class="row-fluid">
-                <h2 class="line">Featured Videos</h2>
+                <h2 class="line-resources">Featured Videos</h2>
+
+                {% if list_videos %}
+                {% for video_item in list_videos %}
+                <div class="row-fluid">
+                <div class="span6">
+                <iframe width="100%" height="350px" src="//www.youtube.com/embed/{{ video_item.video_id }}" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="span6">
+                <h3 class="resources">{{ video_item.title }}</h3>
+                <p>{{ video_item.description|safe }}</p>
+                    
+                </div>
+                </div>
+                    <hr class="resources" />
+                    
+                          {% endfor %}
+                {% else %}
+                    <div class="media-release-sub">
+                    <strong>No news articles currently available.</strong>
+                    </div>
+                {% endif %}
               </div>
               
           </div>
+                
+              </div>
+           
+          <a href="{% url 'blog:resources_calendar' %}">Calendar</a>
         </div>
+    
 
-        </div>          
+                
      
 {% endblock %}

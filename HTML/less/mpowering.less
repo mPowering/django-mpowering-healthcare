@@ -7,6 +7,28 @@ div.container-background
     background-color: @white;
 }
 
+p.index-paragraph
+{
+    line-height: 16px;
+}
+
+ul.right-links li
+{
+    font-size: 20px;
+    margin-top: 20px;
+}
+ul.right-links li a:link, ul.right-links li a:visited, ul.right-links li a:active
+{
+    text-decoration: normal;
+    color: @mPoweringBlueDark;
+}
+
+ul.right-links li a:hover
+{
+    text-decoration: underline;
+}
+
+
 div.padding-main
 {
     padding-left: 55px;
@@ -69,6 +91,41 @@ h2.line
     display: block;
     border-bottom: 1px solid @mPoweringDarkGray;
 }
+
+h2.line-resources
+{
+    font-family: @navFontFamily;
+    font-size: 30px;
+    font-weight: bold;
+    color: @mPoweringBlueDark; 
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-bottom: 17px;
+    display: block;
+    border-bottom: 1px solid @mPoweringDarkGray;
+    border-top: 1px solid @mPoweringDarkGray;
+}
+
+h3.resources
+{
+    font-size: 16px;    
+    line-height: 22px;
+}
+
+hr.resources
+{
+    border-bottom: 0px;
+    border-top: 1px dashed #cccccc;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+h3.resources a:link, h3.resources a:hover, h3.resources a:visited, h3.resources a:active
+{
+    font-size: 16px;    
+    line-height: 22px;
+}
+
 h2.blog
 {
     font-family: @navFontFamily;
@@ -129,6 +186,35 @@ div.blog-post-latest h3
     font-weight: normal;
     margin-bottom: 7px;
 }
+
+
+
+div.blog-post-latest-home
+{
+    background-image: url(../img/blog/ico_blog_new.gif);
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 35px 0px 25px 60px;
+    color: @mPoweringBlueLight;
+    font-size: 15px;
+    line-height: 19px;
+    font-family: @serifFontFamily;
+}
+div.blog-post-latest-home a:link, div.blog-post-latest-home a:hover, div.blog-post-latest-home a:visited, div.blog-post-latest-home a:active
+{
+    color: @mPoweringDarkerGray;    
+}
+div.blog-post-latest-home h3
+{
+    font-family: @sansFontFamily;
+    font-size: 24px;
+    line-height: 28px;
+    color: @mPoweringDarkerGray;   
+    font-weight: normal;
+    margin-bottom: 7px;
+}
+
+
 
 div.blog-post-latest-sub
 {
