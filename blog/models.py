@@ -43,7 +43,6 @@ class PressReleaseLink(models.Model):
     title = models.CharField(max_length=200)
     link = models.CharField(max_length=200)
     publication_name = models.CharField(max_length=200)
-    blurb = models.TextField()
     pub_date = models.DateTimeField('date published')
 
     def __unicode__(self):

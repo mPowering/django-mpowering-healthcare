@@ -20,7 +20,6 @@
               {% for news_item in list_news_links %}
                   <h3 class="resources"><a class="blog" href="{{news_item.link}}">{{news_item.title}}</a></h3>
                   <p><strong>{{news_item.publication_name}}</strong> | {{ news_item.pub_date|date:"j F y"}}</p>
-                  <p>{{ news_item.burb|safe }}</p>
                   <hr class="resources" />
               {% endfor %}
               {% else %}
