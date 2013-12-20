@@ -1,5 +1,5 @@
 from django import forms
-from blog.models import NewsArticle, NewsArticleLink, Blog, Report, Presentation, Video
+from blog.models import PressRelease, PressReleaseLink, Blog, Report, Presentation, Video
 from tinymce.widgets import TinyMCE
 
 
@@ -7,7 +7,7 @@ class NewsArticleModelAdminForm(forms.ModelForm):
     body = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
 
     class Meta:
-        model = NewsArticle
+        model = PressRelease
 
 
 class ContactForm(forms.Form):
@@ -20,7 +20,7 @@ class NewsArticleLinkModelAdminForm(forms.ModelForm):
     blurb = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
 
     class Meta:
-        model = NewsArticleLink
+        model = PressReleaseLink
 
 
 class BlogModelAdminForm(forms.ModelForm):

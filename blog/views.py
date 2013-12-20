@@ -8,14 +8,14 @@ from django.core.urlresolvers import reverse
 
 
 from blog.forms import ContactForm
-from blog.models import NewsArticle, NewsArticleLink, Blog, Report, Presentation, Video
+from blog.models import PressRelease, PressReleaseLink, Blog, Report, Presentation, Video
 
 
 def index(request):
     # list of news articles
     context = {
         'list_blogs': Blog.get_latest_blogs()[:5],
-        'list_news': NewsArticle.get_latest_news()[:4],
+        'list_news': PressRelease.get_latest_news()[:4],
         'view_index': True,
         'company': settings.COMPANY_NAME,
         'active_page': "index",
@@ -125,7 +125,7 @@ def blog_detail(request, blog_id, slug):
 
 def news_media_detail(request, blog_id, slug):
     # retrieve blog of interest
-    article_of_interest = get_object_or_404(NewsArticle, pk=blog_id)
+    article_of_interest = get_object_or_404(PressRelease, pk=blog_id)
 
     context = {
         'current_blog': article_of_interest,
@@ -142,8 +142,8 @@ def news_media_detail(request, blog_id, slug):
 def resources(request):
     # list of news articles
     context = {
-        'list_news_links': NewsArticleLink.get_latest_news()[:4],
-        'list_news': NewsArticle.get_latest_news()[:4],
+        'list_news_links': PressReleaseLink.get_latest_news()[:4],
+        'list_news': PressRelease.get_latest_news()[:4],
         'list_reports': Report.get_latest_reports()[:4],
         'list_videos': Video.get_latest_videos()[:4],
         'view_index': False,
@@ -157,8 +157,8 @@ def resources(request):
 def resources_news_articles(request):
     # list of news articles
     context = {
-        'list_news': NewsArticle.get_latest_news()[:5],
-        'list_news_links': NewsArticleLink.get_latest_news()[:5],
+        'list_news': PressRelease.get_latest_news()[:5],
+        'list_news_links': PressReleaseLink.get_latest_news()[:5],
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
@@ -170,10 +170,10 @@ def resources_news_articles(request):
 def resources_news_articles_list_all(request, view_external_articles):
     if view_external_articles=='True':
         view_external_articles = True
-        articles_list_all = NewsArticleLink.get_latest_news()
+        articles_list_all = PressReleaseLink.get_latest_news()
     else:
         view_external_articles = False
-        articles_list_all = NewsArticle.get_latest_news()
+        articles_list_all = PressRelease.get_latest_news()
     
     paginator = Paginator(articles_list_all, 5)  # show 5 articles per page
     page = request.GET.get('page')
