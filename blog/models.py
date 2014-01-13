@@ -28,10 +28,11 @@ class PressRelease(models.Model):
     class Meta:
         get_latest_by = "pub_date"
 
+    # callable for admin for little icon display
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
     was_published_recently.admin_order_field = 'pub_date'
-    was_published_recently.boolean = True
+    was_published_recently.boolean = True 
     was_published_recently.short_description = 'published recently?'
 
     @classmethod

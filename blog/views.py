@@ -202,7 +202,7 @@ def resources_reports_documents(request):
 
     # setup pager for reports
     reports_list_all = Report.get_latest_reports()
-    paginator_reports = Paginator(reports_list_all, 4)  # show 5 articles per page
+    paginator_reports = Paginator(reports_list_all, 4)  # show 4 articles per page
     page = request.GET.get('page')
     try:
         reports = paginator_reports.page(page)

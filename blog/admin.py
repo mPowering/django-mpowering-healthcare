@@ -1,6 +1,8 @@
 from django.contrib import admin
 from blog.models import PressRelease, PressReleaseLink, Blog, Report, Presentation, Video, MapMarker
-from blog.forms import NewsArticleModelAdminForm, ReportModelAdminForm, PresentationModelAdminForm, VideoModelAdminForm, NewsArticleLinkModelAdminForm, BlogModelAdminForm, MapMarkerAdminForm
+from blog.forms import (NewsArticleModelAdminForm, ReportModelAdminForm, 
+                        PresentationModelAdminForm, VideoModelAdminForm, NewsArticleLinkModelAdminForm, 
+                        BlogModelAdminForm, MapMarkerAdminForm)
 
 
 class PressReleaseAdmin(admin.ModelAdmin):
