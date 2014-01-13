@@ -181,11 +181,11 @@ class MapMarker(models.Model):
         image_name = "%s%s" % (int(time.time() * 100000), ext)
         return "%s%s%s" % ("map_imgs", os.sep, image_name)
 
-    name_of_region = models.CharField(max_length=200)
+    name_of_region = models.CharField(max_length=200)  # needs to be the same as the name used when creating the marker in the map editor
     description = models.TextField(blank=True, null=True)
     thumbnail = models.ImageField(upload_to=generate_new_filename, max_length=200, blank=True, null=True)
     link_more = models.CharField(max_length=200, blank=True, null=True)
-    coordinates = models.CharField(max_length=200)
+    # coordinates = models.CharField(max_length=200)
     date_added = models.DateTimeField('date added')
 
     def __unicode__(self):

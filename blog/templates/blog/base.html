@@ -59,19 +59,14 @@
                         <li class="active dropdown">
                             <a href="{% url 'blog:resources' %}">RESOURCES</a>
 
-                            <!--ul class="dropdown-menu" role="menu" aria-labelledby="blogLabel">
+                            <!-- <ul class="dropdown-menu" role="menu" aria-labelledby="blogLabel">
                                 <li><a href="{% url 'blog:resources' %}">Resources</a></li>
                                 <li><a href="{% url 'blog:resources_news_articles' %}">News</a></li>
                                 <li><a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a></li>
                                 <li><a href="{% url 'blog:resources_videos' %}">Featured Videos</a></li>
                                 <li><a href="{% url 'blog:resources_calendar' %}">Calendar</a></li>
-<<<<<<< HEAD
                                 <li><a href="{% url 'blog:resources_map' %}">Map</a></li>
-                            </ul>
-=======
-                                <li><a href="#">Map</a></li>
-                            </ul-->
->>>>>>> feature/issue-36-image-optional-for-blog-press-release
+                            </ul> -->
                         </li>
                     {% else %}
                         <li class="dropdown">
@@ -88,7 +83,7 @@
                         </li>
                     {% endif %}
 
-                      {% if active_page == "contact" %}
+                    {% if active_page == "contact" %}
                         <li class="active"><a href="{% url 'blog:contact' %}">CONTACT</a></li>
                     {% else %}
                         <li><a href="{% url 'blog:contact' %}">CONTACT</a></li>
