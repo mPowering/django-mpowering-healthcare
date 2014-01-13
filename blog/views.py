@@ -9,6 +9,8 @@ from django.core.urlresolvers import reverse
 from blog.forms import ContactForm
 from blog.models import PressRelease, PressReleaseLink, Blog, Report, Presentation, Video
 
+import distutils.core
+
 
 def index(request):
     # list of news articles
@@ -166,14 +168,13 @@ def resources_news_articles(request):
                   context)
 
 
-def resources_news_articles_list_all(request, view_external_articles):
-    if view_external_articles=='True':
-        view_external_articles = True
+def resources_news_articles_list_all(request):
+    view_external_articles = distutils.util.strtobool((request.GET.get('external', '')))
+    if view_external_articles==True:
         articles_list_all = PressReleaseLink.get_latest_news()
     else:
-        view_external_articles = False
         articles_list_all = PressRelease.get_latest_news()
-    
+
     paginator = Paginator(articles_list_all, 5)  # show 5 articles per page
     page = request.GET.get('page')
     try:

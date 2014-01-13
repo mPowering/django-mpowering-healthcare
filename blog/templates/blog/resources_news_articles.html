@@ -29,7 +29,7 @@
                   <hr class="resources" />
               {% endif %}
                 
-                <a href="{% url 'blog:resources_news_articles_list_all' External %}">View more articles...</a>
+                <a href="{% url 'blog:resources_news_articles_list_all' %}?external=True">View more articles...</a>
             {% endblock %}
 
         </div>
@@ -54,7 +54,7 @@
             {% endblock %}
 
             
-            <a href="{% url 'blog:resources_news_articles_list_all' False %}">View more articles...</a>
+            <a href="{% url 'blog:resources_news_articles_list_all' %}?external=False">View more articles...</a>
         </div>
     </div>
     
