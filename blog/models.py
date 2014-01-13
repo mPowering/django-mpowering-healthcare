@@ -184,8 +184,8 @@ class MapMarker(models.Model):
     name_of_region = models.CharField(max_length=200)  # needs to be the same as the name used when creating the marker in the map editor
     description = models.TextField(blank=True, null=True)
     thumbnail = models.ImageField(upload_to=generate_new_filename, max_length=200, blank=True, null=True)
-    link_more = models.CharField(max_length=200, blank=True, null=True)
-    # coordinates = models.CharField(max_length=200)
+    external_link = models.CharField(max_length=200, blank=True, null=True)
+    coordinates = models.CharField(max_length=200, default='0,0')
     date_added = models.DateTimeField('date added')
 
     def __unicode__(self):
