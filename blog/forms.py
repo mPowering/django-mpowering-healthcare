@@ -17,8 +17,6 @@ class ContactForm(forms.Form):
 
 
 class NewsArticleLinkModelAdminForm(forms.ModelForm):
-    blurb = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
-
     class Meta:
         model = PressReleaseLink
 
