@@ -11,7 +11,6 @@ from blog.forms import ContactForm
 from blog.models import PressRelease, PressReleaseLink, Blog, Report, Presentation, Video, MapMarker
 
 import distutils.core
-import json
 
 
 def index(request):
@@ -271,6 +270,7 @@ def resources_calendar(request):
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
+        'calendar_id': settings.CALENDAR_ID,
     }
     return render(request, 'blog/resources_calendar.html',
                   context)
@@ -283,6 +283,7 @@ def resources_map(request):
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
         'markers_list': serializers.serialize("json", MapMarker.get_latest_markers()),
+        'map_id': settings.MAP_ID,
     }
     return render(request, 'blog/resources_map.html',
                   context)

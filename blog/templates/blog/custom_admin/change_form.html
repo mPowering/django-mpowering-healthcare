@@ -69,11 +69,10 @@
 {% block after_related_objects %}{% endblock %}
 
 <div id="output">
-  mousemove: <code id='mousemove'></code><br/>
+  Current Mouse Position: <code id='mousemove'></code><br/>
 </div>
 
-<div id="map" style="width:70%;height:600px;">
-        <!-- <iframe src='https://api.tiles.mapbox.com/v3/nathanfloor.gi77fl7c.html' width='100%' height='600'></iframe> -->
+<div id="map" style="width:70%;height:500px;">
 </div>
 
 {% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
@@ -96,10 +95,12 @@
   coords_values[0] = parseFloat(coords_values[0]);
   coords_values[1] = parseFloat(coords_values[1]);
 
-  var map = L.mapbox.map('map', 'nathanfloor.gi77fl7c');
+  var map = L.mapbox.map('map', '{{ map_id }}');
+  
 
   //display marker icon on map
-  var marker = L.marker([0, 0], {
+  var latlng = L.latLng(coords_values[0], coords_values[1]);
+  var marker = L.marker(latlng, {
       icon: L.mapbox.marker.icon({
           // this feature is in the GeoJSON format: see geojson.org
           // for the full specification
@@ -124,14 +125,14 @@
 
   map.on('mousemove click', function(e) {
       if (e.type == 'click'){
-        var coords = e.containerPoint.x+","+e.containerPoint.y;
+        var coords = e.latlng.lat+","+e.latlng.lng;
         document.getElementById('id_coordinates').value = coords;
         
         marker.setLatLng(e.latlng);
         map.panTo(e.latlng);
       }
       else{
-        window[e.type].innerHTML = e.containerPoint.toString() + ',' + e.latlng.toString();
+        window[e.type].innerHTML = e.latlng.toString();
       }
   });
 </script>
