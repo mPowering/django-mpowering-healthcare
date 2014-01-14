@@ -1,25 +1,25 @@
 from django.contrib import admin
-from blog.models import NewsArticle, NewsArticleLink, Blog, Report, Presentation, Video
+from blog.models import PressRelease, PressReleaseLink, Blog, Report, Presentation, Video
 from blog.forms import NewsArticleModelAdminForm, ReportModelAdminForm, PresentationModelAdminForm, VideoModelAdminForm, NewsArticleLinkModelAdminForm, BlogModelAdminForm
 
 
-class NewsArticleAdmin(admin.ModelAdmin):
+class PressReleaseAdmin(admin.ModelAdmin):
     list_display = ('title', 'pub_date', 'was_published_recently')
     search_fields = ['title']
     date_hierarchy = 'pub_date'
     prepopulated_fields = {'slug': ('title',)}
     form = NewsArticleModelAdminForm
 
-admin.site.register(NewsArticle, NewsArticleAdmin)
+admin.site.register(PressRelease, PressReleaseAdmin)
 
 
-class NewsArticleLinkAdmin(admin.ModelAdmin):
+class PressReleaseLinkAdmin(admin.ModelAdmin):
     list_display = ('title', 'pub_date', 'was_published_recently')
     search_fields = ['title']
     date_hierarchy = 'pub_date'
     form = NewsArticleLinkModelAdminForm
 
-admin.site.register(NewsArticleLink, NewsArticleLinkAdmin)
+admin.site.register(PressReleaseLink, PressReleaseLinkAdmin)
 
 
 class BlogAdmin(admin.ModelAdmin):

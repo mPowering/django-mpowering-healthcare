@@ -6,7 +6,7 @@ import time
 
 
 # Create your models here.
-class NewsArticle(models.Model):
+class PressRelease(models.Model):
     def generate_new_filename(instance, filename):
         ext = os.path.splitext(filename)[1] # get file extension
         image_name = "%s%s" % (int(time.time() * 100000), ext)
@@ -36,10 +36,10 @@ class NewsArticle(models.Model):
 
     @classmethod
     def get_latest_news(cls):
-        return NewsArticle.objects.order_by("-pub_date").all()
+        return PressRelease.objects.order_by("-pub_date").all()
 
 
-class NewsArticleLink(models.Model):
+class PressReleaseLink(models.Model):
     title = models.CharField(max_length=200)
     link = models.CharField(max_length=200)
     publication_name = models.CharField(max_length=200)
@@ -60,7 +60,7 @@ class NewsArticleLink(models.Model):
 
     @classmethod
     def get_latest_news(cls):
-        return NewsArticleLink.objects.order_by("-pub_date").all()
+        return PressReleaseLink.objects.order_by("-pub_date").all()
 
 
 class Blog(models.Model):
