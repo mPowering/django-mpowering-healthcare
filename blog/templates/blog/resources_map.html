@@ -23,10 +23,12 @@
     <div id='output'>
         click: <code id='click'></code><br/>
         mousemove: <code id='mousemove'></code><br/>
-        test: <code id='test'></code><br/>
+        <!-- test: <code id='test'></code><br/> -->
     </div>
        
-    <script src='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>
+    <script src='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>   
+
+
     <script>
         var click = document.getElementById('click'),
             mousemove = document.getElementById('mousemove');
@@ -37,30 +39,79 @@
             window[e.type].innerHTML = e.containerPoint.toString() + ', ' + e.latlng.toString();
         });
 
-        document.getElementById('test').innerHTML = "{{ markers_list }}";
+        var markers = {{ markers_list|safe }};
+        var features = [];
 
-        // function loadMarkersIntoGeoJSON(markers){
-
-        //     while (true){
-
-                
-        //     }
-
-        //     features.push({
-        //         type: 'Feature',
-        //         geometry: {
-        //             type: 'Point',
-        //             coordinates: [x,y]
-        //         },
-        //         properties: {
-        //             'marker-color': '#000',
-        //             'marker-symbol': 'star-stroked',
-        //             title: 'title'
-        //         }
-        //     });
+        console.log(markers[0]);
 
 
-        // }
+        for (var i = 0; i <= markers.length - 1; i++) {
+            //loading markers into geojson format to be loaded onto map
+            loadMarkersIntoGeoJSON(markers[i])
+        };
+
+        //saves json into geoJSON
+        function loadMarkersIntoGeoJSON(marker){
+            var temp = marker.fields.coordinates.split(",");
+            var x = temp[0];
+            var y = temp[1];
+            features.push({
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [x,y]
+                },
+                properties: {
+                    'marker-color': '#000',
+                    'marker-symbol': 'star-stroked',
+                    'title': marker.fields.name_of_region,
+                    'images': '/media/'+marker.fields.thumbnail,
+                    'url': marker.fields.external_link,
+                    'description': marker.fields.description
+                }
+            });
+        }
+
+        // Add custom popup html to each marker
+        map.markerLayer.on('layeradd', function(e) {
+            var marker = e.layer;
+            var feature = marker.feature;
+            var image = feature.properties.images
+            var content = '';
+
+            content += '<div class="image' + (i === 0 ? ' active' : '') + '">' +
+                                      '<img src="' + image + '" />'
+                                      // '<div class="caption">' + image + '</div>' +
+                                    '</div>';
+            
+
+            // Create custom popup content
+            var popupContent =  '<div id="' + feature.properties.id + '" class="popup">' +
+                                    '<h2><a href= http://' + feature.properties.url + '>' + feature.properties.title + '</a></h2>' +
+                                    '<div class="slideshow">' +
+                                        content +
+                                    '</div>' +
+                                    '<p>' + feature.properties.description + '</p>'
+                                '</div>';
+
+            // http://leafletjs.com/reference.html#popup
+            marker.bindPopup(popupContent,{
+                closeButton: false,
+                minWidth: 320
+            });
+        });
+
+
+        //load geoJSON data onto map
+        map.markerLayer.setGeoJSON({
+            type: 'FeatureCollection',
+            features: features
+        });
+        map.setView([47, -77], 5);
+        
+        map.markerLayer.on('click', function(e) {
+            map.panTo(e.layer.getLatLng());
+        });
 
     </script>
 

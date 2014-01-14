@@ -5,11 +5,13 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
+from django.core import serializers
 
 from blog.forms import ContactForm
 from blog.models import PressRelease, PressReleaseLink, Blog, Report, Presentation, Video, MapMarker
 
 import distutils.core
+import json
 
 
 def index(request):
@@ -280,7 +282,7 @@ def resources_map(request):
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
-        'markers_list': MapMarker.get_latest_markers(),
+        'markers_list': serializers.serialize("json", MapMarker.get_latest_markers()),
     }
     return render(request, 'blog/resources_map.html',
                   context)
