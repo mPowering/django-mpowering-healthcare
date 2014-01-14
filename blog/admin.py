@@ -68,4 +68,7 @@ class MapMarkerAdmin(admin.ModelAdmin):
     date_hierarchy = 'date_added'
     form = MapMarkerAdminForm
 
+    add_form_template = 'blog/custom_admin/change_form.html'
+    change_form_template = 'blog/custom_admin/change_form.html'
+
 admin.site.register(MapMarker, MapMarkerAdmin)

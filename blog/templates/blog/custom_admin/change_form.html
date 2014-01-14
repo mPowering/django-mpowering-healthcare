@@ -1,0 +1,139 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_modify %}
+{% load url from future %}
+{% load admin_urls %}
+
+{% block extrahead %}{{ block.super }}
+{% url 'admin:jsi18n' as jsi18nurl %}
+<script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
+
+<script src='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>
+<link href='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.css' rel='stylesheet' />
+{{ media }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
+
+{% block coltype %}{% if ordered_objects %}colMS{% else %}colM{% endif %}{% endblock %}
+
+{% block bodyclass %}{{ opts.app_label }}-{{ opts.object_name.lower }} change-form{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ app_label|capfirst|escape }}</a>
+&rsaquo; {% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
+&rsaquo; {% if add %}{% trans 'Add' %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}
+</div>
+{% endblock %}
+{% endif %}
+
+{% block content %}<div id="content-main">
+{% block object-tools %}
+{% if change %}{% if not is_popup %}
+  <ul class="object-tools">
+    {% block object-tools-items %}
+    <li><a href="history/" class="historylink">{% trans "History" %}</a></li>
+    {% if has_absolute_url %}<li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif%}
+
+   {% endblock %}
+  </ul>
+{% endif %}{% endif %}
+{% endblock %}
+<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %}
+<div>
+{% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
+{% if save_on_top %}{% block submit_buttons_top %}{% submit_row %}{% endblock %}{% endif %}
+{% if errors %}
+    <p class="errornote">
+    {% blocktrans count counter=errors|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+    </p>
+    {{ adminform.form.non_field_errors }}
+{% endif %}
+
+{% block field_sets %}
+{% for fieldset in adminform %}
+  {% include "admin/includes/fieldset.html" %}
+{% endfor %}
+{% endblock %}
+
+{% block after_field_sets %}{% endblock %}
+
+{% block inline_field_sets %}
+{% for inline_admin_formset in inline_admin_formsets %}
+    {% include inline_admin_formset.opts.template %}
+{% endfor %}
+{% endblock %}
+
+{% block after_related_objects %}{% endblock %}
+
+<div id="output">
+  mousemove: <code id='mousemove'></code><br/>
+</div>
+
+<div id="map" style="width:70%;height:600px;">
+        <!-- <iframe src='https://api.tiles.mapbox.com/v3/nathanfloor.gi77fl7c.html' width='100%' height='600'></iframe> -->
+</div>
+
+{% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
+
+{% if adminform and add %}
+   <script type="text/javascript">document.getElementById("{{ adminform.first_field.id_for_label }}").focus();</script>
+{% endif %}
+
+{# JavaScript for prepopulated fields #}
+{% prepopulated_fields_js %}
+
+</div>
+</form></div>
+
+<script type="text/javascript">
+  var mousemove = document.getElementById('mousemove');
+  var coords_values = document.getElementById('id_coordinates').value.split(",");
+
+  //convert coords to integer from string
+  coords_values[0] = parseFloat(coords_values[0]);
+  coords_values[1] = parseFloat(coords_values[1]);
+
+  var map = L.mapbox.map('map', 'nathanfloor.gi77fl7c');
+
+  //display marker icon on map
+  var marker = L.marker([0, 0], {
+      icon: L.mapbox.marker.icon({
+          // this feature is in the GeoJSON format: see geojson.org
+          // for the full specification
+          type: 'Feature',
+          geometry: {
+              type: 'Point',
+              // coordinates here are in longitude, latitude order because
+              // x, y is the standard for GeoJSON and many formats
+              coordinates: [coords_values[0],coords_values[1]]
+          },
+          properties: {
+              title: 'A Single Marker',
+              description: 'Just one of me',
+              // one can customize markers by adding simplestyle properties
+              // http://mapbox.com/developers/simplestyle/
+              'marker-symbol': 'star-stroked',
+              'marker-color': '#000',
+          }
+      })
+  });
+  marker.addTo(map);
+
+  map.on('mousemove click', function(e) {
+      if (e.type == 'click'){
+        var coords = e.containerPoint.x+","+e.containerPoint.y;
+        document.getElementById('id_coordinates').value = coords;
+        
+        marker.setLatLng(e.latlng);
+        map.panTo(e.latlng);
+      }
+      else{
+        window[e.type].innerHTML = e.containerPoint.toString() + ',' + e.latlng.toString();
+      }
+  });
+</script>
+
+{% endblock %}
