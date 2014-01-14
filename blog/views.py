@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 
 from blog.forms import ContactForm
-from blog.models import PressRelease, PressReleaseLink, Blog, Report, Presentation, Video
+from blog.models import PressRelease, PressReleaseLink, Blog, Report, Presentation, Video, MapMarker
 
 import distutils.core
 
@@ -280,6 +280,7 @@ def resources_map(request):
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
+        'markers_list': MapMarker.get_latest_markers(),
     }
     return render(request, 'blog/resources_map.html',
                   context)

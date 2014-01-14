@@ -1,5 +1,7 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/resources.html' %}
 {% load staticfiles %}
+
+
      
 {% block content %}
      <!-- blog starts -->
@@ -8,16 +10,23 @@
             <h1 class="line">Map of Africa and India</h1>
         </div>
         <div class="row-fluid">
-            <div class="span12" id="map">
+            <div class="span9" id="map">
                 <iframe src='https://api.tiles.mapbox.com/v3/nathanfloor.gi77fl7c.html' width='100%' height='600'></iframe>
             </div>
+
+            {% block minimenu %}
+                {{ block.super }}
+            {% endblock %}
+
         </div>
 
     <div id='output'>
         click: <code id='click'></code><br/>
         mousemove: <code id='mousemove'></code><br/>
+        test: <code id='test'></code><br/>
     </div>
        
+    <script src='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>
     <script>
         var click = document.getElementById('click'),
             mousemove = document.getElementById('mousemove');
@@ -28,11 +37,31 @@
             window[e.type].innerHTML = e.containerPoint.toString() + ', ' + e.latlng.toString();
         });
 
+        document.getElementById('test').innerHTML = "{{ markers_list }}";
 
+        // function loadMarkersIntoGeoJSON(markers){
+
+        //     while (true){
+
+                
+        //     }
+
+        //     features.push({
+        //         type: 'Feature',
+        //         geometry: {
+        //             type: 'Point',
+        //             coordinates: [x,y]
+        //         },
+        //         properties: {
+        //             'marker-color': '#000',
+        //             'marker-symbol': 'star-stroked',
+        //             title: 'title'
+        //         }
+        //     });
+
+
+        // }
 
     </script>
 
-    <script src='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>
-
-     <!-- blog ends -->
 {% endblock %}

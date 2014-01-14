@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/resources.html' %}
 {% load staticfiles %}
 
 {% block content %}
@@ -13,7 +13,7 @@
     {% block pager %}
       
     <div class="row-fluid">
-    <div class="span8">
+    <div class="span9">
         <div class="row-fluid">
             <h2 class="line-resources">Reports &amp; Documents</h2>
 
@@ -93,17 +93,9 @@
 
         </div> 
         </div>
-         <div class="span4">
-           <ul class="right-links unstyled">
-           <li><a href="{% url 'blog:resources_news_articles' %}">In the News</a></li>
-               
-               <li><a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a></li>
-               
-               <li><a href="{% url 'blog:resources_videos' %}">Featured Videos</a></li>
-               <li><a href="{% url 'blog:resources_calendar' %}">Calendar</a></li>
-               <li><a href="{% url 'blog:resources_news_articles' %}">Map of Africa and India</a></li>
-               </ul>
-          </div>
+         {% block minimenu %}
+            {{ block.super }}
+         {% endblock %}
     </div>
 
   {% endblock %}

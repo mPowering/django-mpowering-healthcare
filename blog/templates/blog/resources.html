@@ -30,7 +30,7 @@
                       </div>
                   {% endif %}
 
-                <a href="{% url 'blog:resources_news_articles_list_all' True %}">View more articles...</a>
+                <a href="{% url 'blog:resources_news_articles_list_all' %}?external=True">View more articles...</a>
 
               </div>
                  
@@ -51,7 +51,7 @@
                   {% endif %}
 
                   
-                  <a href="{% url 'blog:resources_news_articles_list_all' False %}">View more articles...</a>
+                  <a href="{% url 'blog:resources_news_articles_list_all' %}?external=True">View more articles...</a>
               </div>
 <br />
               <!-- list of latest reports and documents -->
@@ -106,6 +106,7 @@
                 
               </div>
 
+          {% block minimenu %}
               <div class="span3">
                     <h3>Resources</h3>
                     <div class="blog-post-heading-sub"><a href="{% url 'blog:resources_news_articles' %}">News Articles</a></div>
@@ -114,10 +115,10 @@
                     <div class="blog-post-heading-sub"><a href="{% url 'blog:resources_calendar' %}">Calendar</a></div>
                     <div class="blog-post-heading-sub"><a href="{% url 'blog:resources_map' %}">Map</a></div>
               </div>
+          {% endblock %}
            
           
         </div>
-    
 
                 
      

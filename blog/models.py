@@ -197,3 +197,7 @@ class MapMarker(models.Model):
     was_published_recently.admin_order_field = 'date_added'
     was_published_recently.boolean = True
     was_published_recently.short_description = 'published recently?'
+
+    @classmethod
+    def get_latest_markers(cls):
+        return MapMarker.objects.order_by("-date_added").all()
