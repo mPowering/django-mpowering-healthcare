@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/resources.html' %}
 {% load staticfiles %}
 
 {% block content %}
@@ -10,7 +10,7 @@
       <br />
 
     <div class="row-fluid">
-    <div class="span8">
+    <div class="span9">
         <!-- list latest external articles -->
         <div class="row-fluid">
             <h2 class="line-resources">External Articles</h2>
@@ -29,7 +29,7 @@
                   <hr class="resources" />
               {% endif %}
                 
-                <a href="{% url 'blog:resources_news_articles_list_all' True %}">View more articles...</a>
+                <a href="{% url 'blog:resources_news_articles_list_all' %}?external=True">View more articles...</a>
             {% endblock %}
 
         </div>
@@ -44,10 +44,6 @@
             {% for news_item in list_news %}
                 <h3 class="resources"><a class="blog" href="{% url 'blog:news-media-detail' news_item.id news_item.slug %}">{{news_item.title}}</a></h3>
                 <div class="blog-date">{{ news_item.pub_date|date:"j F y"}}</div>
-                <!-- {% if news_item.image %}
-                <img src="{{ news_item.image.url }}" vspace="10">
-                {% endif %} -->
-                <!-- <p>{{ news_item.body|safe }}</p> -->
                 <hr class="resources" />
             {% endfor %}
             {% else %}
@@ -58,21 +54,13 @@
             {% endblock %}
 
             
-            <a href="{% url 'blog:resources_news_articles_list_all' False %}">View more articles...</a>
+            <a href="{% url 'blog:resources_news_articles_list_all' %}?external=False">View more articles...</a>
         </div>
     </div>
     
-     <div class="span4">
-           <ul class="right-links unstyled">
-           <li><a href="{% url 'blog:resources_news_articles' %}">In the News</a></li>
-               
-               <li><a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a></li>
-               
-               <li><a href="{% url 'blog:resources_videos' %}">Featured Videos</a></li>
-               <li><a href="{% url 'blog:resources_calendar' %}">Calendar</a></li>
-               <li><a href="{% url 'blog:resources_news_articles' %}">Map of Africa and India</a></li>
-               </ul>
-          </div>
+    {% block minimenu %}
+      {{ block.super }}
+    {% endblock %}
     
     </div>
     

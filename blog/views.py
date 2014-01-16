@@ -5,10 +5,12 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
-
+from django.core import serializers
 
 from blog.forms import ContactForm
-from blog.models import PressRelease, PressReleaseLink, Blog, Report, Presentation, Video
+from blog.models import PressRelease, PressReleaseLink, Blog, Report, Presentation, Video, MapMarker
+
+import distutils.core
 
 
 def index(request):
@@ -124,7 +126,7 @@ def blog_detail(request, blog_id, slug):
 
 
 def news_media_detail(request, blog_id, slug):
-    # retrieve blog of interest
+    # retrieve press release of interest
     article_of_interest = get_object_or_404(PressRelease, pk=blog_id)
 
     context = {
@@ -141,7 +143,7 @@ def news_media_detail(request, blog_id, slug):
 
 
 def resources(request):
-    # list of news articles
+    # list of resources articles
     context = {
         'list_news_links': PressReleaseLink.get_latest_news()[:4],
         'list_news': PressRelease.get_latest_news()[:4],
@@ -168,14 +170,13 @@ def resources_news_articles(request):
                   context)
 
 
-def resources_news_articles_list_all(request, view_external_articles):
-    if view_external_articles=='True':
-        view_external_articles = True
+def resources_news_articles_list_all(request):
+    view_external_articles = distutils.util.strtobool((request.GET.get('external', '')))
+    if view_external_articles==True:
         articles_list_all = PressReleaseLink.get_latest_news()
     else:
-        view_external_articles = False
         articles_list_all = PressRelease.get_latest_news()
-    
+
     paginator = Paginator(articles_list_all, 5)  # show 5 articles per page
     page = request.GET.get('page')
     try:
@@ -204,7 +205,7 @@ def resources_reports_documents(request):
 
     # setup pager for reports
     reports_list_all = Report.get_latest_reports()
-    paginator_reports = Paginator(reports_list_all, 4)  # show 5 articles per page
+    paginator_reports = Paginator(reports_list_all, 4)  # show 4 articles per page
     page = request.GET.get('page')
     try:
         reports = paginator_reports.page(page)
@@ -265,12 +266,25 @@ def resources_videos(request):
 
 
 def resources_calendar(request):
-    # list of news articles
+    # displays Google calendar
     context = {
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
+        'calendar_id': settings.CALENDAR_ID,
     }
     return render(request, 'blog/resources_calendar.html',
                   context)
 
+
+def resources_map(request):
+    # displays map with loaded markers
+    context = {
+        'view_index': False,
+        'company': settings.COMPANY_NAME,
+        'active_page': "resources",
+        'markers_list': serializers.serialize("json", MapMarker.get_latest_markers()),
+        'map_id': settings.MAP_ID,
+    }
+    return render(request, 'blog/resources_map.html',
+                  context)

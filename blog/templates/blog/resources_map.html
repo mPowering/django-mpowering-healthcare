@@ -1,0 +1,110 @@
+{% extends 'blog/resources.html' %}
+{% load staticfiles %}
+     
+{% block content %}
+     <!-- blog starts -->
+     <div class="row-fluid">
+        <div class="span12">
+            <h1 class="line">Projects Map</h1>
+        </div>
+        <div class="row-fluid">
+            <div class="span9" id="map" style="width:70%;height:600px;"></div>
+
+            {% block minimenu %}
+                {{ block.super }}
+            {% endblock %}
+
+        </div>
+
+        <div style="color:white" id='mousemove'>&nbsp;</div>
+
+       
+    <script src='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>   
+
+
+    <script>
+        var mousemove = document.getElementById('mousemove');
+
+        var map = L.mapbox.map('map', '{{ map_id }}').setView([0,0], 3);
+
+        map.on('mousemove', function(e) {
+            window[e.type].innerHTML = e.containerPoint.toString() + ', ' + e.latlng.toString();
+        });
+
+        var markers = {{ markers_list|safe }};
+        var features = [];
+
+        for (var i = 0; i <= markers.length - 1; i++) {
+            //loading markers into geojson format to be loaded onto map
+            loadMarkersIntoGeoJSON(markers[i])
+        };
+
+        //saves json into geoJSON creates marker and adds to map
+        function loadMarkersIntoGeoJSON(marker){
+            var temp = marker.fields.coordinates.split(",");
+            var x = parseFloat(temp[0]);
+            var y = parseFloat(temp[1]);
+            var date_added = marker.fields.date_added.split("T")[0];
+
+            var latlng = L.latLng(x, y);
+            var markerIcon = L.marker(latlng, {
+                icon: L.mapbox.marker.icon({
+                    // this feature is in the GeoJSON format: see geojson.org
+                    // for the full specification
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        // coordinates here are in longitude, latitude order because
+                        // x, y is the standard for GeoJSON and many formats
+                        coordinates: [x, y]
+                    },
+                    properties: {
+                        'marker-color': '#000',
+                        'marker-symbol': 'star-stroked',
+                        'title': marker.fields.name_of_region,
+                        'images': '/media/'+marker.fields.thumbnail,
+                        'url': marker.fields.external_link,
+                        'description': marker.fields.description,
+                        'date_added': date_added
+                    }
+                })
+            });
+            
+            // Add custom popup html to each marker
+            var content = '';
+
+            // Create custom popup content
+            var popupContent =  '<div id="' + marker.pk + '" class="popup">' +
+                                    '<h2><a href= http://' + marker.fields.external_link + '>' + marker.fields.name_of_region + '</a></h2>';
+
+
+            //check if image is defined by the user
+            if(marker.fields.thumbnail){
+                content = '<div class="image' + (i === 0 ? ' active' : '') + '">' +
+                                      '<img src="' + '/media/' + marker.fields.thumbnail + '" />'
+                                    '</div>';
+
+                popupContent += '<div class="slideshow">' +
+                                        content +
+                                    '</div>';
+             };
+             popupContent += '<p>' + marker.fields.description + '</p>' +
+                                    '<p>Date Added: ' + date_added + '</p>'
+                                '</div>';
+
+            markerIcon.bindPopup(popupContent,{
+                // closeButton: false,
+                maxWidth: 150
+            });
+
+            markerIcon.addTo(map);
+        }
+        
+        // center map to marker when clicked
+        map.on('click', function(e) {
+            map.panTo(e.layer.getLatLng());
+        });
+
+    </script>
+
+{% endblock %}
