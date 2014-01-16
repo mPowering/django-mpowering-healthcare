@@ -126,7 +126,7 @@ def blog_detail(request, blog_id, slug):
 
 
 def news_media_detail(request, blog_id, slug):
-    # retrieve blog of interest
+    # retrieve press release of interest
     article_of_interest = get_object_or_404(PressRelease, pk=blog_id)
 
     context = {
@@ -142,7 +142,7 @@ def news_media_detail(request, blog_id, slug):
 
 
 def resources(request):
-    # list of news articles
+    # list of resources articles
     context = {
         'list_news_links': PressReleaseLink.get_latest_news()[:4],
         'list_news': PressRelease.get_latest_news()[:4],
@@ -265,7 +265,7 @@ def resources_videos(request):
 
 
 def resources_calendar(request):
-    # list of news articles
+    # displays Google calendar
     context = {
         'view_index': False,
         'company': settings.COMPANY_NAME,
@@ -277,7 +277,7 @@ def resources_calendar(request):
 
 
 def resources_map(request):
-    # list of news articles
+    # displays map with loaded markers
     context = {
         'view_index': False,
         'company': settings.COMPANY_NAME,
