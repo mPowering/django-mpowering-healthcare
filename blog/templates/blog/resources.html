@@ -10,19 +10,23 @@
     </div>
 
       <div class="row-fluid">
-           <div class="span9">
+           <div class="span9 side-line-resources">
                 
                <div class="objectives-one">
 
               <!-- list latest external articles -->
               <br>
               <div class="row-fluid">
-                <h2 class="line-resources">External Articles</h2>
+              <div class="row-fluid">
+              <div class="span6 side-line-resources">
+                <h2 class="heading-resources">
+                <img src="{% static 'blog/img/icons/ico_external.jpg' %}">
+                External Articles</h2>
                 {% if list_news_links %}
                   {% for news_item in list_news_links %}
                       <h3 class="resources"><a class="blog" href="{{news_item.link}}">{{news_item.title}}</a></h3>
                       <p><strong>{{news_item.publication_name}}</strong> | {{ news_item.pub_date|date:"j F y"}}</p>
-                      <hr class="resources" />
+                      <hr class="resources-line" />
                   {% endfor %}
                   {% else %}
                       <div class="media-release-sub">
@@ -32,20 +36,22 @@
 
                 <a href="{% url 'blog:resources_news_articles_list_all' %}?external=True">View more articles...</a>
 
-              </div>
-                 
+              
+ </div>
+<div class="span6">                
               <!-- list of latest press release articles -->
-              <br />
-              <div class="row-fluid">
-                  <h2 class="line-resources">Press Releases</h2>
+              
+                  <h2 class="heading-resources">
+                  <img src="{% static 'blog/img/icons/ico_press.jpg' %}">
+                  Press Releases</h2>
                   {% if list_news %}
                   {% for news_item in list_news %}
                       <h3 class="resources"><a class="blog" href="{% url 'blog:news-media-detail' news_item.id news_item.slug %}">{{news_item.title}}</a></h3>
                       <div class="blog-date">{{ news_item.pub_date|date:"j F y"}}</div>
                       {% if news_item.image %}
-                      <img src="{{ news_item.image.url }}" vspace="10">
+                      <!--img src="{{ news_item.image.url }}" vspace="10"-->
                       {% endif %}
-                      <hr class="resources" />
+                      <hr class="resources-line" />
                   {% endfor %}
                   {% else %}
                       <div class="media-release-sub">
@@ -56,36 +62,46 @@
                   
                   <a href="{% url 'blog:resources_news_articles_list_all' %}?external=True">View more articles...</a>
               </div>
+</div>
+</div>
 <br />
+                    <hr class="resources" />
               <!-- list of latest reports and documents -->
               <div class="row-fluid">
-                <h2 class="line-resources">Reports and Documents</h2>
+                <h2 class="heading-resources">
+                              <img src="{% static 'blog/img/icons/ico_reports.jpg' %}">                Reports and Documents</h2>
 
-                {% if list_reports %}
+                {% if list_reports %}<div class="row-fluid">
                 {% for report_item in list_reports %}
+                    
                     <div class="span4">
                         <img src="{{ report_item.thumbnail.url }}" vspace="10"><br>
                         <strong><a class="blog" href="{% url 'blog:news-media-detail' report_item.id report_item.slug %}">{{report_item.title}}</a></strong>
                         <div class="blog-date">{{ report_item.pub_date|date:"j F y"}}</div>
-                    <hr class="resources" /></div>
-                    
-                {% endfor %}
+                   
+                    </div>
+                   
+                {% endfor %} </div>
                 {% else %}
                     <div class="media-release-sub">
                     <strong>No reports currently available.</strong>
                     </div>
                 {% endif %}
+                <br />
+                 <hr class="resources" />
               </div>                
-<br />
+
               <!-- list of latest video links -->
               <div class="row-fluid">
-                <h2 class="line-resources">Featured Videos</h2>
+                <h2 class="heading-resources">
+                <img src="{% static 'blog/img/icons/ico_video.jpg' %}">
+                Featured Videos</h2>
 
                 {% if list_videos %}
                 {% for video_item in list_videos %}
                 <div class="row-fluid">
                 <div class="span6">
-                <iframe width="100%" height="350px" src="//www.youtube.com/embed/{{ video_item.video_id }}" frameborder="0" allowfullscreen></iframe>
+                <iframe width="100%" height="250px" src="//www.youtube.com/embed/{{ video_item.video_id }}" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <div class="span6">
                 <h3 class="resources">{{ video_item.title }}</h3>
@@ -93,6 +109,7 @@
                     
                 </div>
                 </div>
+                <br />
                     <hr class="resources" />
                     
                           {% endfor %}
@@ -104,19 +121,32 @@
               </div>
               
           </div>
-
-          <a href="{% url 'blog:resources_calendar' %}">Calendar</a>
+          <div class="row-fluid">
+                <div class="span6 side-line-resources">
+                <h2 class="heading-resources">
+                <img src="{% static 'blog/img/icons/ico_calendar2.jpg' %}">
+                Calendar</h2>
+          <a href="{% url 'blog:resources_calendar' %}"><img src="{% static 'blog/img/btn/btn_calender.jpg' %}" height="185" width="345"></a>
+          </div>
+   
+                <div class="span6">
+                          <h2 class="heading-resources">
+                <img src="{% static 'blog/img/icons/ico_map.jpg' %}">
+                Map</h2>
+          <a href="{% url 'blog:resources_map' %}"><img src="{% static 'blog/img/btn/btn_map.jpg' %}" height="185" width="345"></a>
                 
+              </div>
+              </div>
               </div>
 
           {% block minimenu %}
-              <div class="span3">
+              <div class="span3 sidebar-right">
                     <h3>Resources</h3>
-                    <div class="blog-post-heading-sub"><a href="{% url 'blog:resources_news_articles' %}">News Articles</a></div>
-                    <div class="blog-post-heading-sub"><a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a></div>
-                    <div class="blog-post-heading-sub"><a href="{% url 'blog:resources_videos' %}">Featured Videos</a></div>
-                    <div class="blog-post-heading-sub"><a href="{% url 'blog:resources_calendar' %}">Calendar</a></div>
-                    <div class="blog-post-heading-sub"><a href="{% url 'blog:resources_map' %}">Map</a></div>
+                    <a href="{% url 'blog:resources_news_articles' %}">News Articles</a><br />
+                    <a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a><br />
+                    <a href="{% url 'blog:resources_videos' %}">Featured Videos</a><br />
+                    <a href="{% url 'blog:resources_calendar' %}">Calendar</a><br />
+                    <a href="{% url 'blog:resources_map' %}">Map</a>
               </div>
           {% endblock %}
            

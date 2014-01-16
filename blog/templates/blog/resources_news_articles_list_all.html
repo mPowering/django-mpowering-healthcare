@@ -16,13 +16,15 @@
       <div class="span9">
     {% if view_external_articles %}
         {% block external_articles %}
-            <h2 class="line-resources">External Articles</h2>
+             <h2 class="heading-resources">
+                <img src="{% static 'blog/img/icons/ico_external.jpg' %}">
+                External Articles</h2>
 
             {% if main_list %}
               {% for news_item in main_list.object_list %}
                   <h3 class="resources"><a class="blog" href="{{news_item.link}}">{{news_item.title}}</a></h3>
                   <p><strong>{{news_item.publication_name}}</strong> | {{ news_item.pub_date|date:"j F y"}}</p>
-                  <hr class="resources" />
+                  <hr class="resources-line" />
               {% endfor %}
               {% else %}
                   <div class="media-release-sub">
@@ -34,7 +36,9 @@
         
     {% else %}
         {% block press_releases %}
-        <h2 class="line-resources">Press Releases</h2>
+         <h2 class="heading-resources">
+                  <img src="{% static 'blog/img/icons/ico_press.jpg' %}">
+                  Press Releases</h2>
         {% if main_list %}
             {% for news_item in main_list.object_list %}
                 <h3 class="resources"><a class="blog" href="{% url 'blog:news-media-detail' news_item.id news_item.slug %}">{{news_item.title}}</a></h3>
@@ -43,7 +47,7 @@
                 <img src="{{ news_item.image.url }}" vspace="10">
                 {% endif %}
                 <!-- <p>{{ news_item.body|safe }}</p> -->
-                 <hr class="resources" />
+                 <hr class="resources-line" />
             {% endfor %}
         {% else %}
             <div class="media-release-sub">

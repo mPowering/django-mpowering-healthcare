@@ -13,10 +13,11 @@
     {% block pager %}
       
     <div class="row-fluid">
-    <div class="span9">
+    <div class="span9 side-line-resources">
         <div class="row-fluid">
-            <h2 class="line-resources">Reports &amp; Documents</h2>
-            
+             <h2 class="heading-resources">
+                              <img src="{% static 'blog/img/icons/ico_reports.jpg' %}">                Reports and Documents</h2>
+            <div class="row-fluid">
             {% if report_list %}
             {% for report_item in report_list.object_list %}
                 <div class="span4">
@@ -26,6 +27,7 @@
                     <div class="blog-date">{{ report_item.pub_date|date:"j F y"}}</div>
                 </div>                
             {% endfor %}
+            </div>
             <br>
             <div class="span10">
             <div class="pagination">
@@ -52,10 +54,11 @@
             {% endif %}           
 
         </div>
-        
+        <hr class="resources" />
 
         <div class="row-fluid">
-            <h2 class="line-resources">Presentations</h2>
+              <h2 class="heading-resources">
+                              <img src="{% static 'blog/img/icons/ico_presentation.jpg' %}">                Presentations</h2>
             <br>
 
             {% if present_list %}

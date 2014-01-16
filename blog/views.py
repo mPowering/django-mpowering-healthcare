@@ -145,10 +145,10 @@ def news_media_detail(request, blog_id, slug):
 def resources(request):
     # list of resources articles
     context = {
-        'list_news_links': PressReleaseLink.get_latest_news()[:4],
-        'list_news': PressRelease.get_latest_news()[:4],
+        'list_news_links': PressReleaseLink.get_latest_news()[:2],
+        'list_news': PressRelease.get_latest_news()[:2],
         'list_reports': Report.get_latest_reports()[:4],
-        'list_videos': Video.get_latest_videos()[:4],
+        'list_videos': Video.get_latest_videos()[:1],
         'view_index': False,
         'company': settings.COMPANY_NAME,
         'active_page': "resources",
