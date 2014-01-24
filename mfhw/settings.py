@@ -243,7 +243,8 @@ COMPANY_NAME = 'mPowering Frontline Health Workers'
 
 MAP_ID = 'nathanfloor.gi77fl7c'
 
-CALENDAR_ID = 'https://www.google.com/calendar/embed?src=sle4clciqkn62kpo6156fpg31o%40group.calendar.google.com&amp;ctz=Africa/Johannesburg'
+CALENDER_TOKEN = ''
+CALENDAR_ID = 'https://www.google.com/calendar/embed?src=' + CALENDER_TOKEN
 
 try:
     from production_settings import *
