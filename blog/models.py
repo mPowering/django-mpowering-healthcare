@@ -32,12 +32,12 @@ class PressRelease(models.Model):
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
     was_published_recently.admin_order_field = 'pub_date'
-    was_published_recently.boolean = True 
+    was_published_recently.boolean = True
     was_published_recently.short_description = 'published recently?'
 
     @classmethod
     def get_latest_news(cls):
-        return PressRelease.objects.order_by("-pub_date").all()
+        return cls.objects.order_by("-pub_date").all()
 
 
 class PressReleaseLink(models.Model):
@@ -60,7 +60,7 @@ class PressReleaseLink(models.Model):
 
     @classmethod
     def get_latest_news(cls):
-        return PressReleaseLink.objects.order_by("-pub_date").all()
+        return cls.objects.order_by("-pub_date").all()
 
 
 class Blog(models.Model):
@@ -94,7 +94,7 @@ class Blog(models.Model):
 
     @classmethod
     def get_latest_blogs(cls):
-        return Blog.objects.order_by("-pub_date").all()
+        return cls.objects.order_by("-pub_date").all()
 
 
 class Report(models.Model):
@@ -128,7 +128,7 @@ class Report(models.Model):
 
     @classmethod
     def get_latest_reports(cls):
-        return Report.objects.order_by("-pub_date").all()
+        return cls.objects.order_by("-pub_date").all()
 
 
 class Presentation(models.Model):
@@ -150,7 +150,7 @@ class Presentation(models.Model):
 
     @classmethod
     def get_latest_presenations(cls):
-        return Presentation.objects.order_by("-pub_date").all()
+        return cls.objects.order_by("-pub_date").all()
 
 
 class Video(models.Model):
@@ -173,7 +173,7 @@ class Video(models.Model):
 
     @classmethod
     def get_latest_videos(cls):
-        return Video.objects.order_by("-pub_date").all()
+        return cls.objects.order_by("-pub_date").all()
 
 
 class MapMarker(models.Model):
@@ -200,4 +200,4 @@ class MapMarker(models.Model):
 
     @classmethod
     def get_latest_markers(cls):
-        return MapMarker.objects.order_by("-date_added").all()
+        return cls.objects.order_by("-date_added").all()
