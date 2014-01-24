@@ -51,13 +51,13 @@
                     {% else %}
                         <li><a href="{% url 'blog:partners' %}">PARTNERS</a></li>
                     {% endif %}
-              
+
                     {% if active_page == "blog" %}
                         <li class="active"><a href="{% url 'blog:blog' %}">BLOG</a></li>
                     {% else %}
                         <li><a href="{% url 'blog:blog' %}">BLOG</a></li>
                     {% endif %}
-                    
+
                     {% if active_page == "resources" %}
                         <li class="active dropdown">
                             <a href="{% url 'blog:resources' %}">RESOURCES</a>
@@ -210,7 +210,7 @@
 </div>
 
 <!-- jQuery (necesary for Bootstrap's JavaScript plugins) -->
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual file as needed -->
 <script type="text/javascript" src="{% static 'blog/js/bootstrap.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'blog/js/readmore.min.js' %}"></script>
