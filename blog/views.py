@@ -51,7 +51,13 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             subject = 'New Member Sign up'
-            message = "Name: "+form.cleaned_data['name']+", Organisation: "+form.cleaned_data['organisation']+", Email: "+form.cleaned_data['email']
+            message = ("Name: " +
+                       form.cleaned_data['name'] +
+                       ", Organisation: " +
+                       form.cleaned_data['organisation'] +
+                       ", Email: " +
+                       form.cleaned_data['email'])
+
             sender = settings.EMAIL_FROM
             recipient = [form.cleaned_data['email']]
 
@@ -165,7 +171,7 @@ def resources_news_articles(request):
 
 def resources_news_articles_list_all(request):
     view_external_articles = distutils.util.strtobool((request.GET.get('external', '')))
-    if view_external_articles==True:
+    if view_external_articles == True:
         articles_list_all = PressReleaseLink.get_latest_news()
     else:
         articles_list_all = PressRelease.get_latest_news()
@@ -197,7 +203,7 @@ def resources_reports_documents(request):
 
     # setup pager for reports
     reports_list_all = Report.get_latest_reports()
-    paginator_reports = Paginator(reports_list_all, 4)  # show 4 articles per page
+    paginator_reports = Paginator(reports_list_all, 4)  # show 4 articles/page
     page = request.GET.get('page')
     try:
         reports = paginator_reports.page(page)
@@ -210,7 +216,7 @@ def resources_reports_documents(request):
 
     # setup pager for presenations
     present_list_all = Presentation.get_latest_presenations()
-    paginator_present = Paginator(present_list_all, 5)  # show 5 articles per page
+    paginator_present = Paginator(present_list_all, 5)  # show 5 articles/page
     page1 = request.GET.get('page')
     try:
         presentations = paginator_present.page(page1)
@@ -271,7 +277,8 @@ def resources_map(request):
     context = {
         'view_index': False,
         'active_page': "resources",
-        'markers_list': serializers.serialize("json", MapMarker.get_latest_markers()),
+        'markers_list': serializers.serialize("json",
+                                              MapMarker.get_latest_markers()),
         'map_id': settings.MAP_ID,
     }
     return render(request, 'blog/resources_map.html',
