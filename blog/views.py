@@ -19,7 +19,6 @@ def index(request):
         'list_blogs': Blog.get_latest_blogs()[:5],
         'list_news': PressRelease.get_latest_news()[:4],
         'view_index': True,
-        'company': settings.COMPANY_NAME,
         'active_page': "index",
     }
     return render(request,
@@ -32,7 +31,6 @@ def objectives(request):
     # list of news articles
     context = {
         'view_index': False,
-        'company': settings.COMPANY_NAME,
         'active_page': "objectives",
     }
     return render(request,
@@ -101,7 +99,6 @@ def blog(request):
         'list_blogs': Blog.get_latest_blogs()[:5],
         'view_index': False,
         'main_list': blogs,
-        'company': settings.COMPANY_NAME,
         'active_page': "blog",
     }
     return render(request, 'blog/blog.html',
@@ -117,7 +114,6 @@ def blog_detail(request, blog_id, slug):
         'list_blogs': Blog.get_latest_blogs()[:5],
         'view_index': False,
         'view_blog_entry': True,
-        'company': settings.COMPANY_NAME,
         'active_page': "blog",
     }
     return render(request,
@@ -134,7 +130,6 @@ def news_media_detail(request, blog_id, slug):
         'list_news': PressRelease.get_latest_news()[:4],
         'view_index': False,
         'view_blog_entry': False,
-        'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
     return render(request,
@@ -150,7 +145,6 @@ def resources(request):
         'list_reports': Report.get_latest_reports()[:4],
         'list_videos': Video.get_latest_videos()[:1],
         'view_index': False,
-        'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
     return render(request, 'blog/resources.html',
@@ -163,7 +157,6 @@ def resources_news_articles(request):
         'list_news': PressRelease.get_latest_news()[:5],
         'list_news_links': PressReleaseLink.get_latest_news()[:5],
         'view_index': False,
-        'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
     return render(request, 'blog/resources_news_articles.html',
@@ -192,7 +185,6 @@ def resources_news_articles_list_all(request):
         'view_index': False,
         'main_list': articles,
         'view_external_articles': view_external_articles,
-        'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
 
@@ -233,7 +225,6 @@ def resources_reports_documents(request):
         'report_list': reports,
         'present_list': presentations,
         'view_index': False,
-        'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
     return render(request, 'blog/resources_reports_documents.html',
@@ -243,7 +234,7 @@ def resources_reports_documents(request):
 def resources_videos(request):
     # list of videos
     videos_list_all = Video.get_latest_videos()
-    
+
     paginator = Paginator(videos_list_all, 5)  # show 5 articles per page
     page = request.GET.get('page')
     try:
@@ -258,7 +249,6 @@ def resources_videos(request):
     context = {
         'main_list': videos,
         'view_index': False,
-        'company': settings.COMPANY_NAME,
         'active_page': "resources",
     }
     return render(request, 'blog/resources_videos.html',
@@ -269,7 +259,6 @@ def resources_calendar(request):
     # displays Google calendar
     context = {
         'view_index': False,
-        'company': settings.COMPANY_NAME,
         'active_page': "resources",
         'calendar_id': settings.CALENDAR_ID,
     }
@@ -281,7 +270,6 @@ def resources_map(request):
     # displays map with loaded markers
     context = {
         'view_index': False,
-        'company': settings.COMPANY_NAME,
         'active_page': "resources",
         'markers_list': serializers.serialize("json", MapMarker.get_latest_markers()),
         'map_id': settings.MAP_ID,
