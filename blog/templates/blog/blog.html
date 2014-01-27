@@ -1,0 +1,67 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+     <!-- blog starts with pagination *** -->
+     <div class="row-fluid">
+     	<div class="span8">
+            <h2 class="line" style="text-align: center">Blog</h2>
+            {% block pager %}
+                {% if main_list %}
+                    {% for blog in main_list.object_list %}
+                        <h2 class="blog"><a href="{% url 'blog:blog-detail' blog.id blog.slug %}">{{ blog.title }}</a></h2>
+                        <div class="blog-date">{{ blog.pub_date }}</div>
+                        {% if blog.image %}
+                            <img src="{{ blog.image.url }}" vspace="10">
+                        {% endif %}
+                        <p>{{ blog.body|safe }}</p>
+                    {% endfor %}
+
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if main_list.has_previous %}
+                                <a href="?page={{ main_list.previous_page_number }}">previous</a>
+                            {% endif %}
+
+                            <span class="current">
+                                Page {{ main_list.number }} of {{ main_list.paginator.num_pages }}.
+                            </span>
+
+                            {% if main_list.has_next %}
+                                <a href="?page={{ main_list.next_page_number }}">next</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                {% else %}
+                    <div class="blog-post">
+                        <h3>No blogs are available.</h3>
+                    </div>
+                {% endif %}
+            {% endblock %}
+        </div>
+
+        <div class="span4">
+            {% block blog %}
+                {% if list_blogs %}
+                    {% for blog in list_blogs %}
+                        <div class="blog-post">
+                            <div class="blog-post-date">
+                                <div class="blog-post-date-number">{{ blog.pub_date.day }}</div>
+                                {{blog.pub_date|date:"M"}}
+                            </div>
+                            {% if view_index %}
+                                <div class="blog-post-heading"><a href="{% url 'blog:blog-detail' blog.id blog.slug  %}">{{ blog.title }}</a></div>
+                            {% else %}
+                                <div class="blog-post-heading-sub"><a href="{% url 'blog:blog-detail' blog.id blog.slug  %}">{{ blog.title }}</a></div>
+                            {% endif %}
+                         </div>
+                    {% endfor %}
+                {% endif %}
+            {% endblock %}
+        </div>
+     </div>
+     <!-- blog ends -->
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+
+     
+{% block content %}
+     <!-- blog starts -->
+     <div class="row-fluid">
+     	<div class="span8">
+        <h2 class="line" style="text-align: center">Media Release</h2>
+        <br>
+<div class="blog-date">3 November 2012</div>
+            <h2 class="blog">How Frontline Health Workers Are
+Saving the Lives of Women & Children</h2>
+            <p>The long overdue Android 4.1 update for the HTC One X is finally here. Users in Asia,
+Europe and South America are reporting that the update is available for unlocked HTC
+One X phones (CID_038 & CID_044). From what we can gather, the Android 4.1 update
+with HTC Sense 4+ is being pushed out in two separate parts: a smaller 1.25-1.6 MB
+file followed by the main 357-364 MB Android 4.1 update.
+If you’re not sure which HTC One X you have, you can easily check by downloading a
+CID app from Google Play. If you have not already received the OTA update notification,
+you can try to manually ping HTC’s update servers by going to Settings > About >
+Software updates >Check now.</p>
+            <p>The long overdue Android 4.1 update for the HTC One X is finally here. Users in Asia,
+Europe and South America are reporting that the update is available for unlocked HTC
+One X phones (CID_038 & CID_044). From what we can gather, the Android 4.1 update
+with HTC Sense 4+ is being pushed out in two separate parts: a smaller 1.25-1.6 MB
+file followed by the main 357-364 MB Android 4.1 update.
+If you’re not sure which HTC One X you have, you can easily check by downloading a
+CID app from Google Play. If you have not already received the OTA update notification,
+you can try to manually ping HTC’s update servers by going to Settings > About >
+Software updates >Check now.</p>
+            <p>The long overdue Android 4.1 update for the HTC One X is finally here. Users in Asia,
+Europe and South America are reporting that the update is available for unlocked HTC
+One X phones (CID_038 & CID_044). From what we can gather, the Android 4.1 update
+with HTC Sense 4+ is being pushed out in two separate parts: a smaller 1.25-1.6 MB
+file followed by the main 357-364 MB Android 4.1 update.
+If you’re not sure which HTC One X you have, you can easily check by downloading a
+CID app from Google Play. If you have not already received the OTA update notification,
+you can try to manually ping HTC’s update servers by going to Settings > About >
+Software updates >Check now.</p>
+            <p>The long overdue Android 4.1 update for the HTC One X is finally here. Users in Asia,
+Europe and South America are reporting that the update is available for unlocked HTC
+One X phones (CID_038 & CID_044). From what we can gather, the Android 4.1 update
+with HTC Sense 4+ is being pushed out in two separate parts: a smaller 1.25-1.6 MB
+file followed by the main 357-364 MB Android 4.1 update.
+If you’re not sure which HTC One X you have, you can easily check by downloading a
+CID app from Google Play. If you have not already received the OTA update notification,
+you can try to manually ping HTC’s update servers by going to Settings > About >
+Software updates >Check now.</p>
+            
+            
+          
+        </div>
+        
+
+        <div class="span4">
+            {% block blog %}
+                {{ block.super }}
+            {% endblock %}
+
+            <br><br>            
+
+            {% block news %}
+                {{ block.super }}
+            {% endblock %}
+        </div>
+     <!-- blog ends -->
+    
+{% endblock %}
+   
+{% block footer %}
+    <li><a href="{% url 'blog:index' %}">HOME</a></li>
+    <li><a href="{% url 'blog:task-forces' %}">OBJECTIVES</a></li>
+    <li><a href="{% url 'blog:partners' %}">PARTNERS</a></li>    
+    <li><a href="{% url 'blog:news-media' %}">NEWS &amp; MEDIA</a></li>
+    <li>RESOURCES</li>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'blog/resources.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="row-fluid">
+      <div class="span12">
+        <h1 class="line">RESOURCES</h1>
+      </div>
+      </div>
+      <br />
+
+        <!-- list latest external articles -->
+
+<div class="row-fluid">
+<div class="span9 side-line-resources">
+            <h2 class="heading-resources">
+                <img src="{% static 'blog/img/icons/ico_calendar2.jpg' %}">
+                Calendar</h2>
+
+            <iframe src="{{ calendar_id }}" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+            
+        </div>
+     {% block minimenu %}
+      {{ block.super }}
+     {% endblock %}
+</div>
+    
+
+{% endblock %}

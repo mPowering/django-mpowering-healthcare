@@ -1,0 +1,225 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+
+{% block first_blog_post %}
+    {% if view_index %}
+
+    <div class="span6">
+        {% if list_blogs %}
+        {% with list_blogs|first as blog %}
+            <div class="blog-post-latest-home">
+                <h3><a href="{% url 'blog:blog-detail' blog.id blog.slug %}">{{ blog.title }}</a>
+                <small><p class="index-paragraph">{{ blog.body|striptags|truncatewords:"15" }}...<a href="{% url 'blog:blog-detail' blog.id blog.slug %}">read more</a></p></small>
+            </div>
+        {% endwith %}
+        {% endif %}
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <!-- carousell starts -->
+
+    <div class="row-fluid">
+        <div id="homeCarousel" class="carousel slide">
+          <ol class="carousel-indicators">
+            <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#homeCarousel" data-slide-to="1"></li>
+            <li data-target="#homeCarousel" data-slide-to="2"></li>
+            <li data-target="#homeCarousel" data-slide-to="3"></li>
+          </ol>
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+            <div class="active item">
+                <img src="{% static 'blog/img/carousel/carousel-1.jpg' %}">
+                <!--div class="carousel-caption">
+                      <h4>Thumbnail label</h4>
+                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                </div-->
+            </div>
+            <div class="item">
+                <img src="{% static 'blog/img/carousel/carousel-2.jpg' %}">
+                <!--div class="carousel-caption">
+                      <h4>Thumbnail label</h4>
+                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                </div-->
+            </div>
+            <div class="item">
+                <img src="{% static 'blog/img/carousel/carousel-3.jpg' %}">
+                <!--div class="carousel-caption">
+                      <h4>Thumbnail label</h4>
+                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                </div-->
+            </div>
+            <div class="item">
+                <img src="{% static 'blog/img/carousel/carousel-4.jpg' %}">
+                <!--div class="carousel-caption">
+                      <h4>Thumbnail label</h4>
+                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                </div-->
+            </div>
+          </div>
+          <!-- Carousel nav -->
+          <a class="carousel-control left" href="#homeCarousel" data-slide="prev">&lsaquo;</a>
+          <a class="carousel-control right" href="#homeCarousel" data-slide="next">&rsaquo;</a>
+        </div>
+<!--
+        <div class="span12 carousell">
+        	<div class="carousell-inner">
+            <img src="{% static 'blog/img/carousel/carousel-1.jpg' %}">
+            </div>
+        </div> -->
+    </div>
+
+    <!-- carousell ends -->
+
+    <div class="row-fluid">
+        <div class="quote-area">
+           The goal of the mPowering Frontline Health Workers partnership is to contribute to the elimination of preventable child and maternal deaths by accelerating the use of mobile technology to improve the skills and performance of frontline health workers.
+        </div>
+    </div>
+    <hr>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <h1>About Us</h1>
+            <div class="row-fluid">
+               
+               <p>Frontline health workers are the first and often the only link to health care for millions of families in low and middle income countries. Mobile technology, nearly ubiquitous in these countries, offers a revolutionary opportunity to strengthen the capacity of frontline health workers and expand the coverage of critical maternal and child health interventions such as antenatal services, prevention of mother-to-child transmission of HIV, essential newborn care, immunization, and early detection and treatment of diarrhea, malaria, and pneumonia.
+</p>
+<p>
+To harness the power of mobile technology at scale, USAID has joined forces with public and private sector partners to form a three-year partnership called mPowering Frontline Health Workers.  This innovative partnership is designed to improve maternal and child health by accelerating the use of mobile technology by frontline health workers around the world.  The founding partners are USAID, UNICEF, Qualcomm, Vodafone, Intel, MDG Health Alliance, GlaxoSmithKline, Praekelt Foundation, Frontline Health Workers Coalition, and Absolute Return for Kids.   The USAID-funded MCHIP project serves as the partnership secretariat. As well as supporting financial and human resources management, MCHIP helps to identify potential points of collaboration and areas where working jointly will bring benefits to the aims of both mPowering and MCHIP. 
+</p>
+               
+            </div>
+        </div>
+    </div>
+    <!-- links -->
+    <hr>
+    <div class="row-fluid">
+    <div class="span12">
+    	<h1>Task Forces</h1>
+    	<div class="row-fluid">
+            <div class="span6">
+            <h2>Global Tools</h2>
+             <div class="partners4line"> 
+            
+           <p> The Global Tools Task Force advises on the development and dissemination of tools, multimedia digital health content, open standards and training materials to support organizations implementing mHealth programs for frontline health workers. </p>
+            <p>
+            The task force will also develop a strategy to build capacity for social enterprises offering mHealth products and services for health workers. The task force is co-chaired by iheed and the Open Concept Lab.</p>
+           
+           <p>
+<strong>Activity:</strong>  The task force completed a landscape assessment in 2012 that outlined options for the development of an online digital content repository/ marketplace. A strategic workshop was held in December to review the landscape findings and select a preferred model for the online platform. In July 2013 the task force appointed a consultant to undertake a second series of stakeholder interviews and a survey of 20 organizations’ health content. The findings from this work will help inform the partnership’s content development strategy.
+</p>
+            </div>
+            
+            
+            </div>
+            <div class="span6">
+            <h2>Country Program</h2>
+ <div class="partners3line">           
+<p>            The Country Programs Task Force advises on the development of country plans for targeted technical assistance to support the scale-up of existing mHealth initiatives.</p>
+<p>
+ Targeted technical assistance may include policy support, operations research, evaluation, implementation support, business modeling, stakeholder engagement, documentation, and/or catalytic funding for the development of evidence-based prototype applications. The task force is co-chaired by UNICEF and the MDG Health Alliance.
+</p>
+<p>
+<strong>Activity:</strong> Using criteria including partner resources, mobile penetration and government support, the task force has selected six focus countries: India, Kenya, Mozambique, Nigeria, Tanzania, and Uganda. A partnership delegation (mPowering Frontline Health Workers, mHealth Alliance and Qualcomm) visited India in September 2013 to review existing mobile technologies supporting frontline health workers and understand the involvement of public and private stakeholders engaged in mHealth activities. A situational analysis following the visit will help to inform the partnership strategy in India. Work is also underway to create a portfolio of country landscapes for the partnership’s other focus countries. These landscapes will include government health sector priorities and the partners we need to engage with to promote effective mHealth interventions.
+</p>
+</div>
+            
+            
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+            <h2>Research &amp; Evaluation</h2>
+            
+            <div class="partners3line">
+    <p>        The Research and Evaluation Task Force is developing a strategy to build the evidence base on the use of mHealth to improve performance and accountability of frontline health workers. </p>
+    <p>   
+    The task force will develop tools to help governments, managers and funders make evidence-based decisions on the use of mobile technology to improve the quality, efficiency and coverage of health interventions. The task force is co-chaired by the Johns Hopkins University Global mHealth Initiative and Vital Wave Consulting.
+</p>
+<p>
+<strong>Activity:</strong> A literature review of mHealth applications used by frontline health workers has been commissioned by the partnership to the Johns Hopkins University Global mHealth initiative. The review will feed into global research agenda setting by organizations such as UNICEF and the WHO. Discussions are underway with Intel to develop a ‘Total Cost of Ownership’ business model which will involve support from Future Group; the model will be presented and tested at an mPowering Frontline Health Workers and mHealth Working Group joint workshop in 2014.
+</p>
+            
+  </div>          
+            
+            </div>
+            <div class="span6">
+            <h2>Advocacy</h2>
+            <div class="partners3line">
+            
+            
+          <p>  The Advocacy Task Force is developing a strategy to inform the global health community of the variety of ways mobile technology can support accountability and performance of frontline health workers. </p><p>The task force is co-chaired by GlaxoSmithKline and the Praekelt Foundation.
+            
+            
+<strong>Activity:</strong>  This summer, GlaxoSmithKline generously seconded one of its managers to help facilitate development of the communications strategy. The Praekelt Foundation has provided its expertise and significant time to create the partnership website and animated video. mPowering Frontline Health Workers has presented at several mHealth events and is collaborating with key initiatives that share our goal of ending preventable child and maternal deaths (e.g. the U.N. Commission on Life Saving Commodities, One Million Community Health Workers, and the BackPack Plus Initiative).  
+</p>
+            
+            
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- links end -->
+
+        <hr>
+        
+         <div class="row-fluid">
+    	<div class="span12">
+        	<h1 class="line">Partners</h1>
+            	<div class="row-fluid founding-members">
+            <div class="span2"><a href="{% url 'blog:partners' %}"><img src="{% static 'blog/img/founding/praekelt.gif' %}"></a>
+            </div>
+            <div class="span2"><a href="{% url 'blog:partners' %}"><img src="{% static 'blog/img/founding/us-aid.gif' %}"></a>
+            </div>
+            <div class="span2"><a href="{% url 'blog:partners' %}"><img src="{% static 'blog/img/founding/mdg.gif' %}"></a>
+            </div>
+            <div class="span2"><a href="{% url 'blog:partners' %}"><img src="{% static 'blog/img/founding/unicef.gif' %}"></a>
+            </div>
+            <div class="span2"><a href="{% url 'blog:partners' %}"><img src="{% static 'blog/img/founding/qualcomm.gif' %}"></a>
+            </div>
+            <div class="span2"><a href="{% url 'blog:partners' %}"><img src="{% static 'blog/img/founding/mHealthA.gif' %}"></a>
+            </div>
+                </div>
+            	<div class="row-fluid founding-members-sub">
+            		<div class="span1">
+                    </div>
+					<div class="span2"><a href="{% url 'blog:partners' %}"><img src="{% static 'blog/img/founding/ark.gif' %}"></a>
+                    </div>
+					<div class="span2"><a href="{% url 'blog:partners' %}"><img src="{% static 'blog/img/founding/gsk.gif' %}"></a>
+                    </div>
+					<div class="span2"><a href="{% url 'blog:partners' %}"><img src="{% static 'blog/img/founding/vodafone.gif' %}"></a>
+                    </div>
+					<div class="span2"><a href="{% url 'blog:partners' %}"><img src="{% static 'blog/img/founding/intel.gif' %}"></a>
+                    </div>
+					<div class="span2"><a href="{% url 'blog:partners' %}"><img src="{% static 'blog/img/founding/frontline.gif' %}"></a>
+                    </div>
+                    <div class="span1">
+                    </div>
+                </div>
+        </div>
+    </div>
+    
+    <hr />
+
+    <div class="row-fluid">
+        <div class="span8">
+            {% block blog %}
+                {{ block.super }}
+            {% endblock %}
+        </div>
+        <div class="span4">
+        <h2 class="line">On Twitter</h2>
+        <a class="twitter-timeline" href="https://twitter.com/mPoweringHealth" data-widget-id="378551032357195776">Tweets by @mPoweringHealth</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+        </div>
+    </div>
+
+   
+
+   
+{% endblock %}
