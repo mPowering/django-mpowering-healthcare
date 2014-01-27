@@ -41,3 +41,5 @@ logs/*.log
 *.pid
 # OS X
 .DS_Store
+
+production_settings.py
