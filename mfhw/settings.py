@@ -245,7 +245,6 @@ COMPANY_NAME = 'mPowering Frontline Health Workers'
 MAP_ID = ''
 
 CALENDER_TOKEN = ''
-CALENDAR_ID = 'https://www.google.com/calendar/embed?src=' + CALENDER_TOKEN
 
 MAX_UPLOAD_SIZE = "20971520"  #20MB 
 
