@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^resources/map/$', views.resources_map, name='resources_map'),
     url(r'^resources/calendar/$', views.resources_calendar, name='resources_calendar'),
     url(r'^contact/$', views.contact, name='contact'),
-    
+    url(r'^thanks/$', views.thanks, name='thanks'),
+
     url(r'^media/(?P<path>.*)$', "django.views.static.serve", {"document_root": settings.MEDIA_ROOT})
 )
