@@ -16,13 +16,12 @@
     <div class="span9 side-line-resources">
         <div class="row-fluid">
              <h2 class="heading-resources">
-                              <img src="{% static 'blog/img/icons/ico_reports.jpg' %}">                Reports and Documents</h2>
+                              <img src="{% static 'blog/img/icons/ico_reports.jpg' %}">Reports and Documents</h2>
             <div class="row-fluid">
             {% if report_list %}
             {% for report_item in report_list.object_list %}
                 <div class="span4">
                     <img src="{{ report_item.thumbnail.url }}" vspace="10"><br>
-                    <p>{{ report_item.item.url }}</p>
                     <strong><a class="blog" href="{{ report_item.item.url }}">{{report_item.title}}</a></strong>
                     <div class="blog-date">{{ report_item.pub_date|date:"j F y"}}</div>
                 </div>                
