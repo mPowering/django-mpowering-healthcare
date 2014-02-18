@@ -271,7 +271,7 @@ def resources_calendar(request):
     context = {
         'view_index': False,
         'active_page': "resources",
-        'calendar_id': settings.CALENDAR_TOKEN,
+        'calendar_id': settings.CALENDER_TOKEN,
     }
     return render(request, 'blog/resources_calendar.html',
                   context)
