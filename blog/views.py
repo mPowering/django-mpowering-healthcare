@@ -66,7 +66,7 @@ def contact(request):
             # Always return an HttpResponseRedirect after successfully dealing
             # with POST data. This prevents data from being posted twice if a
             # user hits the Back button.
-            return HttpResponseRedirect(reverse('blog:contact'))
+            return HttpResponseRedirect(reverse('blog:thanks'))
     else:
         form = ContactForm()
 
@@ -79,6 +79,11 @@ def contact(request):
                   'blog/contact.html',
                   context)
 
+def thanks(request):
+    context = {'active_page': "contact"}
+    return render(request,
+                  'blog/thanks.html',
+                  context)
 
 def test(request):
     return render(request,
