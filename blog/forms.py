@@ -12,7 +12,7 @@ class NewsArticleModelAdminForm(forms.ModelForm):
 
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=200, required=True)
-    organisation = forms.CharField(max_length=200, required=True)
+    organization = forms.CharField(max_length=200, required=True) # potentially better to do label='Organization'
     email = forms.EmailField(required=True)
 
 
