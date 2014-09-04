@@ -9,7 +9,7 @@
         {% with list_blogs|first as blog %}
             <div class="blog-post-latest-home">
                 <h3><a href="{% url 'blog:blog-detail' blog.id blog.slug %}">{{ blog.title }}</a>
-                <small><p class="index-paragraph">{{ blog.body|striptags|truncatewords:"15" }}...<a href="{% url 'blog:blog-detail' blog.id blog.slug %}">read more</a></p></small>
+                <small><p class="index-paragraph">{{ blog.body|striptags|truncatewords:"11" }}...<a href="{% url 'blog:blog-detail' blog.id blog.slug %}">read more</a></p></small>
             </div>
         {% endwith %}
         {% endif %}
