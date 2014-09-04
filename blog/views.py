@@ -53,8 +53,8 @@ def contact(request):
             subject = 'New Member Sign up'
             message = ("Name: " +
                        form.cleaned_data['name'] +
-                       ", Organisation: " +
-                       form.cleaned_data['organisation'] +
+                       ", Organization: " +
+                       form.cleaned_data['organization'] +
                        ", Email: " +
                        form.cleaned_data['email'])
 
