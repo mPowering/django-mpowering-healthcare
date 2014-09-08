@@ -61,7 +61,7 @@ div.quote-area
 hr
 {
     border-bottom: 4px solid @mPoweringBlueDark;
-    margin: 35px 0px 35px 0px;
+    margin: 17px 0px 17px 0px;
 }
 
 h1
@@ -81,6 +81,16 @@ h1.line
     text-align: center; 
     margin-top: 20px
 }
+h1.centered
+{
+    font-family: @navFontFamily;
+    font-size: 36px;
+    color: @mPoweringBlueDark; 
+    padding-bottom: 0px;
+    display: block;
+    text-align: center; 
+    margin-top: 10px
+}
 h2.line
 {
     font-family: @navFontFamily;
@@ -91,7 +101,15 @@ h2.line
     display: block;
     border-bottom: 1px solid @mPoweringDarkGray;
 }
-
+h2.sub
+{
+    font-family: @navFontFamily;
+    font-size: 32px;
+    font-weight: bold;
+    color: @mPoweringBlueDark; 
+    padding-bottom: 0px;
+    display: block;
+}
 h2.line-resources
 {
     font-family: @navFontFamily;
@@ -180,10 +198,9 @@ h3
 
 div.header-background
 {
-    background-image: url(../img/header_line.gif);
     background-repeat: repeat-x;
     background-position: bottom;
-    padding: 0px 0px 22px 0px;
+    padding: 0px 0px 0px 0px;
 }
 
 
@@ -221,7 +238,7 @@ div.blog-post-latest-home
     background-image: url(../img/blog/ico_blog_new.gif);
     background-position: left center;
     background-repeat: no-repeat;
-    padding: 20px 0px 20px 60px;
+    padding: 20px 0px 0px 60px;
     color: @mPoweringBlueLight;
     font-size: 15px;
     line-height: 19px;
@@ -307,6 +324,7 @@ div.blog-post-heading
     color: @mPoweringDarkerGray;   
     left: 50px;
     top: 15px;
+    padding-right: 25px;
 }
 div.blog-post-heading-sub
 {
@@ -390,7 +408,6 @@ div.media-release-sub
     font-size: 14px;
     line-height: 19px;
     font-family: @sansFontFamily;
-    border-bottom: 1px solid @mPoweringLightGray;
     position: relative;
     min-height: 60px;
 }

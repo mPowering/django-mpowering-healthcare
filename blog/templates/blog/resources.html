@@ -5,7 +5,7 @@
 {% block content %}
     <div class="row-fluid">
       <div class="span12">
-        <h1 class="line">RESOURCES</h1>
+        <h1 class="centered">RESOURCES</h1>
       </div>       
     </div>
 
@@ -32,6 +32,7 @@
                       <div class="media-release-sub">
                       <strong>No news articles currently available.</strong>
                       </div>
+                      <hr class="resources-line" />
                   {% endif %}
 
                 <a href="{% url 'blog:resources_news_articles_list_all' %}?external=True">View more articles...</a>
@@ -55,7 +56,7 @@
                   {% endfor %}
                   {% else %}
                       <div class="media-release-sub">
-                      <strong>No news articles currently available.</strong>
+                      <strong>No press releases currently available.</strong>
                       </div>
                   {% endif %}
 
@@ -95,7 +96,7 @@
               <div class="row-fluid">
                 <h2 class="heading-resources">
                 <img src="{% static 'blog/img/icons/ico_video.jpg' %}">
-                Featured Videos</h2>
+                Videos</h2>
 
                 {% if list_videos %}
                 {% for video_item in list_videos %}
@@ -116,8 +117,9 @@
                           {% endfor %}
                 {% else %}
                     <div class="media-release-sub">
-                    <strong>No news articles currently available.</strong>
+                    <strong>No videos currently available.</strong>
                     </div>
+                    <hr class="resources" />
                 {% endif %}
               </div>
               
