@@ -124,7 +124,7 @@
         {% block pager %} {% endblock %}
 
         {% block news %}
-            <h2 class="line">Press Releases</h2>
+            <h2 class="sub">Press Releases</h2>
             {% if list_news %}
             {% for news_item in list_news %}
                 <div class="media-release-sub">
@@ -140,7 +140,7 @@
         {% endblock %}
 
         {% block blog %}
-            <h2 class="line">From our Blog</h2>
+            <h2 class="sub">From our Blog</h2>
                 {% if list_blogs %}
                     {% for blog in list_blogs %}
                         {% if forloop.first %}
