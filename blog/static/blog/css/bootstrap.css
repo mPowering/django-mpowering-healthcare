@@ -5274,6 +5274,15 @@ h1.line {
   text-align: center;
   margin-top: 20px;
 }
+h1.centered {
+  font-family: "Gotham", Helvetica, Arial, sans-serif;
+  font-size: 36px;
+  color: #0b4260;
+  padding-bottom: 0px;
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
 h2.line {
   font-family: "Gotham", Helvetica, Arial, sans-serif;
   font-size: 32px;
