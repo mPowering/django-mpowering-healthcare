@@ -5257,7 +5257,7 @@ div.quote-area {
 }
 hr {
   border-bottom: 4px solid #0b4260;
-  margin: 20px 0px 15px 0px;
+  margin: 20px 0px 20px 0px;
 }
 h1 {
   font-family: "Gotham", Helvetica, Arial, sans-serif;
@@ -5355,10 +5355,9 @@ h3 {
   font-weight: normal;
 }
 div.header-background {
-  background-image: url(../img/header_line.gif);
   background-repeat: repeat-x;
   background-position: bottom;
-  padding: 0px 0px 22px 0px;
+  padding: 0px 0px 0px 0px;
 }
 div.blog-post-latest {
   background-image: url(../img/blog/ico_blog_new.gif);
@@ -5389,7 +5388,7 @@ div.blog-post-latest-home {
   background-image: url(../img/blog/ico_blog_new.gif);
   background-position: left center;
   background-repeat: no-repeat;
-  padding: 20px 0px 20px 60px;
+  padding: 20px 0px 0px 60px;
   color: #2790b0;
   font-size: 15px;
   line-height: 19px;
