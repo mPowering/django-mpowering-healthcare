@@ -1,0 +1,61 @@
+{% extends 'blog/resources.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="row-fluid">
+      <div class="span12">
+        <h1 class="centered">RESOURCES</h1>
+      </div>
+      </div>
+
+    {% block pager %}
+      
+      <div class="row-fluid">
+      <div class="span9">
+        {% block press_releases %}
+         <h2 class="heading-resources">
+                  <img src="{% static 'blog/img/icons/ico_press.jpg' %}">
+                  Press Releases</h2>
+        {% if main_list %}
+            {% for news_item in main_list.object_list %}
+                <h3 class="resources"><a class="blog" href="{% url 'blog:news-media-detail' news_item.id news_item.slug %}">{{news_item.title}}</a></h3>
+                <div class="blog-date">{{ news_item.pub_date|date:"j F y"}}</div>
+                {% if news_item.image %}
+                <img src="{{ news_item.image.url }}" vspace="10">
+                {% endif %}
+                <!-- <p>{{ news_item.body|safe }}</p> -->
+                 <hr class="resources-line" />
+            {% endfor %}
+        {% else %}
+            <div class="media-release-sub">
+            <strong>No news articles currently available.</strong>
+            </div>
+        {% endif %}
+        {% endblock %}
+
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if main_list.has_previous %}
+                <a href="?page={{ main_list.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ main_list.number }} of {{ main_list.paginator.num_pages }}.
+            </span>
+
+            {% if main_list.has_next %}
+                <a href="?page={{ main_list.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+    </div>
+    
+     {% block minimenu %}
+      {{ block.super }}
+     {% endblock %}
+    </div>
+
+  {% endblock %}        
+{% endblock %}
