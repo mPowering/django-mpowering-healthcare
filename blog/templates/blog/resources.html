@@ -172,8 +172,10 @@
           {% block minimenu %}
               <div class="span3 sidebar-right">
                     <h3>Resources</h3>
-                    <a href="{% url 'blog:resources_news_articles' %}">News Articles</a><br />
+                    <a href="{% url 'blog:resources_news_articles_list_all' %}?external=False">Press Releases</a><br />
                     <a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a><br />
+                    <a href="{% url 'blog:resources_news_articles_list_all' %}?external=True">External Links</a><br />
+
                     <a href="{% url 'blog:resources_videos' %}">Videos</a><br />
                     <a href="{% url 'blog:resources_calendar' %}">Calendar</a><br />
                     <a href="{% url 'blog:resources_map' %}">Map</a>
