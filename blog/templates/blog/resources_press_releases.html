@@ -8,33 +8,11 @@
         <h1 class="centered">RESOURCES</h1>
       </div>
       </div>
-      <br />
 
     {% block pager %}
       
       <div class="row-fluid">
       <div class="span9">
-    {% if view_external_articles %}
-        {% block external_articles %}
-             <h2 class="heading-resources">
-                <img src="{% static 'blog/img/icons/ico_external.jpg' %}">
-                External Articles</h2>
-
-            {% if main_list %}
-              {% for news_item in main_list.object_list %}
-                  <h3 class="resources"><a class="blog" href="{{news_item.link}}">{{news_item.title}}</a></h3>
-                  <p><strong>{{news_item.publication_name}}</strong> | {{ news_item.pub_date|date:"j F y"}}</p>
-                  <hr class="resources-line" />
-              {% endfor %}
-              {% else %}
-                  <div class="media-release-sub">
-                  <strong>No news articles currently available.</strong>
-                  </div>
-              {% endif %}
-        {% endblock %}
-
-        
-    {% else %}
         {% block press_releases %}
          <h2 class="heading-resources">
                   <img src="{% static 'blog/img/icons/ico_press.jpg' %}">
@@ -55,7 +33,6 @@
             </div>
         {% endif %}
         {% endblock %}
-    {% endif %}
 
 
     <div class="pagination">
