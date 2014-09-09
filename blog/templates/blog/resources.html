@@ -41,7 +41,7 @@
               </div>
             {% endif %}
               
-            <a href="{% url 'blog:resources_news_articles_list_all' %}?external=False">View more articles...</a>
+            <a href="{% url 'blog:resources_press_releases' %}">View more articles...</a>
 
           </div>
 
@@ -110,7 +110,7 @@
               <hr class="resources-line" />
             {% endif %}
 
-            <a href="{% url 'blog:resources_news_articles_list_all' %}?external=True">View more articles...</a>
+            <a href="{% url 'blog:resources_external_links' %}">View more articles...</a>
 
           </div>
 
@@ -172,9 +172,9 @@
           {% block minimenu %}
               <div class="span3 sidebar-right">
                     <h3>Resources</h3>
-                    <a href="{% url 'blog:resources_news_articles_list_all' %}?external=False">Press Releases</a><br />
+                    <a href="{% url 'blog:resources_press_releases' %}">Press Releases</a><br />
                     <a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a><br />
-                    <a href="{% url 'blog:resources_news_articles_list_all' %}?external=True">External Links</a><br />
+                    <a href="{% url 'blog:resources_external_links' %}">External Links</a><br />
 
                     <a href="{% url 'blog:resources_videos' %}">Videos</a><br />
                     <a href="{% url 'blog:resources_calendar' %}">Calendar</a><br />

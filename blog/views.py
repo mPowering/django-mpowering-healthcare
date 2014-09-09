@@ -203,6 +203,54 @@ def resources_news_articles_list_all(request):
                   context)
 
 
+def resources_press_releases(request):
+    articles_list_all = PressRelease.get_latest_news()
+
+    paginator = Paginator(articles_list_all, 5)  # show 5 articles per page
+    page = request.GET.get('page')
+    try:
+        articles = paginator.page(page)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver first page
+        articles = paginator.page(1)
+    except EmptyPage:
+        # if page is out of range, deliver last page of results
+        articles = paginator.page(paginator.num_pages)
+
+    context = {
+        'view_index': False,
+        'main_list': articles,
+        'active_page': "resources",
+    }
+
+    return render(request, 'blog/resources_press_releases.html',
+                  context)
+
+
+def resources_external_links(request):
+    articles_list_all = PressReleaseLink.get_latest_news()
+
+    paginator = Paginator(articles_list_all, 5)  # show 5 articles per page
+    page = request.GET.get('page')
+    try:
+        articles = paginator.page(page)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver first page
+        articles = paginator.page(1)
+    except EmptyPage:
+        # if page is out of range, deliver last page of results
+        articles = paginator.page(paginator.num_pages)
+
+    context = {
+        'view_index': False,
+        'main_list': articles,
+        'active_page': "resources",
+    }
+
+    return render(request, 'blog/resources_external_links.html',
+                  context)
+
+
 def resources_reports_documents(request):
     # list of reports and docs
 
