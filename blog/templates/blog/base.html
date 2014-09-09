@@ -61,28 +61,10 @@
                     {% if active_page == "resources" %}
                         <li class="active dropdown">
                             <a href="{% url 'blog:resources' %}">RESOURCES</a>
-
-                            <!-- <ul class="dropdown-menu" role="menu" aria-labelledby="blogLabel">
-                                <li><a href="{% url 'blog:resources' %}">Resources</a></li>
-                                <li><a href="{% url 'blog:resources_news_articles' %}">News</a></li>
-                                <li><a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a></li>
-                                <li><a href="{% url 'blog:resources_videos' %}">Featured Videos</a></li>
-                                <li><a href="{% url 'blog:resources_calendar' %}">Calendar</a></li>
-                                <li><a href="{% url 'blog:resources_map' %}">Map</a></li>
-                            </ul> -->
                         </li>
                     {% else %}
                         <li class="dropdown">
                             <a href="{% url 'blog:resources' %}">RESOURCES</a>
-
-                            <!--ul class="dropdown-menu" role="menu" aria-labelledby="blogLabel">
-                                <li><a href="{% url 'blog:resources' %}">Resources</a></li>
-                                <li><a href="{% url 'blog:resources_news_articles' %}">News</a></li>
-                                <li><a href="{% url 'blog:resources_reports_documents' %}">Reports and Documents</a></li>
-                                <li><a href="{% url 'blog:resources_videos' %}">Featured Videos</a></li>
-                                <li><a href="#">Calendar</a></li>
-                                <li><a href="#">Map</a></li>
-                            </ul-->
                         </li>
                     {% endif %}
 
